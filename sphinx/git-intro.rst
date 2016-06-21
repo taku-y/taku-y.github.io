@@ -175,8 +175,8 @@ Git入門
 .. code:: console
 
     $ git lg
-    * 1633e39 [2016-06-19] (HEAD -> master) Modify a file. @taku-y
-    * c8e4a5c [2016-06-19] First commit. @taku-y
+    * 1633e39 [2016-06-19] (HEAD -> master) Modify a file. @username
+    * c8e4a5c [2016-06-19] First commit. @username
 
 - 新たなコミットが追加されたことが分かります. 
 
@@ -241,41 +241,182 @@ Git入門
 -------------------------------------------------------------------------------
 - ブランチとはリポジトリに含まれる異なるバージョンのスナップショットです. 
 - ブランチの実体はコミットへのポインタです. 
-- リポジトリは必ず「現在のブランチ」を状態として持ちます. 
+- リポジトリは必ず「現在のブランチ」を状態として持ちます. これまでの例では「現在のブランチ」は :code:`master` という名前でした. これはリポジトリを作成する時のデフォルトのブランチ名です. 
 - リポジトリを切り替えると, ブランチが移動し, ディレクトリの内容はブランチが指すコミットに含まれるものに置き換えられます. もちろん, 元のブランチに戻ればディレクトリの内容もまた元に戻ります. Gitでは, ブランチの切り替えをチェックアウトと呼びます. 
-- コミット追加の例1: 
-
-    - リポジトリが```master```というブランチ上にいるとします. 
-    - この状態でブランチ上のファイルに(テキストエディタ等で)変更を加えてコミットすると, 新しいコミット(Aと呼ぶことにします)が追加されます. 
-    - コミットAは直前のコミットへのポインタを持ちます. 
-    - そして, ```master```ブランチはコミットAを指すようになります. 
-
-- コミットの追加の例2: 
-
-    - 例1の状態で新たに```branch1```というブランチを作るとします. 
-    - すると, このブランチが指すのは, ```master```ブランチと同じくコミットAです. 
-    - この状態でコミットを追加すると, Aを指すコミット(Bとします)が作成され, ```branch1```ブランチにはコミットBへのポインタが与えられます. 
-    - さらに, ```master```ブランチへ移動してコミット(Cとします)を追加します. 
-    - すると, コミットCにはコミットAへのポインタが与えられ, ```master```ブランチの先頭はコミットCを指すようになります. 
 
 例4
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-- 以下のコマンドを使用します. 
+- 例3まで完了し, 現在のリポジトリの状態が次のようになっているとします. 
 
-    - ```git checkout```
-    - ```git branch```
+.. code:: console
+
+    $ cd ~/Download/repo1
+    $ git status
+    On branch master
+    nothing to commit, working directory clean
+    $ git lg
+    * 3d9f3bb [2016-06-19] (HEAD -> master) Add .gitignore. @username
+    * 0ce339c [2016-06-19] Modify a file. @username
+    * 10f33be [2016-06-19] First commit. @username
+
+- コマンド :code:`git branch` を使用してリポジトリが持つブランチを表示します. 
+
+.. code:: console
+
+    $ git branch
+    * master
+
+- :code:`master` ブランチしか存在しないことが確認できます. 
+- 次に, :code:`develop` という名前のブランチを新規に作成し, 同時にそのブランチをチェックアウトします. コマンド :code:`git checkout` を使用します. 
+
+.. code:: console
+
+    $ git checkout -b develop
+    Switched to a new branch 'develop'
+
+- もう一度ブランチを確認します. 
+
+.. code:: console
+
+    $ git branch
+    * develop
+      master
+
+- 新たに :code:`develop` ブランチが作成されています. 先頭の :code:`*` は現在のブランチを表します. 
+- コミットグラフを確認します. 
+
+.. code:: console
+
+    $ git lg
+    * 3d9f3bb [2016-06-19] (HEAD -> develop, master) Add .gitignore. @username
+    * 0ce339c [2016-06-19] Modify a file. @username
+    * 10f33be [2016-06-19] First commit. @username
+
+- 最新のコミットを見ると, :code:`develop` ブランチ作成前には :code:`HEAD -> master` となっていた部分が :code:`HEAD -> develop, master` となっているのが分かります. 
+- この :code:`HEAD` は現在のブランチを表すコミットへのポインタです. 
+- この状態で適当な修正をリポジトリに加え, コミットします. 
+
+.. code:: console
+
+    $ echo string2 >> source.txt
+    $ git add .
+    $ git commit -m "Modify a file."
+    [develop 88afd83] Modify a file.
+     1 file changed, 1 insertion(+)
+
+- コミットグラフを確認します. 
+
+.. code:: console
+
+    $ git lg
+    * 88afd83 [2016-06-19] (HEAD -> develop) Modify a file. @username
+    * 3d9f3bb [2016-06-19] (master) Add .gitignore. @username
+    * 0ce339c [2016-06-19] Modify a file. @username
+    * 10f33be [2016-06-19] First commit. @username
+
+- 先ほどの修正に対応するコミットが追加され, :code:`develop` ブランチがそのコミットを指していることが分かります. 
+- 一方, :code:`master` ブランチが指すコミットは元のままです. 
+- :code:`master` ブランチに移動し, :code:`source.txt` ファイルの中身を確認します. 
+
+.. code:: console
+
+    $ git checkout master
+    $ cat source.txt
+    string
+
+- :code:`develop` ブランチでの修正が反映されていないことが確認できました. 
+- この例の最後に, :code:`master` ブランチに修正を加えます. 
+
+.. code:: console
+
+    $ touch source2.txt
+    $ git add .
+    $ git commit -m "Add a new file."
+    [master 6462d05] Add a new file.
+     1 file changed, 0 insertions(+), 0 deletions(-)
+     create mode 100644 source2.txt
+    $ git lg
+    * 6462d05 [2016-06-19] (HEAD -> master) Add a new file. @username
+    * 3d9f3bb [2016-06-19] Add .gitignore. @username
+    * 0ce339c [2016-06-19] Modify a file. @username
+    * 10f33be [2016-06-19] First commit. @username
+
+- コミットグラフには :code:`master` ブランチしか表示されていませんが, これで正常です. :code:`develop` ブランチは3番目のコミット以降分岐しているためです. 
+- 二つのブランチがマージ(後述)されると, :code:`develop` ブランチの履歴が :code:`master` ブランチから参照可能となります. 
+- :code:`master` ブランチに追加した :code:`source2.txt` は当然 :code:`develop` ブランチには含まれません. 
 
 マージ
 -------------------------------------------------------------------------------
 - マージはあるブランチの修正を別のブランチに取り込むことです. 
-- (ffとno-ffについて)
-- (conflictの解消)
+- 具体的には, 二つのコミットがマージされた新たなコミットが作成されます. 
+- マージで問題となるのは変更が衝突する場合ですが, まずは衝突がない場合の例を見てみます. 
 
 例5
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-- 以下のコマンドを使用します. 
+- :code:`develop` ブランチの内容を :code:`master` ブランチに取り込みます. そのために, 他のブランチを取り込むブランチ, すなわち :code:`master` ブランチに移動します. 
 
-    - ```git merge```
+.. code:: console
+
+    $ cd ~/Download/repo1
+    $ git checkout master
+    Switched to branch 'master'
+
+.. note:: :code:`develop` ブランチに他のブランチの変更を取り込む場合は :code:`develop` ブランチに移動します. 
+
+- コマンド :code:`git merge` を用いて :code:`develop` ブランチとマージします. 
+
+.. code:: console
+
+    $ git merge
+
+- するとコミットメッセージの入力を促されます. 
+
+.. code:: console
+
+    Merge branch 'develop'
+
+    # Please enter a commit message to explain why this merge is necessary,
+    # especially if it merges an updated upstream into a topic branch.
+    #
+    # Lines starting with '#' will be ignored, and an empty message aborts
+    # the commit.
+
+- エディタのコマンドでメッセージをこのまま保存します. 次のようなメッセージが表示され, マージが完了します. 
+
+.. code:: console
+
+    Merge made by the 'recursive' strategy.
+     source.txt | 1 +
+     1 file changed, 1 insertion(+)
+
+- コミットグラフを確認します. 
+
+.. code:: console
+
+    $ git lg
+    *   834468a [2016-06-19] (HEAD -> master) Merge branch 'develop' @username
+    |\
+    | * 88afd83 [2016-06-19] (develop) Modify a file. @username
+    * | 6462d05 [2016-06-19] Add a new file. @username
+    |/
+    * 3d9f3bb [2016-06-19] Add .gitignore. @username
+    * 0ce339c [2016-06-19] Modify a file. @username
+    * 10f33be [2016-06-19] First commit. @username
+
+- 二つのブランチが分岐し, 最後のコミットで両者がマージされていることが分かります. 
+- 今回のマージでは, 分岐した後で変更の衝突がなかったため問題は起こりませんでした. 
+
+例6: マージにおける衝突の解消
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Fast-forwardマージ
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+例7: Fast-forwardマージ
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+例8: Fast-forwardマージの明示的な回避
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 リモートリポジトリ
 -------------------------------------------------------------------------------
@@ -285,7 +426,7 @@ Git入門
 - 元のリモートリポジトリに対する変更は, 現在のリポジトリが持つリモートリポジトリには自動的には反映されません. そのため, リモートリポジトリの最新の状態を明示的に取得する必要があります. 
 - リモートリポジトリのブランチを現在のブランチにマージすることで, リモートリポジトリへの変更が現在のリポジトリに取り込まれます. 
 
-例6
+例9: 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - 以下のコマンドを使用します. 
 
