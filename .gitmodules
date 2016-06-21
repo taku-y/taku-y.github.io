@@ -1,0 +1,4 @@
+[submodule "sphinx/_build/html"]
+	path = sphinx/_build/html
+	url = git@github.com:taku-y/taku-y.github.io.git
+	branch = master
