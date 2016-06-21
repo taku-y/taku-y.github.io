@@ -1,0 +1,610 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    
+    <title>Git入門 &mdash; taku-y.github.io 0.1 ドキュメント</title>
+
+    
+    <link rel="stylesheet" href="_static/tether-1.3.1/css/tether.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-4.0.0-alpha2/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinxbootstrap4.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/tether-1.3.1/js/tether.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-4.0.0-alpha2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/sphinxbootstrap4.js"></script>
+    <link rel="top" title="taku-y.github.io 0.1 ドキュメント" href="index.html" />
+    <link rel="prev" title="Welcome to taku-y.github.io’s documentation!" href="index.html" /> 
+  </head>
+  <body role="document">
+  <nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
+      <div class="row container-fluid">
+           <a class="navbar-brand hidden-xs-down" href="index.html">
+                  taku-y.github.io
+          </a>
+          <span class="navbar-text pull-xs-left navbar-version hidden-xs-down"><b>0.1</b></span>
+          <button class="navbar-toggler hidden-sm-up pull-xs-right bar-button" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2">
+          &#9776;
+          </button>
+          <div class="hidden-xs-down">
+          <ul class="nav navbar-nav ">
+          
+              <li class="nav-item dropdown" id="navbar-pages">
+                  <a class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
+                  <ul class="dropdown-menu">
+                  <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Git入門</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">初期設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">リポジトリ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">例1</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">コミットとステージング</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id7">ステージング</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">例2</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id9">バージョン管理対象の制御</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id10">例3</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id11">ブランチ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id32">例4</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id33">マージ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id34">例5</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id35">リモートリポジトリ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id36">例6</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id37">更新履歴</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id38">免責事項</a></li>
+</ul>
+</li>
+</ul>
+
+                  </ul>
+              </li>
+          </ul>
+             
+<form class="form-inline pull-sm-right" action="search.html" method="get">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          </div>
+      </div>
+
+      <div class="row hidden-sm-up">
+          <div class="collapse navbar-toggleable-xs container" id="exCollapsingNavbar2">
+              <div class="container">
+             　　 <a class="navbar-brand" href="index.html">
+                      taku-y.github.io
+                  </a>
+              </div>
+              <ul class="nav navbar-nav">
+              </ul>
+              <div class="dropdown-divider"></div>
+              <div class="navbar-text">search<div>
+              
+<form class="form-inline pull-sm-right" action="search.html" method="get">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          </div>
+      </div>
+    </nav>
+  </div>
+
+    <div class="related container-fluid bg-faded" role="navigation" aria-label="related navigation">
+        <ol class="breadcrumb col-md-8">
+            <li><a href="index.html">taku-y.github.io 0.1 ドキュメント</a></li>
+            <li class="active">Git入門</li>
+        </ol>
+       <div class="relation col-md-4">
+           <div class="pull-xs-right">
+               <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+               <a href="index.html" title="Previous Chapter: Welcome to taku-y.github.io’s documentation!" class="btn btn-primary" role="botton" accesskey="P">
+                   &laquo; Welcome to ta...
+               </a>
+               </div>
+           </div>
+       </div>
+    </div>
+
+  <div class="main"> 
+      <div class="sphinxsidebar hidden-sm-down">
+        <div class="sphinxsidebarwrapper">          
+            <h4>目次</h4>
+            
+            
+              <div class="sidebartoctree">
+                <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Git入門</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">初期設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">リポジトリ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">例1</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">コミットとステージング</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id7">ステージング</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">例2</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id9">バージョン管理対象の制御</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id10">例3</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id11">ブランチ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id32">例4</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id33">マージ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id34">例5</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id35">リモートリポジトリ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id36">例6</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id37">更新履歴</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id38">免責事項</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            
+          
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="index.html"
+                        title="前の章へ">Welcome to taku-y.github.io&#8217;s documentation!</a></p>
+<div id="searchbox" style="display: none">
+    <form class="form search" action="search.html" method="get">
+      <input type="text" name="q" class="form-control" placeholder="Search..." />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+
+<script type="text/javascript">$('#searchbox').show(0);</script>
+  <ul class="this-page-menu list-unstyled pull-xs-right">
+    <li><a  class="text-xs-right" href="_sources/git-intro.txt"
+           rel="nofollow">ソースコードを表示</a></li>
+  </ul>
+        </div>
+      </div> 
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="git">
+<h1><a class="toc-backref" href="#id39">Git入門</a><a class="headerlink" href="#git" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>最終更新: 20160617 (c) 吉岡琢</p>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#git" id="id39">Git入門</a><ul>
+<li><a class="reference internal" href="#id1" id="id40">初期設定</a></li>
+<li><a class="reference internal" href="#id2" id="id41">リポジトリ</a></li>
+<li><a class="reference internal" href="#id4" id="id42">コミットとステージング</a></li>
+<li><a class="reference internal" href="#id9" id="id43">バージョン管理対象の制御</a></li>
+<li><a class="reference internal" href="#id11" id="id44">ブランチ</a></li>
+<li><a class="reference internal" href="#id33" id="id45">マージ</a></li>
+<li><a class="reference internal" href="#id35" id="id46">リモートリポジトリ</a></li>
+<li><a class="reference internal" href="#id37" id="id47">更新履歴</a></li>
+<li><a class="reference internal" href="#id38" id="id48">免責事項</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<ul class="simple">
+<li>ここではGitの意義やインストールに関する説明はしません.</li>
+<li>Gitのディレクトリにパスが通っており, Gitのコマンドが利用可能であると仮定します.</li>
+<li>例では一貫して <code class="code docutils literal"><span class="pre">~/Download/repo[n]</span></code> ディレクトリを使用します. 断りが無い限り, 例のコマンドは全てこのディレクトリで実行します.</li>
+<li>例は最初から順に実行すると仮定します. 例2を確認する場合, 例1が終了していることを前提とします.</li>
+</ul>
+<div class="section" id="id1">
+<h2><a class="toc-backref" href="#id40">初期設定</a><a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li>コンソール上で以下のコマンドを入力し, ユーザ名とメールアドレスを入力します.</li>
+</ul>
+<div class="code console highlight-default"><div class="highlight"><pre><span></span>$ git config --global user.name &quot;&lt;ユーザ名&gt;&quot;
+$ git config --global user.email &quot;&lt;メールアドレス&gt;&quot;
+</pre></div>
+</div>
+<ul class="simple">
+<li>ユーザ名とメールアドレスはコミット(後述)を実行したユーザの識別に使用されます.</li>
+<li>上記コマンドを実行すると, ユーザのホームディレクトリに <code class="code docutils literal"><span class="pre">.gitconfig</span></code> というファイルが作成されます. このファイルの中身を見ると設定内容が分かります.</li>
+<li>上記の設定は <code class="code docutils literal"><span class="pre">git</span> <span class="pre">config</span></code> を実行したユーザが扱う全てのリポジトリ(後述)で有効です.</li>
+<li>(オプション) <code class="code docutils literal"><span class="pre">.gitconfig</span></code> ファイルに以下の行を追加することで, Gitコマンドのエイリアスを設定します.</li>
+</ul>
+<div class="code console highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">alias</span><span class="p">]</span>
+    <span class="n">lg</span> <span class="o">=</span> <span class="n">log</span> <span class="o">--</span><span class="n">graph</span> <span class="o">--</span><span class="n">date</span><span class="o">=</span><span class="n">short</span> <span class="o">--</span><span class="nb">format</span><span class="o">=</span>\<span class="s2">&quot;%C(yellow)</span><span class="si">%h%</span><span class="s2">C(reset) %C(magenta)[%ad]%C(reset)%C(auto)</span><span class="si">%d</span><span class="s2">%C(reset) </span><span class="si">%s</span><span class="s2"> %C(cyan)@%an%C(reset)</span><span class="se">\&quot;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>上記の設定後, リポジトリ内で <code class="code docutils literal"><span class="pre">git</span> <span class="pre">lg</span></code> と入力すると, ログが分かりやすく表示されます.</li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2><a class="toc-backref" href="#id41">リポジトリ</a><a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li>リポジトリとはファイルとその変更履歴をまとめたものです.</li>
+<li>Gitにおけるリポジトリの実体は, リポジトリのルートディレクトリに存在する <code class="code docutils literal"><span class="pre">.git</span></code> ディレクトリです. 実際, <code class="code docutils literal"><span class="pre">.git</span></code> ディレクトリを削除するとリポジトリの情報は全て消えます.</li>
+<li>リポジトリのルートディレクトリ以下でGitコマンド(例えば <code class="code docutils literal"><span class="pre">git</span> <span class="pre">add</span></code> や <code class="code docutils literal"><span class="pre">git</span> <span class="pre">status</span></code> など)を実行すると, そのリポジトリに対して操作が実行されます.</li>
+</ul>
+<div class="section" id="id3">
+<h3>例1<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul>
+<li><p class="first">この例では以下のコマンドを使用します.</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="code docutils literal"><span class="pre">git</span> <span class="pre">init</span></code></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">適当なディレクトリをGitのバージョン管理下に置きます.</p>
+</li>
+<li><p class="first">ディレクトリは何でも良いのですが, ここの説明では <code class="code docutils literal"><span class="pre">~/Download/repo1</span></code> ディレクトリを用いることとします.</p>
+</li>
+<li><p class="first">ディレクトリをバージョン管理下に置くにはコマンド <code class="code docutils literal"><span class="pre">git</span> <span class="pre">init</span></code> を使用します.</p>
+</li>
+</ul>
+<div class="code console highlight-default"><div class="highlight"><pre><span></span>$ mkdir -p ~/Download/repo1
+$ cd ~/Download/repo1
+$ git init
+</pre></div>
+</div>
+<ul class="simple">
+<li>これでディレクトリがGitのバージョン管理下に置かれました.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id4">
+<h2><a class="toc-backref" href="#id42">コミットとステージング</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li>コミットとはレポジトリのある時点でのスナップショットです.</li>
+<li>コミットはその直近の祖先へのポインタを持ちます. これにより, コミットはリポジトリに対する追加・変更の履歴を表現するグラフとして表現されます. これをコミットグラフと呼びます（<a class="reference external" href="https://git-scm.com/book/ja/v2/Git-%E3%81%AE%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E6%A9%9F%E8%83%BD-%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E3%81%A8%E3%81%AF">参考リンク</a>）.</li>
+<li>コミットという単語はスナップショットをコミットグラフに追加する操作を指すこともあります. この場合, 「ファイルをコミットする」「変更をコミットする」というように使われます.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">ネット上で, Gitはコミットをスナップショットとして格納するという説明を見かけることがあります. 実際は, コミットを構成するオブジェクトに対して差分管理が適用されます. スナップショットの系列の差分を抽出してファイルを圧縮するプロセスをGitではパッキングと呼びます. これは新しく追加された機能ということです(<a class="reference external" href="https://git-scm.com/book/ja/v1/Git%E3%81%AE%E5%86%85%E5%81%B4-%E3%83%91%E3%83%83%E3%82%AF%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB">参考リンク</a>).</p>
+</div>
+<div class="section" id="id7">
+<h3>ステージング<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li>ステージングとはコミットする変更内容をリポジトリに通知する事です.</li>
+<li>ステージングを何度も行う事で複数の変更を同時にコミットできます.</li>
+<li>さらに, 変更されたファイルの一部をステージングすることもできます. 例えば, 一つのファイルに二つの機能を追加した場合, それらを別々のコミットとして扱う事が出来ます. コマンド <code class="code docutils literal"><span class="pre">git</span> <span class="pre">add</span></code> のオプション <code class="code docutils literal"><span class="pre">-p</span></code> を指定します.</li>
+<li>ステージングされた変更は, コミットする前であれば取り消すことができます.</li>
+</ul>
+</div>
+<div class="section" id="id8">
+<h3>例2<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul>
+<li><p class="first">この例では以下のコマンドを使用します.</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="code docutils literal"><span class="pre">git</span> <span class="pre">status</span></code></li>
+<li><code class="code docutils literal"><span class="pre">git</span> <span class="pre">add</span></code></li>
+<li><code class="code docutils literal"><span class="pre">git</span> <span class="pre">commit</span></code></li>
+<li><code class="code docutils literal"><span class="pre">git</span> <span class="pre">lg</span></code> (エイリアスとして追加したもので, 標準のコマンドではありません)</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">適当なファイルを作成し, リポジトリにコミットしてみましょう.</p>
+</li>
+<li><p class="first">以下のコマンドを入力して空のファイルを作成します.</p>
+</li>
+</ul>
+<div class="code console highlight-default"><div class="highlight"><pre><span></span>$ cd ~/Download/repo1
+$ touch source.txt # ファイル名は適当です
+</pre></div>
+</div>
+<ul class="simple">
+<li>コマンド <code class="code docutils literal"><span class="pre">git</span> <span class="pre">status</span></code> を用いてリポジトリの状態を見てみましょう.</li>
+</ul>
+<div class="code console highlight-default"><div class="highlight"><pre><span></span>$ git status
+On branch master
+
+Initial commit
+
+Untracked files:
+  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
+
+        source.txt
+
+nothing added to commit but untracked files present (use &quot;git add&quot; to track)
+</pre></div>
+</div>
+<ul class="simple">
+<li>まず, 現在&#8221;master&#8221;という名前のブランチ(後述)にいることが分かります.</li>
+<li>そして, 作成した <code class="code docutils literal"><span class="pre">source.txt</span></code> が追跡(バージョン管理)の対象になっていないことが分かります.</li>
+<li>このファイルを追跡対象とするためにはコマンド <code class="code docutils literal"><span class="pre">git</span> <span class="pre">add</span></code> を使用します.</li>
+</ul>
+<div class="code console highlight-default"><div class="highlight"><pre><span></span>$ git add source.txt
+On branch master
+
+Initial commit
+
+Changes to be committed:
+  (use &quot;git rm --cached &lt;file&gt;...&quot; to unstage)
+
+        new file:   source.txt
+</pre></div>
+</div>
+<ul class="simple">
+<li>ファイルが追跡対象として追加され(<code class="code docutils literal"><span class="pre">new</span> <span class="pre">file</span></code>), かつステージングされました(<code class="code docutils literal"><span class="pre">Changes</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">committed</span></code>). これでファイルをコミットする準備ができました.</li>
+<li>コマンド <code class="code docutils literal"><span class="pre">git</span> <span class="pre">commit</span></code> でコミットします.</li>
+</ul>
+<div class="code console highlight-default"><div class="highlight"><pre><span></span>$ git commit -m &quot;First commit.&quot;
+[master (root-commit) c8e4a5c] First commit.
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 source.txt
+</pre></div>
+</div>
+<ul class="simple">
+<li>オプション <code class="code docutils literal"><span class="pre">-m</span> <span class="pre">&quot;&lt;文字列&gt;&quot;</span></code> はコミットのメッセージを設定します.</li>
+<li>現在のリポジトリの状態を確認します.</li>
+</ul>
+<div class="code console highlight-default"><div class="highlight"><pre><span></span>$ git status
+On branch master
+nothing to commit, working directory clean
+</pre></div>
+</div>
+<ul class="simple">
+<li>このメッセージは, このリポジトリの全てのファイル(今は <code class="code docutils literal"><span class="pre">source.txt</span></code> だけです)に直前のコミット以降変更が無いことを意味します.</li>
+<li>エイリアスとして登録した <code class="code docutils literal"><span class="pre">git</span> <span class="pre">lg</span></code> を用いてコミットグラフを確認します.</li>
+</ul>
+<div class="code console highlight-default"><div class="highlight"><pre><span></span>$ git lg
+* c8e4a5c [2016-06-19] (HEAD -&gt; master) First commit. @username
+</pre></div>
+</div>
+<ul class="simple">
+<li>最初のコミットを確認できました.</li>
+<li>先頭の <code class="code docutils literal"><span class="pre">c8e4a5c</span></code> はコミットを識別するハッシュ値を表します.</li>
+<li>ファイルに変更を加えてその内容を確認します.</li>
+</ul>
+<div class="code console highlight-default"><div class="highlight"><pre><span></span>$ echo &quot;string&quot; &gt; source.txt
+$ git diff
+diff --git a/source.txt b/source.txt
+index e69de29..ee8a39c 100644
+--- a/source.txt
++++ b/source.txt
+@@ -0,0 +1 @@
++string
+</pre></div>
+</div>
+<ul class="simple">
+<li>ファイルに対する変更が確認できました. コミットします.</li>
+</ul>
+<div class="code console highlight-default"><div class="highlight"><pre><span></span>$ git add . # &quot;.&quot; は変更があった全てのファイルをステージングすることを意味します.
+$ git commit -m &quot;Modify a file.&quot;
+[master 1633e39] Modify a file.
+ 1 file changed, 1 insertion(+)
+</pre></div>
+</div>
+<ul class="simple">
+<li>コミットグラフを確認します.</li>
+</ul>
+<div class="code console highlight-default"><div class="highlight"><pre><span></span>$ git lg
+* 1633e39 [2016-06-19] (HEAD -&gt; master) Modify a file. @taku-y
+* c8e4a5c [2016-06-19] First commit. @taku-y
+</pre></div>
+</div>
+<ul class="simple">
+<li>新たなコミットが追加されたことが分かります.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id9">
+<h2><a class="toc-backref" href="#id43">バージョン管理対象の制御</a><a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li><code class="code docutils literal"><span class="pre">.gitignore</span></code> ファイルはGitバージョン管理の対象としないファイル(例えばコンパイラが出力する中間ファイル)を指定するものです.</li>
+<li>VC++やPythonなど各種プロジェクトに適した <code class="code docutils literal"><span class="pre">.gitignore</span></code> ファイルのテンプレートがネット上にあります. 必要に応じて検索しましょう.</li>
+</ul>
+<div class="section" id="id10">
+<h3>例3<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li>中間ファイルとして <code class="code docutils literal"><span class="pre">tmp</span></code> というファイルが生成されたとします.</li>
+</ul>
+<div class="code console highlight-default"><div class="highlight"><pre><span></span>$ touch tmp
+</pre></div>
+</div>
+<ul class="simple">
+<li>コマンド <code class="code docutils literal"><span class="pre">git</span> <span class="pre">status</span></code> でリポジトリの状態を確認します.</li>
+</ul>
+<div class="code console highlight-default"><div class="highlight"><pre><span></span>$ git status
+On branch master
+Untracked files:
+  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
+
+        tmp
+
+nothing added to commit but untracked files present (use &quot;git add&quot; to track)
+</pre></div>
+</div>
+<ul class="simple">
+<li>中間ファイルは追跡対象としたくないので, <code class="code docutils literal"><span class="pre">.gitignore</span></code> ファイルを作成し, 中間ファイル名を追加します.</li>
+</ul>
+<div class="code console highlight-default"><div class="highlight"><pre><span></span>$ echo tmp &gt; .gitignore
+</pre></div>
+</div>
+<ul class="simple">
+<li>リポジトリの状態を確認します.</li>
+</ul>
+<div class="code console highlight-default"><div class="highlight"><pre><span></span>$ git status
+On branch master
+Untracked files:
+  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
+
+        .gitignore
+
+nothing added to commit but untracked files present (use &quot;git add&quot; to track)
+</pre></div>
+</div>
+<ul class="simple">
+<li>先ほどの状態と比べると, <code class="code docutils literal"><span class="pre">tmp</span></code> ファイルが無視されていることが分かります. ただし, 新たに作成した <code class="code docutils literal"><span class="pre">.gitignore</span></code> ファイルが検出されます.</li>
+<li><code class="code docutils literal"><span class="pre">.gitignore</span></code> ファイル内ではワイルドカードを使用できます. ネット上の例を参照してください.</li>
+<li><code class="code docutils literal"><span class="pre">.gitignore</span></code> ファイルをコミットします.</li>
+</ul>
+<div class="code console highlight-default"><div class="highlight"><pre><span></span>$ git add .
+$ git commit -m &quot;Add .gitignore.&quot;
+[master 50178a5] Add .gitignore.
+ 1 file changed, 1 insertion(+)
+ create mode 100644 .gitignore
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id11">
+<h2><a class="toc-backref" href="#id44">ブランチ</a><a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul>
+<li><p class="first">ブランチとはリポジトリに含まれる異なるバージョンのスナップショットです.</p>
+</li>
+<li><p class="first">ブランチの実体はコミットへのポインタです.</p>
+</li>
+<li><p class="first">リポジトリは必ず「現在のブランチ」を状態として持ちます.</p>
+</li>
+<li><p class="first">リポジトリを切り替えると, ブランチが移動し, ディレクトリの内容はブランチが指すコミットに含まれるものに置き換えられます. もちろん, 元のブランチに戻ればディレクトリの内容もまた元に戻ります. Gitでは, ブランチの切り替えをチェックアウトと呼びます.</p>
+</li>
+<li><p class="first">コミット追加の例1:</p>
+<blockquote>
+<div><ul class="simple">
+<li>リポジトリが```master```というブランチ上にいるとします.</li>
+<li>この状態でブランチ上のファイルに(テキストエディタ等で)変更を加えてコミットすると, 新しいコミット(Aと呼ぶことにします)が追加されます.</li>
+<li>コミットAは直前のコミットへのポインタを持ちます.</li>
+<li>そして, <a href="#id12"><span class="problematic" id="id13">``</span></a><a href="#id14"><span class="problematic" id="id15">`</span></a>master```ブランチはコミットAを指すようになります.</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">コミットの追加の例2:</p>
+<blockquote>
+<div><ul class="simple">
+<li>例1の状態で新たに```branch1```というブランチを作るとします.</li>
+<li>すると, このブランチが指すのは, <a href="#id16"><span class="problematic" id="id17">``</span></a><a href="#id18"><span class="problematic" id="id19">`</span></a>master```ブランチと同じくコミットAです.</li>
+<li>この状態でコミットを追加すると, Aを指すコミット(Bとします)が作成され, <a href="#id20"><span class="problematic" id="id21">``</span></a><a href="#id22"><span class="problematic" id="id23">`</span></a>branch1```ブランチにはコミットBへのポインタが与えられます.</li>
+<li>さらに, <a href="#id24"><span class="problematic" id="id25">``</span></a><a href="#id26"><span class="problematic" id="id27">`</span></a>master```ブランチへ移動してコミット(Cとします)を追加します.</li>
+<li>すると, コミットCにはコミットAへのポインタが与えられ, <a href="#id28"><span class="problematic" id="id29">``</span></a><a href="#id30"><span class="problematic" id="id31">`</span></a>master```ブランチの先頭はコミットCを指すようになります.</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<div class="section" id="id32">
+<h3>例4<a class="headerlink" href="#id32" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul>
+<li><p class="first">以下のコマンドを使用します.</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">`git</span> <span class="pre">checkout`</span></code></li>
+<li><code class="docutils literal"><span class="pre">`git</span> <span class="pre">branch`</span></code></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id33">
+<h2><a class="toc-backref" href="#id45">マージ</a><a class="headerlink" href="#id33" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li>マージはあるブランチの修正を別のブランチに取り込むことです.</li>
+<li>(ffとno-ffについて)</li>
+<li>(conflictの解消)</li>
+</ul>
+<div class="section" id="id34">
+<h3>例5<a class="headerlink" href="#id34" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul>
+<li><p class="first">以下のコマンドを使用します.</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">`git</span> <span class="pre">merge`</span></code></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id35">
+<h2><a class="toc-backref" href="#id46">リモートリポジトリ</a><a class="headerlink" href="#id35" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li>リモートリポジトリとは現在のリポジトリ(カレントディレクトリと考えてよいでしょう)と別の場所に存在するリポジトリのことです. それが同一マシン上(の別ディレクトリ)に存在したとしても, リモートリポジトリとして扱われます.</li>
+<li>通常, リモートリポジトリは現在のリポジトリと共通のコミットを持ちます. 典型的には,  リモートリポジトリの内容をコピーして現在のリポジトリを作成し, 独自に修正を適用するような場合です.</li>
+<li>リモートリポジトリと同期を取るためには, リモートリポジトリを現在のリポジトリに登録する必要があります. 一度登録すれば, 登録を解除するまでリモートリポジトリの情報が現在のリポジトリに記憶されます.</li>
+<li>元のリモートリポジトリに対する変更は, 現在のリポジトリが持つリモートリポジトリには自動的には反映されません. そのため, リモートリポジトリの最新の状態を明示的に取得する必要があります.</li>
+<li>リモートリポジトリのブランチを現在のブランチにマージすることで, リモートリポジトリへの変更が現在のリポジトリに取り込まれます.</li>
+</ul>
+<div class="section" id="id36">
+<h3>例6<a class="headerlink" href="#id36" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul>
+<li><p class="first">以下のコマンドを使用します.</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">`git</span> <span class="pre">clone`</span></code></li>
+<li><code class="docutils literal"><span class="pre">`git</span> <span class="pre">remote`</span></code></li>
+<li><code class="docutils literal"><span class="pre">`git</span> <span class="pre">fetch`</span></code></li>
+<li><code class="docutils literal"><span class="pre">`git</span> <span class="pre">push`</span></code></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id37">
+<h2><a class="toc-backref" href="#id47">更新履歴</a><a class="headerlink" href="#id37" title="このヘッドラインへのパーマリンク">¶</a></h2>
+</div>
+<div class="section" id="id38">
+<h2><a class="toc-backref" href="#id48">免責事項</a><a class="headerlink" href="#id38" title="このヘッドラインへのパーマリンク">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+      <div class="clearer"></div>
+    </div>
+  </div>
+<footer class="footer">
+  <div class="container-fluid">
+    <div class="text-xs-left col-md-9 copyright">
+        <div>&copy; Copyright 2016, Taku Yoshioka.</div>
+      <div>Generated by <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.4 using <a href="https://github.com/myyasuda/sphinxbootstrap4theme">sphinxbootstrap4theme</a> 0.4.3.</div>
+    </div>
+    <div class="pull-xs-right">
+        <a href="#" class="btn btn-primary btn-sm" role="botton">Back to top</a>
+    </div>
+  </div>
+</footer>
+  </body>
+</html>
