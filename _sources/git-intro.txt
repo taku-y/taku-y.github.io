@@ -408,9 +408,126 @@ Git入門
 
 例6: マージにおける衝突の解消
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- ここではマージの際に衝突が起こる場合を見てみます. 
+- :code:`master` ブランチに移動し, 新たに :code:`develop2` ブランチを作成します. そして, :code:`source.txt` に変更を追加します. 
+
+.. code:: console
+
+    $ cd ~/Download/repo1
+    $ git checkout master
+    Already on 'master'
+    $ git checkout -b develop2
+    Switched to a new branch 'develop2'
+    $ echo string3 >> source.txt
+    $ git add .
+    $ git commit -m "Add string3."
+    [develop2 88287ed] Add string3.
+     1 file changed, 1 insertion(+)
+    $ git lg
+    * 88287ed [2016-06-19] (HEAD -> develop2) Add string3. @username
+    *   834468a [2016-06-19] (master) Merge branch 'develop' @username
+    |\
+    | * 88afd83 [2016-06-19] (develop) Modify a file. @username
+    * | 6462d05 [2016-06-19] Add a new file. @username
+    |/
+    * 3d9f3bb [2016-06-19] Add .gitignore. @username
+    * 0ce339c [2016-06-19] Modify a file. @username
+    * 10f33be [2016-06-19] First commit. @username
+
+- 次に :code:`master` ブランチに戻り同じファイルに別の変更を追加します. 
+
+.. code:: console
+
+    $ git checkout master
+    Switched to branch 'master'
+    $ cat source.txt
+    string
+    string2
+    $ echo string4 >> source.txt
+    $ git add .
+    $ git commit -m "Add string4."
+    [master 515ba7a] Add string4.
+     1 file changed, 1 insertion(+)
+    $ git lg
+    * 515ba7a [2016-06-19] (HEAD -> master) Add string4. @username
+    *   834468a [2016-06-19] Merge branch 'develop' @username
+    |\
+    | * 88afd83 [2016-06-19] (develop) Modify a file. @username
+    * | 6462d05 [2016-06-19] Add a new file. @username
+    |/
+    * 3d9f3bb [2016-06-19] Add .gitignore. @username
+    * 0ce339c [2016-06-19] Modify a file. @username
+    * 10f33be [2016-06-19] First commit. @username
+
+- この状態で :code:`develop2` ブランチを :code:`master` ブランチにマージします. 
+
+.. code:: console
+
+    $ git merge develop2
+    Auto-merging source.txt
+    CONFLICT (content): Merge conflict in source.txt
+    Automatic merge failed; fix conflicts and then commit the result.
+
+- すると, このように衝突を解消してからコミットを行うよう指示されます. 
+- 衝突が起こっている :code:`source.txt` の中身を確認します.
+
+.. code:: console
+
+    $ cat source.txt
+    string
+    string2
+    <<<<<<< HEAD
+    string4
+    =======
+    string3
+    >>>>>>> develop2
+
+- :code:`master` ブランチと :code:`develop2` ブランチへの変更内容が衝突している様子が分かります. :code:`master` ブランチは現在のブランチなので :code:`HEAD` と示されています. 
+- 今回は二つの変更内容を次のように統合することとします. 
+
+.. code:: console
+
+    $ # ファイルを編集します. 編集した結果を確認します. 
+    $ cat source.txt
+    string
+    string2
+    string34
+
+- :code:`master` ブランチの状態を確認します. 
+
+.. code:: console
+
+    $ git status
+    On branch master
+    You have unmerged paths.
+      (fix conflicts and run "git commit")
+
+    Unmerged paths:
+      (use "git add <file>..." to mark resolution)
+
+        both modified:   source.txt
+
+    no changes added to commit (use "git add" and/or "git commit -a")
+
+- 先ほどの修正内容をコミットします. 
+
+.. code:: console
+
+    $ git add .
+    $ git commit -m "Fix conflict."
+    [master 5e9b133] Fix conflict.
+    $ git lg -3 # 直近の3コミットのみ表示します. 
+    *   5e9b133 [2016-06-22] (HEAD -> master) Fix conflict. @username
+    |\
+    | * 88287ed [2016-06-22] (develop2) Add string3. @username
+    * | 515ba7a [2016-06-22] Add string4. @username
+    |/
+
+- これで衝突を解消してマージすることができました. 
 
 Fast-forwardマージ
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+`参考リンク <https://git-scm.com/book/ja/v1/Git-のブランチ機能-ブランチとマージの基本>`_, 図13, 14. :code:`master` ブランチに :code:`hotfix` ブランチをマージするときにfast-forwardマージが適用されます. 
 
 例7: Fast-forwardマージ
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
