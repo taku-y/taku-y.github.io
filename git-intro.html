@@ -83,11 +83,19 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#id19">リモートリポジトリ</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id20">例9:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id20">ベアリポジトリ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id21">例9: ベアリポジトリの作成と作業履歴の書き込み</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id22">例10: 外部リポジトリとの同期</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id21">更新履歴</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id22">免責事項</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id29">外部リポジトリとの同期: フェッチとリベース</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id30">フェッチ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id31">リベース</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id32">例12: フェッチとリベース</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id33">更新履歴</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id34">免責事項</a></li>
 </ul>
 </li>
 </ul>
@@ -178,11 +186,19 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#id19">リモートリポジトリ</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id20">例9:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id20">ベアリポジトリ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id21">例9: ベアリポジトリの作成と作業履歴の書き込み</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id22">例10: 外部リポジトリとの同期</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id21">更新履歴</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id22">免責事項</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id29">外部リポジトリとの同期: フェッチとリベース</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id30">フェッチ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id31">リベース</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id32">例12: フェッチとリベース</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id33">更新履歴</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id34">免責事項</a></li>
 </ul>
 </li>
 </ul>
@@ -215,21 +231,22 @@
           <div class="body">
             
   <div class="section" id="git">
-<h1><a class="toc-backref" href="#id23">Git入門</a><a class="headerlink" href="#git" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p>最終更新: 20160617 (c) 吉岡琢</p>
+<h1><a class="toc-backref" href="#id35">Git入門</a><a class="headerlink" href="#git" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>最終更新: 20160622 (c) 吉岡琢</p>
 <div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#git" id="id23">Git入門</a><ul>
-<li><a class="reference internal" href="#id1" id="id24">初期設定</a></li>
-<li><a class="reference internal" href="#id2" id="id25">リポジトリ</a></li>
-<li><a class="reference internal" href="#id4" id="id26">コミットとステージング</a></li>
-<li><a class="reference internal" href="#id9" id="id27">バージョン管理対象の制御</a></li>
-<li><a class="reference internal" href="#id11" id="id28">ブランチ</a></li>
-<li><a class="reference internal" href="#id13" id="id29">マージ</a></li>
-<li><a class="reference internal" href="#id19" id="id30">リモートリポジトリ</a></li>
-<li><a class="reference internal" href="#id21" id="id31">更新履歴</a></li>
-<li><a class="reference internal" href="#id22" id="id32">免責事項</a></li>
+<li><a class="reference internal" href="#git" id="id35">Git入門</a><ul>
+<li><a class="reference internal" href="#id1" id="id36">初期設定</a></li>
+<li><a class="reference internal" href="#id2" id="id37">リポジトリ</a></li>
+<li><a class="reference internal" href="#id4" id="id38">コミットとステージング</a></li>
+<li><a class="reference internal" href="#id9" id="id39">バージョン管理対象の制御</a></li>
+<li><a class="reference internal" href="#id11" id="id40">ブランチ</a></li>
+<li><a class="reference internal" href="#id13" id="id41">マージ</a></li>
+<li><a class="reference internal" href="#id19" id="id42">リモートリポジトリ</a></li>
+<li><a class="reference internal" href="#id29" id="id43">外部リポジトリとの同期: フェッチとリベース</a></li>
+<li><a class="reference internal" href="#id33" id="id44">更新履歴</a></li>
+<li><a class="reference internal" href="#id34" id="id45">免責事項</a></li>
 </ul>
 </li>
 </ul>
@@ -241,7 +258,7 @@
 <li>例は最初から順に実行すると仮定します. 例2を確認する場合, 例1が終了していることを前提とします.</li>
 </ul>
 <div class="section" id="id1">
-<h2><a class="toc-backref" href="#id24">初期設定</a><a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id36">初期設定</a><a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li>コンソール上で以下のコマンドを入力し, ユーザ名とメールアドレスを入力します.</li>
 </ul>
@@ -264,7 +281,7 @@ $ git config --global user.email &quot;&lt;メールアドレス&gt;&quot;
 </ul>
 </div>
 <div class="section" id="id2">
-<h2><a class="toc-backref" href="#id25">リポジトリ</a><a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id37">リポジトリ</a><a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li>リポジトリとはファイルとその変更履歴をまとめたものです.</li>
 <li>Gitにおけるリポジトリの実体は, リポジトリのルートディレクトリに存在する <code class="code docutils literal"><span class="pre">.git</span></code> ディレクトリです. 実際, <code class="code docutils literal"><span class="pre">.git</span></code> ディレクトリを削除するとリポジトリの情報は全て消えます.</li>
@@ -272,20 +289,10 @@ $ git config --global user.email &quot;&lt;メールアドレス&gt;&quot;
 </ul>
 <div class="section" id="id3">
 <h3>例1<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<ul>
-<li><p class="first">この例では以下のコマンドを使用します.</p>
-<blockquote>
-<div><ul class="simple">
-<li><code class="code docutils literal"><span class="pre">git</span> <span class="pre">init</span></code></li>
-</ul>
-</div></blockquote>
-</li>
-<li><p class="first">適当なディレクトリをGitのバージョン管理下に置きます.</p>
-</li>
-<li><p class="first">ディレクトリは何でも良いのですが, ここの説明では <code class="code docutils literal"><span class="pre">~/Download/repo1</span></code> ディレクトリを用いることとします.</p>
-</li>
-<li><p class="first">ディレクトリをバージョン管理下に置くにはコマンド <code class="code docutils literal"><span class="pre">git</span> <span class="pre">init</span></code> を使用します.</p>
-</li>
+<ul class="simple">
+<li>リポジトリを作成するためにコマンド <code class="code docutils literal"><span class="pre">git</span> <span class="pre">init</span></code> を使用します. リポジトリの作成とは, プロジェクトの構成要素(主にテキストファイル)を含むディレクトリをGitのバージョン管理下に置くことです.</li>
+<li>ディレクトリは何でも良いのですが, ここの説明では <code class="code docutils literal"><span class="pre">~/Download/repo1</span></code> ディレクトリを用いることとします.</li>
+<li>ディレクトリをバージョン管理下に置くにはコマンド <code class="code docutils literal"><span class="pre">git</span> <span class="pre">init</span></code> を使用します.</li>
 </ul>
 <div class="code console highlight-default"><div class="highlight"><pre><span></span>$ mkdir -p ~/Download/repo1
 $ cd ~/Download/repo1
@@ -293,14 +300,14 @@ $ git init
 </pre></div>
 </div>
 <ul class="simple">
-<li>これでディレクトリがGitのバージョン管理下に置かれました.</li>
+<li>これでこのディレクトリがリポジトリになりました.</li>
 </ul>
 </div>
 </div>
 <div class="section" id="id4">
-<h2><a class="toc-backref" href="#id26">コミットとステージング</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id38">コミットとステージング</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
-<li>コミットとはレポジトリのある時点でのスナップショットです.</li>
+<li>コミットとはリポジトリのある時点でのスナップショットです.</li>
 <li>コミットはその直近の祖先へのポインタを持ちます. これにより, コミットはリポジトリに対する追加・変更の履歴を表現するグラフとして表現されます. これをコミットグラフと呼びます（<a class="reference external" href="https://git-scm.com/book/ja/v2/Git-%E3%81%AE%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E6%A9%9F%E8%83%BD-%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E3%81%A8%E3%81%AF">参考リンク</a>）.</li>
 <li>コミットという単語はスナップショットをコミットグラフに追加する操作を指すこともあります. この場合, 「ファイルをコミットする」「変更をコミットする」というように使われます.</li>
 </ul>
@@ -436,7 +443,7 @@ $ git commit -m &quot;Modify a file.&quot;
 </div>
 </div>
 <div class="section" id="id9">
-<h2><a class="toc-backref" href="#id27">バージョン管理対象の制御</a><a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id39">バージョン管理対象の制御</a><a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li><code class="code docutils literal"><span class="pre">.gitignore</span></code> ファイルはGitバージョン管理の対象としないファイル(例えばコンパイラが出力する中間ファイル)を指定するものです.</li>
 <li>VC++やPythonなど各種プロジェクトに適した <code class="code docutils literal"><span class="pre">.gitignore</span></code> ファイルのテンプレートがネット上にあります. 必要に応じて検索しましょう.</li>
@@ -496,7 +503,7 @@ $ git commit -m &quot;Add .gitignore.&quot;
 </div>
 </div>
 <div class="section" id="id11">
-<h2><a class="toc-backref" href="#id28">ブランチ</a><a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id40">ブランチ</a><a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li>ブランチとはリポジトリに含まれる異なるバージョンのスナップショットです.</li>
 <li>ブランチの実体はコミットへのポインタです.</li>
@@ -608,7 +615,7 @@ $ git lg
 </div>
 </div>
 <div class="section" id="id13">
-<h2><a class="toc-backref" href="#id29">マージ</a><a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id41">マージ</a><a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li>マージはあるブランチの修正を別のブランチに取り込むことです.</li>
 <li>具体的には, 二つのコミットがマージされた新たなコミットが作成されます.</li>
@@ -783,10 +790,10 @@ no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&q
 $ git commit -m &quot;Fix conflict.&quot;
 [master 5e9b133] Fix conflict.
 $ git lg -3 # 直近の3コミットのみ表示します.
-*   5e9b133 [2016-06-22] (HEAD -&gt; master) Fix conflict. @username
+*   5e9b133 [2016-06-19] (HEAD -&gt; master) Fix conflict. @username
 |\
-| * 88287ed [2016-06-22] (develop2) Add string3. @username
-* | 515ba7a [2016-06-22] Add string4. @username
+| * 88287ed [2016-06-19] (develop2) Add string3. @username
+* | 515ba7a [2016-06-19] Add string4. @username
 |/
 </pre></div>
 </div>
@@ -796,17 +803,120 @@ $ git lg -3 # 直近の3コミットのみ表示します.
 </div>
 <div class="section" id="fast-forward">
 <h3>Fast-forwardマージ<a class="headerlink" href="#fast-forward" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p><a class="reference external" href="https://git-scm.com/book/ja/v1/Git-のブランチ機能-ブランチとマージの基本">参考リンク</a>, 図13, 14. <code class="code docutils literal"><span class="pre">master</span></code> ブランチに <code class="code docutils literal"><span class="pre">hotfix</span></code> ブランチをマージするときにfast-forwardマージが適用されます.</p>
+<ul class="simple">
+<li>あるブランチAから分岐したブランチBにコミットを追加し, かつブランチAに何もコミットを追加しない場合を考えます.</li>
+<li>このときにブランチAにブランチBをマージするためには, ブランチAにブランチBのコミットを追加すれば十分です.</li>
+<li>したがって, ブランチAが指すコミットへのポインタをブランチBが指すコミットに移動すればよいことになります.</li>
+<li>このようなマージをfast-forwardマージと呼びます(<a class="reference external" href="https://git-scm.com/book/ja/v1/Git-のブランチ機能-ブランチとマージの基本">参考リンク</a>, 図13, 14. <code class="code docutils literal"><span class="pre">master</span></code> ブランチに <code class="code docutils literal"><span class="pre">hotfix</span></code> ブランチをマージするときにfast-forwardマージが適用されます).</li>
+</ul>
 </div>
 <div class="section" id="id17">
 <h3>例7: Fast-forwardマージ<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li>Fast-forwardマージを試してみます. そのために, <code class="code docutils literal"><span class="pre">master</span></code> ブランチから分岐する <code class="code docutils literal"><span class="pre">develop3</span></code> ブランチを作成し, ファイルに修正を追加します.</li>
+</ul>
+<div class="code console highlight-default"><div class="highlight"><pre><span></span>$ cd ~/Download/repo1
+$ git checkout master
+Already on &#39;master&#39;
+$ git checkout -b develop3
+Switched to a new branch &#39;develop3&#39;
+$ echo string5 &gt;&gt; source.txt
+$ git add .
+$ git commit -m &quot;Add string5.&quot;
+[develop3 b40a52a] Add string5.
+ 1 file changed, 1 insertion(+)
+</pre></div>
+</div>
+<ul class="simple">
+<li>コミットグラフを確認します.</li>
+</ul>
+<div class="code console highlight-default"><div class="highlight"><pre><span></span>$ git lg -4
+* b40a52a [2016-06-19] (HEAD -&gt; develop3) Add string5. @username
+*   5e9b133 [2016-06-19] (master) Fix conflict. @username
+|\
+| * 88287ed [2016-06-19] (develop2) Add string3. @username
+* | 515ba7a [2016-06-19] Add string4. @username
+|/
+</pre></div>
+</div>
+<ul class="simple">
+<li>この状態で <code class="code docutils literal"><span class="pre">master</span></code> ブランチに <code class="code docutils literal"><span class="pre">develop3</span></code> ブランチをマージします.</li>
+</ul>
+<div class="code console highlight-default"><div class="highlight"><pre><span></span>$ git checkout master
+Switched to branch &#39;master&#39;
+$ git merge develop3
+Updating 5e9b133..b40a52a
+Fast-forward
+ source.txt | 1 +
+ 1 file changed, 1 insertion(+)
+</pre></div>
+</div>
+<ul class="simple">
+<li>Fast-forwardマージが適用されたことが分かります.</li>
+<li>コミットグラフを確認します.</li>
+</ul>
+<div class="code console highlight-default"><div class="highlight"><pre><span></span>$ git lg -4
+* b40a52a [2016-06-19] (HEAD -&gt; master, develop3) Add string5. @username
+*   5e9b133 [2016-06-19] Fix conflict. @username
+|\
+| * 88287ed [2016-06-19] (develop2) Add string3. @username
+* | 515ba7a [2016-06-19] Add string4. @username
+|/
+</pre></div>
+</div>
+<ul class="simple">
+<li><code class="code docutils literal"><span class="pre">master</span></code> ブランチのポインタが1つ先に進んだだけであることが分かります.</li>
+</ul>
 </div>
 <div class="section" id="id18">
 <h3>例8: Fast-forwardマージの明示的な回避<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li>例7のような状況でブランチが分岐したことを履歴に残したい場合があるとします. その場合, <code class="code docutils literal"><span class="pre">git</span> <span class="pre">merge</span></code> のオプション <code class="code docutils literal"><span class="pre">--no-ff</span></code> を指定します.</li>
+<li>先ほどと同様に, <code class="code docutils literal"><span class="pre">master</span></code> ブランチから新たなブランチを分岐し, 何らかの修正を追加します.</li>
+</ul>
+<div class="code console highlight-default"><div class="highlight"><pre><span></span>$ cd ~/Download/repo1
+$ git checkout master
+Already on &#39;master&#39;
+$ git checkout -b develop4
+Switched to a new branch &#39;develop4&#39;
+$ echo string6 &gt;&gt; source.txt
+$ git add .
+$ git commit -m &quot;Add string6.&quot;
+[develop4 0ef764c] Add string6.
+ 1 file changed, 1 insertion(+)
+</pre></div>
+</div>
+<ul class="simple">
+<li><code class="code docutils literal"><span class="pre">--no-ff</span></code> オプションを指定してマージします.</li>
+</ul>
+<div class="code console highlight-default"><div class="highlight"><pre><span></span>$ git checkout master
+Switched to branch &#39;master&#39;
+$ git merge --no-ff develop4
+Merge made by the &#39;recursive&#39; strategy.
+ source.txt | 1 +
+ 1 file changed, 1 insertion(+)
+</pre></div>
+</div>
+<ul class="simple">
+<li>コミットグラフを確認します.</li>
+</ul>
+<div class="code console highlight-default"><div class="highlight"><pre><span></span>$ git lg -4
+*   8626200 [2016-06-19] (HEAD -&gt; master) Merge branch &#39;develop4&#39; @username
+|\
+| * 0ef764c [2016-06-19] (develop4) Add string6. @username
+|/
+* b40a52a [2016-06-19] (develop3) Add string5. @username
+*   5e9b133 [2016-06-19] Fix conflict. @username
+|\
+</pre></div>
+</div>
+<ul class="simple">
+<li>分岐したブランチがマージされたことが履歴に残っていることが分かります.</li>
+</ul>
 </div>
 </div>
 <div class="section" id="id19">
-<h2><a class="toc-backref" href="#id30">リモートリポジトリ</a><a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id42">リモートリポジトリ</a><a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li>リモートリポジトリとは現在のリポジトリ(カレントディレクトリと考えてよいでしょう)と別の場所に存在するリポジトリのことです. それが同一マシン上(の別ディレクトリ)に存在したとしても, リモートリポジトリとして扱われます.</li>
 <li>通常, リモートリポジトリは現在のリポジトリと共通のコミットを持ちます. 典型的には,  リモートリポジトリの内容をコピーして現在のリポジトリを作成し, 独自に修正を適用するような場合です.</li>
@@ -815,26 +925,225 @@ $ git lg -3 # 直近の3コミットのみ表示します.
 <li>リモートリポジトリのブランチを現在のブランチにマージすることで, リモートリポジトリへの変更が現在のリポジトリに取り込まれます.</li>
 </ul>
 <div class="section" id="id20">
-<h3>例9:<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<ul>
-<li><p class="first">以下のコマンドを使用します.</p>
-<blockquote>
-<div><ul class="simple">
-<li><code class="docutils literal"><span class="pre">`git</span> <span class="pre">clone`</span></code></li>
-<li><code class="docutils literal"><span class="pre">`git</span> <span class="pre">remote`</span></code></li>
-<li><code class="docutils literal"><span class="pre">`git</span> <span class="pre">fetch`</span></code></li>
-<li><code class="docutils literal"><span class="pre">`git</span> <span class="pre">push`</span></code></li>
+<h3>ベアリポジトリ<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li>これまでの例で使用したリポジトリは作業用ファイルとコミットグラフ(<code class="code docutils literal"><span class="pre">.git</span></code> ディレクトリの中身)の情報を持っていました. 例えば, ブランチをチェックアウトすると対応するコミットに含まれる履歴が作業用のファイルに反映されました.</li>
+<li>これに対して, 作業用ファイルを持たず <code class="code docutils literal"><span class="pre">.git</span></code> ディレクトリの中の情報だけから構成されるリポジトリはベアリポジトリと呼ばれます.</li>
+<li>ベアリポジトリは複数のユーザが情報を書き込むことが可能であり, Gitサーバの構成に不可欠です.</li>
 </ul>
-</div></blockquote>
-</li>
-</ul>
-</div>
 </div>
 <div class="section" id="id21">
-<h2><a class="toc-backref" href="#id31">更新履歴</a><a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h3>例9: ベアリポジトリの作成と作業履歴の書き込み<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li>ここでは, ベアリポジトリを作成し, そこにこれまでの例での作業履歴を書き込んでみます.</li>
+<li>このベアリポジトリを外部リポジトリと呼ぶことにします. これは, ベアリポジトリをGitサーバのようなものと考えることを意味します.</li>
+<li>まず, 外部リポジトリのディレクトリが <code class="code docutils literal"><span class="pre">~Download/outside</span></code> に存在するとし, そこにベアリポジトリを作成します. コマンド <code class="code docutils literal"><span class="pre">git</span> <span class="pre">init</span></code> にオプション <code class="code docutils literal"><span class="pre">--bare</span></code> を指定して実行します.</li>
+</ul>
+<div class="code console highlight-default"><div class="highlight"><pre><span></span>$ mkdir -p ~/Download/outside/repo
+$ cd ~/Download/outside/repo
+$ git init --bare
+Initialized empty Git repository in /Users/taku-y/Downloads/tmp/outside/repo/
+</pre></div>
+</div>
+<ul class="simple">
+<li>これまでのリポジトリと区別するため, リポジトリのディレクトリ名を <code class="code docutils literal"><span class="pre">repo</span></code> としました.</li>
+<li>では, これまでのリポジトリ上での作業履歴をこのベアリポジトリに追加するため, ディレクトリを移動します.</li>
+</ul>
+<div class="code console highlight-default"><div class="highlight"><pre><span></span>$ cd ~/Download/repo1
+</pre></div>
+</div>
+<ul class="simple">
+<li>現在のリポジトリに対して, このベアリポジトリはリモートリポジトリです.</li>
+<li>まず, このリポジトリに対するリモートリポジトリを確認するため, コマンド <code class="code docutils literal"><span class="pre">git</span> <span class="pre">remote</span></code> を使用します.</li>
+</ul>
+<div class="code console highlight-default"><div class="highlight"><pre><span></span>$ git remote -v
+</pre></div>
+</div>
+<ul class="simple">
+<li>コマンドを実行しても何も表示されません. リモートリポジトリが登録されていないためです.</li>
+<li>このベアリポジトリをリモートリポジトリとして登録するためにコマンド <code class="code docutils literal"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">add</span></code> を使用します.</li>
+</ul>
+<div class="code console highlight-default"><div class="highlight"><pre><span></span>$ git remote add origin ../outside/repo
+</pre></div>
+</div>
+<ul class="simple">
+<li><code class="code docutils literal"><span class="pre">~/Download/outside/repo</span></code> に存在するベアリポジトリをリモートリポジトリとして登録しました. 今回は同じマシンの別ディレクトリを登録しましたが, もしGitサーバ上のリポジトリを登録する場合はディレクトリ名の代わりにURLを指定します.</li>
+<li>リモートリポジトリの名前を <code class="code docutils literal"><span class="pre">origin</span></code> としました. この名前は現在のリポジトリから見たその外部リポジトリの名前です. 例えば, 別のリポジトリはこのベアリポジトリを <code class="code docutils literal"><span class="pre">repo</span></code> という名前で登録できます.</li>
+<li>ベアリポジトリがリモートリポジトリとして登録されているかどうか確認します.</li>
+</ul>
+<div class="code console highlight-default"><div class="highlight"><pre><span></span>$ git remote -v
+origin  ../outside/repo (fetch)
+origin  ../outside/repo (push)
+</pre></div>
+</div>
+<ul class="simple">
+<li>上記のメッセージで, <code class="code docutils literal"><span class="pre">fetch</span></code> はリモートリポジトリから情報を取得する操作, <code class="code docutils literal"><span class="pre">push</span></code> は現在のリポジトリの修正内容をリモートリポジトリに適用する操作を表します.</li>
+<li>では, リモートリポジトリ(<code class="code docutils literal"><span class="pre">~/Download/outside/repo</span></code>)に現在のリポジトリ(<code class="code docutils literal"><span class="pre">~/Download/repo1</span></code>)の作業履歴を書き込みます. コマンド <code class="code docutils literal"><span class="pre">git</span> <span class="pre">push</span></code> を使用します.</li>
+</ul>
+<div class="code console highlight-default"><div class="highlight"><pre><span></span>$ git push origin master
+Counting objects: 32, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (21/21), done.
+Writing objects: 100% (32/32), 2.82 KiB | 0 bytes/s, done.
+Total 32 (delta 5), reused 0 (delta 0)
+To ../outside/repo
+ * [new branch]      master -&gt; master
+</pre></div>
+</div>
+<ul class="simple">
+<li>より詳しく言えば, 1行目のコマンドは <code class="code docutils literal"><span class="pre">origin</span></code> という名前を持つリモートリポジトリに対して現在のリポジトリの <code class="code docutils literal"><span class="pre">master</span></code> ブランチの履歴を送信することを意味します.</li>
+<li>他のブランチの履歴を送信するためには次のようにします.</li>
+</ul>
+<div class="code console highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">develop4</span>
+<span class="n">Total</span> <span class="mi">0</span> <span class="p">(</span><span class="n">delta</span> <span class="mi">0</span><span class="p">),</span> <span class="n">reused</span> <span class="mi">0</span> <span class="p">(</span><span class="n">delta</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">To</span> <span class="o">../</span><span class="n">outside</span><span class="o">/</span><span class="n">repo</span>
+ <span class="o">*</span> <span class="p">[</span><span class="n">new</span> <span class="n">branch</span><span class="p">]</span>      <span class="n">develop4</span> <span class="o">-&gt;</span> <span class="n">develop4</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="id22">
-<h2><a class="toc-backref" href="#id32">免責事項</a><a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h3>例10: 外部リポジトリとの同期<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li>この例では, 例9のベアリポジトリをGitサーバ上の情報とみなし, そのサーバの外からリポジトリに修正を適用することを行います.</li>
+<li>(この例のための仮想的な)別のユーザのためのディレクトリを作成し, 移動します.</li>
+</ul>
+<div class="code console highlight-default"><div class="highlight"><pre><span></span>$ mkdir -p ~/Download/user2
+$ cd ~/Download/user2
+</pre></div>
+</div>
+<ul class="simple">
+<li>外部リポジトリ(<code class="code docutils literal"><span class="pre">~/Download/outside/repo</span></code>)の情報を手元にコピーします. Gitではリポジトリをクローンすると言います. コマンド <code class="code docutils literal"><span class="pre">git</span> <span class="pre">clone</span></code> を使用します.</li>
+</ul>
+<div class="code console highlight-default"><div class="highlight"><pre><span></span>$ git clone ~/Download/outside/repo
+Cloning into &#39;repo&#39;...
+done.
+</pre></div>
+</div>
+<ul>
+<li><p class="first">これで外部リポジトリのクローンが完了しました. 中身を確認します.</p>
+<blockquote>
+<div><p>$ ls
+repo
+$ cd repo
+$ git status
+On branch master
+Your branch is up-to-date with &#8216;origin/master&#8217;.
+nothing to commit, working directory clean
+$ git lg -4
+*   8626200 [2016-06-19] (HEAD -&gt; master, origin/master, origin/HEAD) Merge branch &#8216;develop4&#8217; &#64;taku-y
+<a href="#id23"><span class="problematic" id="id24">|</span></a>| * 0ef764c [2016-06-19] (origin/develop4) Add string6. &#64;username
+<a href="#id25"><span class="problematic" id="id26">|</span></a>/
+* b40a52a [2016-06-19] Add string5. &#64;username
+*   5e9b133 [2016-06-19] Fix conflict. &#64;username
+<a href="#id27"><span class="problematic" id="id28">|</span></a></p>
+</div></blockquote>
+</li>
+<li><p class="first">例8の最後と同じ状態になっていることが分かります.</p>
+</li>
+<li><p class="first">ここで, このリポジトリのリモートリポジトリを確認します.</p>
+</li>
+</ul>
+<div class="code console highlight-default"><div class="highlight"><pre><span></span>$ git remote -v
+origin  /Users/taku-y/Downloads/outside/repo (fetch)
+origin  /Users/taku-y/Downloads/outside/repo (push)
+</pre></div>
+</div>
+<ul class="simple">
+<li>このリポジトリではリモートリポジトリを登録していません. しかし, 外部リポジトリをクローンすると, その外部リポジトリが自動的に <code class="code docutils literal"><span class="pre">origin</span></code> という名前でリモートリポジトリとして登録されます.</li>
+<li>では, これまでと同様にファイルに変更を加えてコミットします.</li>
+</ul>
+<div class="code console highlight-default"><div class="highlight"><pre><span></span>$ echo string7 &gt;&gt; source2.txt
+$ git add .
+$ git commit -m &quot;Add string6.&quot;
+[master eb3a4e4] Add string6.
+ 1 file changed, 1 insertion(+)
+</pre></div>
+</div>
+<ul class="simple">
+<li>コミットグラフを確認します.</li>
+</ul>
+<div class="code console highlight-default"><div class="highlight"><pre><span></span>$ git lg -4
+* eb3a4e4 [2016-06-19] (HEAD -&gt; master) Add string6. @username
+*   8626200 [2016-06-19] (origin/master, origin/HEAD) Merge branch &#39;develop4&#39; @username
+|\
+| * 0ef764c [2016-06-19] (origin/develop4) Add string6. @username
+|/
+* b40a52a [2016-06-19] (origin/develop3) Add string5. @username
+</pre></div>
+</div>
+<ul class="simple">
+<li>内部リポジトリの <code class="code docutils literal"><span class="pre">master</span></code> ブランチが最新のコミットを指していることが分かります.</li>
+<li><code class="code docutils literal"><span class="pre">origin/master</span></code> は外部リポジトリの <code class="code docutils literal"><span class="pre">master</span></code> ブランチを表します. これは以前と同じです. 内部リポジトリの変更を反映する必要があります. そのために, コマンド <code class="code docutils literal"><span class="pre">git</span> <span class="pre">push</span></code> を使用します.</li>
+</ul>
+<div class="code console highlight-default"><div class="highlight"><pre><span></span>$ echo string7 &gt;&gt; source2.txt
+$ git add .
+$ git commit -m &quot;Add string7.&quot;
+[master fca673d] Add string7.
+ 1 file changed, 1 insertion(+)
+</pre></div>
+</div>
+<ul class="simple">
+<li>コミットグラフを確認します.</li>
+</ul>
+<div class="code console highlight-default"><div class="highlight"><pre><span></span>$ git lg -4
+* fca673d [2016-06-19] (HEAD -&gt; master) Add string7. @username
+*   8626200 [2016-06-19] (origin/master, origin/HEAD) Merge branch &#39;develop4&#39; @username
+|\
+| * 0ef764c [2016-06-19] (origin/develop4) Add string6. @username
+|/
+* b40a52a [2016-06-19] Add string5. @username
+</pre></div>
+</div>
+<ul class="simple">
+<li>先ほどの変更が追加されていることが分かります.</li>
+<li>また, 新たに追加されたコミットがリモートリポジトリの <code class="code docutils literal"><span class="pre">master</span></code> ブランチが指すものより新しいことも分かります. このことは <code class="code docutils literal"><span class="pre">git</span> <span class="pre">status</span></code> によって確認することもできます.</li>
+</ul>
+<div class="code console highlight-default"><div class="highlight"><pre><span></span>$ git status
+On branch master
+Your branch is ahead of &#39;origin/master&#39; by 1 commit.
+  (use &quot;git push&quot; to publish your local commits)
+nothing to commit, working directory clean
+</pre></div>
+</div>
+<ul class="simple">
+<li>では, 外部リポジトリに修正内容を送信します. 例9と同じくコマンド <code class="code docutils literal"><span class="pre">git</span> <span class="pre">push</span></code> を使用します.</li>
+<li>TODO: プッシュという用語を明示的に説明する.</li>
+</ul>
+<div class="code console highlight-default"><div class="highlight"><pre><span></span>$ git push origin master
+Counting objects: 3, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 264 bytes | 0 bytes/s, done.
+Total 3 (delta 1), reused 0 (delta 0)
+To /Users/taku-y/Downloads/tmp/outside/repo/
+   8626200..fca673d  master -&gt; master
+</pre></div>
+</div>
+<ul class="simple">
+<li>これで修正内容が送信されました.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id29">
+<h2><a class="toc-backref" href="#id43">外部リポジトリとの同期: フェッチとリベース</a><a class="headerlink" href="#id29" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li>ここまでの例では複数人での作業を想定していませんでした. 複数人で作業を行うと, 自分が作業中に別の人によって元の外部リポジトリ(例10の <code class="code docutils literal"><span class="pre">~/Downloads/outside/repo</span></code> に相当)の状態が変わる場合があります. これに対処するためには, 外部リポジトリの最新情報を取得し, 現在の(プッシュ前の)作業履歴の起点を最新情報に合わせて変更する必要があります.</li>
+</ul>
+<div class="section" id="id30">
+<h3>フェッチ<a class="headerlink" href="#id30" title="このヘッドラインへのパーマリンク">¶</a></h3>
+</div>
+<div class="section" id="id31">
+<h3>リベース<a class="headerlink" href="#id31" title="このヘッドラインへのパーマリンク">¶</a></h3>
+</div>
+<div class="section" id="id32">
+<h3>例12: フェッチとリベース<a class="headerlink" href="#id32" title="このヘッドラインへのパーマリンク">¶</a></h3>
+</div>
+</div>
+<div class="section" id="id33">
+<h2><a class="toc-backref" href="#id44">更新履歴</a><a class="headerlink" href="#id33" title="このヘッドラインへのパーマリンク">¶</a></h2>
+</div>
+<div class="section" id="id34">
+<h2><a class="toc-backref" href="#id45">免責事項</a><a class="headerlink" href="#id34" title="このヘッドラインへのパーマリンク">¶</a></h2>
 </div>
 </div>
 
