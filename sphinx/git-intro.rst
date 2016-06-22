@@ -527,13 +527,110 @@ Git入門
 
 Fast-forwardマージ
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-`参考リンク <https://git-scm.com/book/ja/v1/Git-のブランチ機能-ブランチとマージの基本>`_, 図13, 14. :code:`master` ブランチに :code:`hotfix` ブランチをマージするときにfast-forwardマージが適用されます. 
+- あるブランチAから分岐したブランチBにコミットを追加し, かつブランチAに何もコミットを追加しない場合を考えます. 
+- このときにブランチAにブランチBをマージするためには, ブランチAにブランチBのコミットを追加すれば十分です. 
+- したがって, ブランチAが指すコミットへのポインタをブランチBが指すコミットに移動すればよいことになります. 
+- このようなマージをfast-forwardマージと呼びます(`参考リンク <https://git-scm.com/book/ja/v1/Git-のブランチ機能-ブランチとマージの基本>`_, 図13, 14. :code:`master` ブランチに :code:`hotfix` ブランチをマージするときにfast-forwardマージが適用されます). 
 
 例7: Fast-forwardマージ
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- Fast-forwardマージを試してみます. そのために, :code:`master` ブランチから分岐する :code:`develop3` ブランチを作成し, ファイルに修正を追加します. 
+
+.. code:: console
+
+    $ cd ~/Download/repo1
+    $ git checkout master
+    Already on 'master'
+    $ git checkout -b develop3
+    Switched to a new branch 'develop3'
+    $ echo string5 >> source.txt
+    $ git add .
+    $ git commit -m "Add string5."
+    [develop3 b40a52a] Add string5.
+     1 file changed, 1 insertion(+)
+
+- コミットグラフを確認します. 
+
+.. code:: console
+
+    $ git lg -4
+    * b40a52a [2016-06-19] (HEAD -> develop3) Add string5. @username
+    *   5e9b133 [2016-06-19] (master) Fix conflict. @username
+    |\
+    | * 88287ed [2016-06-19] (develop2) Add string3. @username
+    * | 515ba7a [2016-06-19] Add string4. @username
+    |/
+
+- この状態で :code:`master` ブランチに :code:`develop3` ブランチをマージします. 
+
+.. code:: console
+
+    $ git checkout master
+    Switched to branch 'master'
+    $ git merge develop3
+    Updating 5e9b133..b40a52a
+    Fast-forward
+     source.txt | 1 +
+     1 file changed, 1 insertion(+)
+
+- Fast-forwardマージが適用されたことが分かります. 
+- コミットグラフを確認します. 
+
+.. code:: console
+
+    $ git lg -4
+    * b40a52a [2016-06-19] (HEAD -> master, develop3) Add string5. @username
+    *   5e9b133 [2016-06-19] Fix conflict. @username
+    |\
+    | * 88287ed [2016-06-19] (develop2) Add string3. @username
+    * | 515ba7a [2016-06-19] Add string4. @username
+    |/
+
+- :code:`master` ブランチのポインタが1つ先に進んだだけであることが分かります. 
 
 例8: Fast-forwardマージの明示的な回避
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- 例7のような状況でブランチが分岐したことを履歴に残したい場合があるとします. その場合, :code:`git merge` のオプション :code:`--no-ff` を指定します. 
+- 先ほどと同様に, :code:`master` ブランチから新たなブランチを分岐し, 何らかの修正を追加します. 
+
+.. code:: console
+
+    $ cd ~/Download/repo1
+    $ git checkout master
+    Already on 'master'
+    $ git checkout -b develop4
+    Switched to a new branch 'develop4'
+    $ echo string6 >> source.txt
+    $ git add .
+    $ git commit -m "Add string6."
+    [develop4 0ef764c] Add string6.
+     1 file changed, 1 insertion(+)
+
+- :code:`--no-ff` オプションを指定してマージします. 
+
+.. code:: console
+
+    $ git checkout master
+    Switched to branch 'master'
+    $ git merge --no-ff develop4
+    Merge made by the 'recursive' strategy.
+     source.txt | 1 +
+     1 file changed, 1 insertion(+)
+
+- コミットグラフを確認します. 
+
+.. code:: console
+
+    $ git lg -4
+    *   8626200 [2016-06-19] (HEAD -> master) Merge branch 'develop4' @username
+    |\
+    | * 0ef764c [2016-06-19] (develop4) Add string6. @username
+    |/
+    * b40a52a [2016-06-19] (develop3) Add string5. @username
+    *   5e9b133 [2016-06-19] Fix conflict. @username
+    |\
+
+- 分岐したブランチがマージされたことが履歴に残っていることが分かります. 
 
 リモートリポジトリ
 -------------------------------------------------------------------------------
