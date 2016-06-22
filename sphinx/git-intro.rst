@@ -1,6 +1,6 @@
 Git入門
 ===============================================================================
-最終更新: 20160617 (c) 吉岡琢
+最終更新: 20160622 (c) 吉岡琢
 
 .. contents::
     :depth: 2
@@ -39,11 +39,7 @@ Git入門
 
 例1
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-- この例では以下のコマンドを使用します. 
-
-    - :code:`git init`
-
-- 適当なディレクトリをGitのバージョン管理下に置きます. 
+- リポジトリを作成するためにコマンド :code:`git init` を使用します. リポジトリの作成とは, プロジェクトの構成要素(主にテキストファイル)を含むディレクトリをGitのバージョン管理下に置くことです. 
 - ディレクトリは何でも良いのですが, ここの説明では :code:`~/Download/repo1` ディレクトリを用いることとします. 
 - ディレクトリをバージョン管理下に置くにはコマンド :code:`git init` を使用します. 
 
@@ -53,11 +49,11 @@ Git入門
     $ cd ~/Download/repo1
     $ git init
 
-- これでディレクトリがGitのバージョン管理下に置かれました. 
+- これでこのディレクトリがリポジトリになりました. 
 
 コミットとステージング
 -------------------------------------------------------------------------------
-- コミットとはレポジトリのある時点でのスナップショットです. 
+- コミットとはリポジトリのある時点でのスナップショットです. 
 - コミットはその直近の祖先へのポインタを持ちます. これにより, コミットはリポジトリに対する追加・変更の履歴を表現するグラフとして表現されます. これをコミットグラフと呼びます（`参考リンク <https://git-scm.com/book/ja/v2/Git-%E3%81%AE%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E6%A9%9F%E8%83%BD-%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E3%81%A8%E3%81%AF>`_）. 
 - コミットという単語はスナップショットをコミットグラフに追加する操作を指すこともあります. この場合, 「ファイルをコミットする」「変更をコミットする」というように使われます. 
 
@@ -517,10 +513,10 @@ Git入門
     $ git commit -m "Fix conflict."
     [master 5e9b133] Fix conflict.
     $ git lg -3 # 直近の3コミットのみ表示します. 
-    *   5e9b133 [2016-06-22] (HEAD -> master) Fix conflict. @username
+    *   5e9b133 [2016-06-19] (HEAD -> master) Fix conflict. @username
     |\
-    | * 88287ed [2016-06-22] (develop2) Add string3. @username
-    * | 515ba7a [2016-06-22] Add string4. @username
+    | * 88287ed [2016-06-19] (develop2) Add string3. @username
+    * | 515ba7a [2016-06-19] Add string4. @username
     |/
 
 - これで衝突を解消してマージすることができました. 
@@ -640,14 +636,211 @@ Fast-forwardマージ
 - 元のリモートリポジトリに対する変更は, 現在のリポジトリが持つリモートリポジトリには自動的には反映されません. そのため, リモートリポジトリの最新の状態を明示的に取得する必要があります. 
 - リモートリポジトリのブランチを現在のブランチにマージすることで, リモートリポジトリへの変更が現在のリポジトリに取り込まれます. 
 
-例9: 
+ベアリポジトリ
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-- 以下のコマンドを使用します. 
+- これまでの例で使用したリポジトリは作業用ファイルとコミットグラフ(:code:`.git` ディレクトリの中身)の情報を持っていました. 例えば, ブランチをチェックアウトすると対応するコミットに含まれる履歴が作業用のファイルに反映されました. 
+- これに対して, 作業用ファイルを持たず :code:`.git` ディレクトリの中の情報だけから構成されるリポジトリはベアリポジトリと呼ばれます. 
+- ベアリポジトリは複数のユーザが情報を書き込むことが可能であり, Gitサーバの構成に不可欠です. 
 
-    - ```git clone```
-    - ```git remote```
-    - ```git fetch```
-    - ```git push```
+例9: ベアリポジトリの作成と作業履歴の書き込み
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- ここでは, ベアリポジトリを作成し, そこにこれまでの例での作業履歴を書き込んでみます. 
+- このベアリポジトリを外部リポジトリと呼ぶことにします. これは, ベアリポジトリをGitサーバのようなものと考えることを意味します. 
+- まず, 外部リポジトリのディレクトリが :code:`~Download/outside` に存在するとし, そこにベアリポジトリを作成します. コマンド :code:`git init` にオプション :code:`--bare` を指定して実行します.     
+
+.. code:: console
+
+    $ mkdir -p ~/Download/outside/repo
+    $ cd ~/Download/outside/repo
+    $ git init --bare
+    Initialized empty Git repository in /Users/taku-y/Downloads/tmp/outside/repo/
+
+- これまでのリポジトリと区別するため, リポジトリのディレクトリ名を :code:`repo` としました. 
+- では, これまでのリポジトリ上での作業履歴をこのベアリポジトリに追加するため, ディレクトリを移動します. 
+
+.. code:: console
+
+    $ cd ~/Download/repo1
+
+- 現在のリポジトリに対して, このベアリポジトリはリモートリポジトリです. 
+- まず, このリポジトリに対するリモートリポジトリを確認するため, コマンド :code:`git remote` を使用します. 
+
+.. code:: console
+
+    $ git remote -v
+
+- コマンドを実行しても何も表示されません. リモートリポジトリが登録されていないためです. 
+- このベアリポジトリをリモートリポジトリとして登録するためにコマンド :code:`git remote add` を使用します. 
+
+.. code:: console
+
+    $ git remote add origin ../outside/repo
+
+- :code:`~/Download/outside/repo` に存在するベアリポジトリをリモートリポジトリとして登録しました. 今回は同じマシンの別ディレクトリを登録しましたが, もしGitサーバ上のリポジトリを登録する場合はディレクトリ名の代わりにURLを指定します. 
+- リモートリポジトリの名前を :code:`origin` としました. この名前は現在のリポジトリから見たその外部リポジトリの名前です. 例えば, 別のリポジトリはこのベアリポジトリを :code:`repo` という名前で登録できます. 
+- ベアリポジトリがリモートリポジトリとして登録されているかどうか確認します. 
+
+.. code:: console
+
+    $ git remote -v
+    origin  ../outside/repo (fetch)
+    origin  ../outside/repo (push)
+
+- 上記のメッセージで, :code:`fetch` はリモートリポジトリから情報を取得する操作, :code:`push` は現在のリポジトリの修正内容をリモートリポジトリに適用する操作を表します. 
+- では, リモートリポジトリ(:code:`~/Download/outside/repo`)に現在のリポジトリ(:code:`~/Download/repo1`)の作業履歴を書き込みます. コマンド :code:`git push` を使用します. 
+
+.. code:: console
+
+    $ git push origin master
+    Counting objects: 32, done.
+    Delta compression using up to 8 threads.
+    Compressing objects: 100% (21/21), done.
+    Writing objects: 100% (32/32), 2.82 KiB | 0 bytes/s, done.
+    Total 32 (delta 5), reused 0 (delta 0)
+    To ../outside/repo
+     * [new branch]      master -> master
+
+- より詳しく言えば, 1行目のコマンドは :code:`origin` という名前を持つリモートリポジトリに対して現在のリポジトリの :code:`master` ブランチの履歴を送信することを意味します. 
+- 他のブランチの履歴を送信するためには次のようにします. 
+
+.. code:: console
+
+    git push origin develop4
+    Total 0 (delta 0), reused 0 (delta 0)
+    To ../outside/repo
+     * [new branch]      develop4 -> develop4
+
+例10: 外部リポジトリとの同期
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- この例では, 例9のベアリポジトリをGitサーバ上の情報とみなし, そのサーバの外からリポジトリに修正を適用することを行います. 
+- (この例のための仮想的な)別のユーザのためのディレクトリを作成し, 移動します. 
+
+.. code:: console
+
+    $ mkdir -p ~/Download/user2
+    $ cd ~/Download/user2
+
+- 外部リポジトリ(:code:`~/Download/outside/repo`)の情報を手元にコピーします. Gitではリポジトリをクローンすると言います. コマンド :code:`git clone` を使用します. 
+
+.. code:: console
+
+    $ git clone ~/Download/outside/repo
+    Cloning into 'repo'...
+    done.
+
+- これで外部リポジトリのクローンが完了しました. 中身を確認します. 
+
+    $ ls
+    repo
+    $ cd repo
+    $ git status
+    On branch master
+    Your branch is up-to-date with 'origin/master'.
+    nothing to commit, working directory clean
+    $ git lg -4
+    *   8626200 [2016-06-19] (HEAD -> master, origin/master, origin/HEAD) Merge branch 'develop4' @taku-y
+    |\
+    | * 0ef764c [2016-06-19] (origin/develop4) Add string6. @username
+    |/
+    * b40a52a [2016-06-19] Add string5. @username
+    *   5e9b133 [2016-06-19] Fix conflict. @username
+    |\
+
+- 例8の最後と同じ状態になっていることが分かります. 
+- ここで, このリポジトリのリモートリポジトリを確認します. 
+
+.. code:: console
+
+    $ git remote -v
+    origin  /Users/taku-y/Downloads/outside/repo (fetch)
+    origin  /Users/taku-y/Downloads/outside/repo (push)
+
+- このリポジトリではリモートリポジトリを登録していません. しかし, 外部リポジトリをクローンすると, その外部リポジトリが自動的に :code:`origin` という名前でリモートリポジトリとして登録されます. 
+- では, これまでと同様にファイルに変更を加えてコミットします. 
+
+.. code:: console
+
+    $ echo string7 >> source2.txt
+    $ git add .
+    $ git commit -m "Add string6."
+    [master eb3a4e4] Add string6.
+     1 file changed, 1 insertion(+)
+
+- コミットグラフを確認します. 
+
+.. code:: console
+
+    $ git lg -4
+    * eb3a4e4 [2016-06-19] (HEAD -> master) Add string6. @username
+    *   8626200 [2016-06-19] (origin/master, origin/HEAD) Merge branch 'develop4' @username
+    |\
+    | * 0ef764c [2016-06-19] (origin/develop4) Add string6. @username
+    |/
+    * b40a52a [2016-06-19] (origin/develop3) Add string5. @username
+
+- 内部リポジトリの :code:`master` ブランチが最新のコミットを指していることが分かります. 
+- :code:`origin/master` は外部リポジトリの :code:`master` ブランチを表します. これは以前と同じです. 内部リポジトリの変更を反映する必要があります. そのために, コマンド :code:`git push` を使用します.
+
+.. code:: console
+
+    $ echo string7 >> source2.txt
+    $ git add .
+    $ git commit -m "Add string7."
+    [master fca673d] Add string7.
+     1 file changed, 1 insertion(+)
+
+- コミットグラフを確認します. 
+
+.. code:: console
+
+    $ git lg -4
+    * fca673d [2016-06-19] (HEAD -> master) Add string7. @username
+    *   8626200 [2016-06-19] (origin/master, origin/HEAD) Merge branch 'develop4' @username
+    |\
+    | * 0ef764c [2016-06-19] (origin/develop4) Add string6. @username
+    |/
+    * b40a52a [2016-06-19] Add string5. @username
+
+- 先ほどの変更が追加されていることが分かります. 
+- また, 新たに追加されたコミットがリモートリポジトリの :code:`master` ブランチが指すものより新しいことも分かります. このことは :code:`git status` によって確認することもできます. 
+
+.. code:: console
+
+    $ git status
+    On branch master
+    Your branch is ahead of 'origin/master' by 1 commit.
+      (use "git push" to publish your local commits)
+    nothing to commit, working directory clean
+
+- では, 外部リポジトリに修正内容を送信します. 例9と同じくコマンド :code:`git push` を使用します. 
+
+- TODO: プッシュという用語を明示的に説明する. 
+
+.. code:: console
+
+    $ git push origin master
+    Counting objects: 3, done.
+    Delta compression using up to 8 threads.
+    Compressing objects: 100% (2/2), done.
+    Writing objects: 100% (3/3), 264 bytes | 0 bytes/s, done.
+    Total 3 (delta 1), reused 0 (delta 0)
+    To /Users/taku-y/Downloads/tmp/outside/repo/
+       8626200..fca673d  master -> master
+
+- これで修正内容が送信されました. 
+
+外部リポジトリとの同期: フェッチとリベース
+-------------------------------------------------------------------------------
+- ここまでの例では複数人での作業を想定していませんでした. 複数人で作業を行うと, 自分が作業中に別の人によって元の外部リポジトリ(例10の :code:`~/Downloads/outside/repo` に相当)の状態が変わる場合があります. これに対処するためには, 外部リポジトリの最新情報を取得し, 現在の(プッシュ前の)作業履歴の起点を最新情報に合わせて変更する必要があります. 
+
+フェッチ
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+リベース
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+例12: フェッチとリベース
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 更新履歴
 -------------------------------------------------------------------------------
