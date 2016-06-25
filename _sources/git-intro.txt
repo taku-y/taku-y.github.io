@@ -730,7 +730,9 @@ Fast-forwardマージ
 
 - これで外部リポジトリのクローンが完了しました. 中身を確認します. 
 
-    $ ls
+.. code:: console
+
+    $ ls 
     repo
     $ cd repo
     $ git status
