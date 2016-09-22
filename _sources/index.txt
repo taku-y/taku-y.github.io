@@ -12,7 +12,7 @@ Contents:
     :maxdepth: 2
 
     git-intro
-
+    downloads
 
 Indices and tables
 ==================
