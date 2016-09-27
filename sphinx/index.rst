@@ -9,10 +9,11 @@ Welcome to taku-y.github.io's documentation!
 Contents:
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
 
     git-intro
     downloads
+    notebook/20160928/lda-advi-ae
 
 Indices and tables
 ==================

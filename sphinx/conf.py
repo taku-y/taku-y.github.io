@@ -32,6 +32,8 @@ import shlex
 # ones.
 extensions = [
     'sphinx.ext.mathjax',
+    'nbsphinx', 
+    'IPython.sphinxext.ipython_console_highlighting', 
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -67,7 +69,7 @@ release = '0.1'
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = 'ja'
+language = 'en'
 
 # There are two options for replacing |today|: either, you set today to some
 # non-false value, then it is used:
@@ -112,10 +114,14 @@ todo_include_todos = False
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 import sphinxbootstrap4theme
+import sphinx_bootstrap_theme
 
-html_theme = 'sphinxbootstrap4theme'
-html_theme_path = [sphinxbootstrap4theme.get_path()]
+#html_theme = 'sphinxbootstrap4theme'
+#html_theme_path = [sphinxbootstrap4theme.get_path()]
 # html_theme = 'alabaster'
+html_theme = 'bootstrap'
+html_theme_path = sphinx_bootstrap_theme.get_html_theme_path()
+
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
