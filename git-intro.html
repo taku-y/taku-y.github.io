@@ -1,22 +1,17 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Git入門 &mdash; taku-y.github.io 0.1 documentation</title>
     
-    <title>Git入門 &mdash; taku-y.github.io 0.1 ドキュメント</title>
-
-    
-    <link rel="stylesheet" href="_static/tether-1.3.1/css/tether.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-4.0.0-alpha2/css/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinxbootstrap4.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -30,217 +25,157 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/translations.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="_static/tether-1.3.1/js/tether.min.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-4.0.0-alpha2/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="_static/sphinxbootstrap4.js"></script>
-    <link rel="top" title="taku-y.github.io 0.1 ドキュメント" href="index.html" />
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="taku-y.github.io 0.1 documentation" href="index.html" />
     <link rel="next" title="ダウンロードファイル" href="downloads.html" />
-    <link rel="prev" title="Welcome to taku-y.github.io’s documentation!" href="index.html" /> 
+    <link rel="prev" title="Welcome to taku-y.github.io’s documentation!" href="index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
   </head>
   <body role="document">
-  <nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
-      <div class="row container-fluid">
-           <a class="navbar-brand hidden-xs-down" href="index.html">
-                  taku-y.github.io
-          </a>
-          <span class="navbar-text pull-xs-left navbar-version hidden-xs-down"><b>0.1</b></span>
-          <button class="navbar-toggler hidden-sm-up pull-xs-right bar-button" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2">
-          &#9776;
-          </button>
-          <div class="hidden-xs-down">
-          <ul class="nav navbar-nav ">
-          
-              <li class="nav-item dropdown" id="navbar-pages">
-                  <a class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
-                  <ul class="dropdown-menu">
-                  <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="">Git入門</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id1">初期設定</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">リポジトリ</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id3">例1</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id4">コミットとステージング</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id7">ステージング</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id8">例2</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id9">バージョン管理対象の制御</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id10">例3</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id11">ブランチ</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id12">例4</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id13">マージ</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id14">例5</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id15">例6: マージにおける衝突の解消</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#fast-forward">Fast-forwardマージ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id17">例7: Fast-forwardマージ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id18">例8: Fast-forwardマージの明示的な回避</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id19">リモートリポジトリ</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id20">ベアリポジトリ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id21">例9: ベアリポジトリの作成と作業履歴の書き込み</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id22">例10: 外部リポジトリとの同期</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id29">外部リポジトリとの同期: フェッチとリベース</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id30">フェッチ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id31">リベース</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id32">例12: フェッチとリベース</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id33">更新履歴</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id34">免責事項</a></li>
-</ul>
-</li>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          taku-y.github.io</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Git入門</a></li>
 <li class="toctree-l1"><a class="reference internal" href="downloads.html">ダウンロードファイル</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebook/20160928/lda-advi-ae.html">Automatic autoencoding variational Bayes for latent dirichlet allocation with PyMC3</a></li>
 </ul>
-
-                  </ul>
-              </li>
-          </ul>
-             
-<form class="form-inline pull-sm-right" action="search.html" method="get">
-  <input type="text" name="q" class="form-control" placeholder="Search" />
-  <input type="hidden" name="check_keywords" value="yes" />
-  <input type="hidden" name="area" value="default" />
-</form>
-          </div>
-      </div>
-
-      <div class="row hidden-sm-up">
-          <div class="collapse navbar-toggleable-xs container" id="exCollapsingNavbar2">
-              <div class="container">
-             　　 <a class="navbar-brand" href="index.html">
-                      taku-y.github.io
-                  </a>
-              </div>
-              <ul class="nav navbar-nav">
-              </ul>
-              <div class="dropdown-divider"></div>
-              <div class="navbar-text">search<div>
+</ul>
+</li>
               
-<form class="form-inline pull-sm-right" action="search.html" method="get">
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Git入門</a><ul>
+<li><a class="reference internal" href="#id1">初期設定</a></li>
+<li><a class="reference internal" href="#id2">リポジトリ</a><ul>
+<li><a class="reference internal" href="#id3">例1</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id4">コミットとステージング</a><ul>
+<li><a class="reference internal" href="#id7">ステージング</a></li>
+<li><a class="reference internal" href="#id8">例2</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id9">バージョン管理対象の制御</a><ul>
+<li><a class="reference internal" href="#id10">例3</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id11">ブランチ</a><ul>
+<li><a class="reference internal" href="#id12">例4</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id13">マージ</a><ul>
+<li><a class="reference internal" href="#id14">例5</a></li>
+<li><a class="reference internal" href="#id15">例6: マージにおける衝突の解消</a></li>
+<li><a class="reference internal" href="#fast-forward">Fast-forwardマージ</a></li>
+<li><a class="reference internal" href="#id17">例7: Fast-forwardマージ</a></li>
+<li><a class="reference internal" href="#id18">例8: Fast-forwardマージの明示的な回避</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id19">リモートリポジトリ</a><ul>
+<li><a class="reference internal" href="#id20">ベアリポジトリ</a></li>
+<li><a class="reference internal" href="#id21">例9: ベアリポジトリの作成と作業履歴の書き込み</a></li>
+<li><a class="reference internal" href="#id22">例10: 外部リポジトリとの同期</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id29">外部リポジトリとの同期: フェッチとリベース</a><ul>
+<li><a class="reference internal" href="#id30">フェッチ</a></li>
+<li><a class="reference internal" href="#id31">リベース</a></li>
+<li><a class="reference internal" href="#id32">例12: フェッチとリベース</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id33">更新履歴</a></li>
+<li><a class="reference internal" href="#id34">免責事項</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="index.html" title="Previous Chapter: Welcome to taku-y.github.io’s documentation!"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Welcome to ta...</span>
+    </a>
+  </li>
+  <li>
+    <a href="downloads.html" title="Next Chapter: ダウンロードファイル"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">ダウンロードファイル &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/git-intro.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
   <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
   <input type="hidden" name="check_keywords" value="yes" />
   <input type="hidden" name="area" value="default" />
 </form>
-          </div>
-      </div>
-    </nav>
+          
+        </div>
+    </div>
   </div>
 
-    <div class="related container-fluid bg-faded" role="navigation" aria-label="related navigation">
-        <ol class="breadcrumb col-md-8">
-            <li><a href="index.html">taku-y.github.io 0.1 ドキュメント</a></li>
-            <li class="active">Git入門</li>
-        </ol>
-       <div class="relation col-md-4">
-           <div class="pull-xs-right">
-               <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-               <a href="index.html" title="Previous Chapter: Welcome to taku-y.github.io’s documentation!" class="btn btn-primary" role="botton" accesskey="P">
-                   &laquo; Welcome to ta...
-               </a>
-               <a href="downloads.html" title="Next Chapter: ダウンロードファイル" class="btn btn-primary" role="botton" accesskey="N">
-                   ダウンロードファイル &raquo;
-               </a>
-               </div>
-           </div>
-       </div>
-    </div>
-
-  <div class="main"> 
-      <div class="sphinxsidebar hidden-sm-down">
-        <div class="sphinxsidebarwrapper">          
-            <h4>目次</h4>
-            
-            
-              <div class="sidebartoctree">
-                <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="">Git入門</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id1">初期設定</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">リポジトリ</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id3">例1</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id4">コミットとステージング</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id7">ステージング</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id8">例2</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id9">バージョン管理対象の制御</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id10">例3</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id11">ブランチ</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id12">例4</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id13">マージ</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id14">例5</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id15">例6: マージにおける衝突の解消</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#fast-forward">Fast-forwardマージ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id17">例7: Fast-forwardマージ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id18">例8: Fast-forwardマージの明示的な回避</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id19">リモートリポジトリ</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id20">ベアリポジトリ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id21">例9: ベアリポジトリの作成と作業履歴の書き込み</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id22">例10: 外部リポジトリとの同期</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id29">外部リポジトリとの同期: フェッチとリベース</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id30">フェッチ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id31">リベース</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id32">例12: フェッチとリベース</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id33">更新履歴</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id34">免責事項</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="downloads.html">ダウンロードファイル</a></li>
-</ul>
-
-              </div>
-            
-          
-  <h4>前のトピックへ</h4>
-  <p class="topless"><a href="index.html"
-                        title="前の章へ">Welcome to taku-y.github.io&#8217;s documentation!</a></p>
-  <h4>次のトピックへ</h4>
-  <p class="topless"><a href="downloads.html"
-                        title="次の章へ">ダウンロードファイル</a></p>
-<div id="searchbox" style="display: none">
-    <form class="form search" action="search.html" method="get">
-      <input type="text" name="q" class="form-control" placeholder="Search..." />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-</div>
-
-<script type="text/javascript">$('#searchbox').show(0);</script>
-  <ul class="this-page-menu list-unstyled pull-xs-right">
-    <li><a  class="text-xs-right" href="_sources/git-intro.txt"
-           rel="nofollow">ソースコードを表示</a></li>
-  </ul>
-        </div>
-      </div> 
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body">
-            
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
   <div class="section" id="git">
-<h1><a class="toc-backref" href="#id35">Git入門</a><a class="headerlink" href="#git" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<h1><a class="toc-backref" href="#id35">Git入門</a><a class="headerlink" href="#git" title="Permalink to this headline">¶</a></h1>
 <p>最終更新: 20160622 吉岡琢</p>
 <div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
@@ -267,12 +202,12 @@
 <li>例は最初から順に実行すると仮定します. 例2を確認する場合, 例1が終了していることを前提とします.</li>
 </ul>
 <div class="section" id="id1">
-<h2><a class="toc-backref" href="#id36">初期設定</a><a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id36">初期設定</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>コンソール上で以下のコマンドを入力し, ユーザ名とメールアドレスを入力します.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ git config --global user.name &quot;&lt;ユーザ名&gt;&quot;
-$ git config --global user.email &quot;&lt;メールアドレス&gt;&quot;
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git config --global user.name <span class="s2">&quot;&lt;ユーザ名&gt;&quot;</span>
+<span class="gp">$</span> git config --global user.email <span class="s2">&quot;&lt;メールアドレス&gt;&quot;</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -281,8 +216,8 @@ $ git config --global user.email &quot;&lt;メールアドレス&gt;&quot;
 <li>上記の設定は <code class="code docutils literal"><span class="pre">git</span> <span class="pre">config</span></code> を実行したユーザが扱う全てのリポジトリ(後述)で有効です.</li>
 <li>(オプション) <code class="code docutils literal"><span class="pre">.gitconfig</span></code> ファイルに以下の行を追加することで, Gitコマンドのエイリアスを設定します.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>[alias]
-    lg = log --graph --date=short --format=\&quot;%C(yellow)%h%C(reset) %C(magenta)[%ad]%C(reset)%C(auto)%d%C(reset) %s %C(cyan)@%an%C(reset)\&quot;
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">[alias]</span>
+<span class="go">    lg = log --graph --date=short --format=\&quot;%C(yellow)%h%C(reset) %C(magenta)[%ad]%C(reset)%C(auto)%d%C(reset) %s %C(cyan)@%an%C(reset)\&quot;</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -290,22 +225,22 @@ $ git config --global user.email &quot;&lt;メールアドレス&gt;&quot;
 </ul>
 </div>
 <div class="section" id="id2">
-<h2><a class="toc-backref" href="#id37">リポジトリ</a><a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id37">リポジトリ</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>リポジトリとはファイルとその変更履歴をまとめたものです.</li>
 <li>Gitにおけるリポジトリの実体は, リポジトリのルートディレクトリに存在する <code class="code docutils literal"><span class="pre">.git</span></code> ディレクトリです. 実際, <code class="code docutils literal"><span class="pre">.git</span></code> ディレクトリを削除するとリポジトリの情報は全て消えます.</li>
 <li>リポジトリのルートディレクトリ以下でGitコマンド(例えば <code class="code docutils literal"><span class="pre">git</span> <span class="pre">add</span></code> や <code class="code docutils literal"><span class="pre">git</span> <span class="pre">status</span></code> など)を実行すると, そのリポジトリに対して操作が実行されます.</li>
 </ul>
 <div class="section" id="id3">
-<h3>例1<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>例1<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>リポジトリを作成するためにコマンド <code class="code docutils literal"><span class="pre">git</span> <span class="pre">init</span></code> を使用します. リポジトリの作成とは, プロジェクトの構成要素(主にテキストファイル)を含むディレクトリをGitのバージョン管理下に置くことです.</li>
 <li>ディレクトリは何でも良いのですが, ここの説明では <code class="code docutils literal"><span class="pre">~/Download/repo1</span></code> ディレクトリを用いることとします.</li>
 <li>ディレクトリをバージョン管理下に置くにはコマンド <code class="code docutils literal"><span class="pre">git</span> <span class="pre">init</span></code> を使用します.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ mkdir -p ~/Download/repo1
-$ cd ~/Download/repo1
-$ git init
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> mkdir -p ~/Download/repo1
+<span class="gp">$</span> <span class="nb">cd</span> ~/Download/repo1
+<span class="gp">$</span> git init
 </pre></div>
 </div>
 <ul class="simple">
@@ -314,18 +249,18 @@ $ git init
 </div>
 </div>
 <div class="section" id="id4">
-<h2><a class="toc-backref" href="#id38">コミットとステージング</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id38">コミットとステージング</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>コミットとはリポジトリのある時点でのスナップショットです.</li>
 <li>コミットはその直近の祖先へのポインタを持ちます. これにより, コミットはリポジトリに対する追加・変更の履歴を表現するグラフとして表現されます. これをコミットグラフと呼びます（<a class="reference external" href="https://git-scm.com/book/ja/v2/Git-%E3%81%AE%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E6%A9%9F%E8%83%BD-%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E3%81%A8%E3%81%AF">参考リンク</a>）.</li>
 <li>コミットという単語はスナップショットをコミットグラフに追加する操作を指すこともあります. この場合, 「ファイルをコミットする」「変更をコミットする」というように使われます.</li>
 </ul>
 <div class="admonition note">
-<p class="first admonition-title">注釈</p>
+<p class="first admonition-title">Note</p>
 <p class="last">ネット上で, Gitはコミットをスナップショットとして格納するという説明を見かけることがあります. 実際は, コミットを構成するオブジェクトに対して差分管理が適用されます. スナップショットの系列の差分を抽出してファイルを圧縮するプロセスをGitではパッキングと呼びます. これは新しく追加された機能ということです(<a class="reference external" href="https://git-scm.com/book/ja/v1/Git%E3%81%AE%E5%86%85%E5%81%B4-%E3%83%91%E3%83%83%E3%82%AF%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB">参考リンク</a>).</p>
 </div>
 <div class="section" id="id7">
-<h3>ステージング<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>ステージング<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>ステージングとはコミットする変更内容をリポジトリに通知する事です.</li>
 <li>ステージングを何度も行う事で複数の変更を同時にコミットできます.</li>
@@ -334,7 +269,7 @@ $ git init
 </ul>
 </div>
 <div class="section" id="id8">
-<h3>例2<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>例2<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <ul>
 <li><p class="first">この例では以下のコマンドを使用します.</p>
 <blockquote>
@@ -351,24 +286,24 @@ $ git init
 <li><p class="first">以下のコマンドを入力して空のファイルを作成します.</p>
 </li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ cd ~/Download/repo1
-$ touch source.txt # ファイル名は適当です
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> ~/Download/repo1
+<span class="gp">$</span> touch source.txt <span class="c1"># ファイル名は適当です</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li>コマンド <code class="code docutils literal"><span class="pre">git</span> <span class="pre">status</span></code> を用いてリポジトリの状態を見てみましょう.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ git status
-On branch master
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git status
+<span class="go">On branch master</span>
 
-Initial commit
+<span class="go">Initial commit</span>
 
-Untracked files:
-  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
+<span class="go">Untracked files:</span>
+<span class="go">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</span>
 
-        source.txt
+<span class="go">        source.txt</span>
 
-nothing added to commit but untracked files present (use &quot;git add&quot; to track)
+<span class="go">nothing added to commit but untracked files present (use &quot;git add&quot; to track)</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -376,42 +311,42 @@ nothing added to commit but untracked files present (use &quot;git add&quot; to 
 <li>そして, 作成した <code class="code docutils literal"><span class="pre">source.txt</span></code> が追跡(バージョン管理)の対象になっていないことが分かります.</li>
 <li>このファイルを追跡対象とするためにはコマンド <code class="code docutils literal"><span class="pre">git</span> <span class="pre">add</span></code> を使用します.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ git add source.txt
-On branch master
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git add source.txt
+<span class="go">On branch master</span>
 
-Initial commit
+<span class="go">Initial commit</span>
 
-Changes to be committed:
-  (use &quot;git rm --cached &lt;file&gt;...&quot; to unstage)
+<span class="go">Changes to be committed:</span>
+<span class="go">  (use &quot;git rm --cached &lt;file&gt;...&quot; to unstage)</span>
 
-        new file:   source.txt
+<span class="go">        new file:   source.txt</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li>ファイルが追跡対象として追加され(<code class="code docutils literal"><span class="pre">new</span> <span class="pre">file</span></code>), かつステージングされました(<code class="code docutils literal"><span class="pre">Changes</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">committed</span></code>). これでファイルをコミットする準備ができました.</li>
 <li>コマンド <code class="code docutils literal"><span class="pre">git</span> <span class="pre">commit</span></code> でコミットします.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ git commit -m &quot;First commit.&quot;
-[master (root-commit) c8e4a5c] First commit.
- 1 file changed, 0 insertions(+), 0 deletions(-)
- create mode 100644 source.txt
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git commit -m <span class="s2">&quot;First commit.&quot;</span>
+<span class="go">[master (root-commit) c8e4a5c] First commit.</span>
+<span class="go"> 1 file changed, 0 insertions(+), 0 deletions(-)</span>
+<span class="go"> create mode 100644 source.txt</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li>オプション <code class="code docutils literal"><span class="pre">-m</span> <span class="pre">&quot;&lt;文字列&gt;&quot;</span></code> はコミットのメッセージを設定します.</li>
 <li>現在のリポジトリの状態を確認します.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ git status
-On branch master
-nothing to commit, working directory clean
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git status
+<span class="go">On branch master</span>
+<span class="go">nothing to commit, working directory clean</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li>このメッセージは, このリポジトリの全てのファイル(今は <code class="code docutils literal"><span class="pre">source.txt</span></code> だけです)に直前のコミット以降変更が無いことを意味します.</li>
 <li>エイリアスとして登録した <code class="code docutils literal"><span class="pre">git</span> <span class="pre">lg</span></code> を用いてコミットグラフを確認します.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ git lg
-* c8e4a5c [2016-06-19] (HEAD -&gt; master) First commit. @username
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git lg
+<span class="go">* c8e4a5c [2016-06-19] (HEAD -&gt; master) First commit. @username</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -419,31 +354,31 @@ nothing to commit, working directory clean
 <li>先頭の <code class="code docutils literal"><span class="pre">c8e4a5c</span></code> はコミットを識別するハッシュ値を表します.</li>
 <li>ファイルに変更を加えてその内容を確認します.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ echo &quot;string&quot; &gt; source.txt
-$ git diff
-diff --git a/source.txt b/source.txt
-index e69de29..ee8a39c 100644
---- a/source.txt
-+++ b/source.txt
-@@ -0,0 +1 @@
-+string
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">echo</span> <span class="s2">&quot;string&quot;</span> &gt; source.txt
+<span class="gp">$</span> git diff
+<span class="go">diff --git a/source.txt b/source.txt</span>
+<span class="go">index e69de29..ee8a39c 100644</span>
+<span class="go">--- a/source.txt</span>
+<span class="go">+++ b/source.txt</span>
+<span class="go">@@ -0,0 +1 @@</span>
+<span class="go">+string</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li>ファイルに対する変更が確認できました. コミットします.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ git add . # &quot;.&quot; は変更があった全てのファイルをステージングすることを意味します.
-$ git commit -m &quot;Modify a file.&quot;
-[master 1633e39] Modify a file.
- 1 file changed, 1 insertion(+)
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git add . <span class="c1"># &quot;.&quot; は変更があった全てのファイルをステージングすることを意味します.</span>
+<span class="gp">$</span> git commit -m <span class="s2">&quot;Modify a file.&quot;</span>
+<span class="go">[master 1633e39] Modify a file.</span>
+<span class="go"> 1 file changed, 1 insertion(+)</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li>コミットグラフを確認します.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ git lg
-* 1633e39 [2016-06-19] (HEAD -&gt; master) Modify a file. @username
-* c8e4a5c [2016-06-19] First commit. @username
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git lg
+<span class="go">* 1633e39 [2016-06-19] (HEAD -&gt; master) Modify a file. @username</span>
+<span class="go">* c8e4a5c [2016-06-19] First commit. @username</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -452,49 +387,49 @@ $ git commit -m &quot;Modify a file.&quot;
 </div>
 </div>
 <div class="section" id="id9">
-<h2><a class="toc-backref" href="#id39">バージョン管理対象の制御</a><a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id39">バージョン管理対象の制御</a><a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><code class="code docutils literal"><span class="pre">.gitignore</span></code> ファイルはGitバージョン管理の対象としないファイル(例えばコンパイラが出力する中間ファイル)を指定するものです.</li>
 <li>VC++やPythonなど各種プロジェクトに適した <code class="code docutils literal"><span class="pre">.gitignore</span></code> ファイルのテンプレートがネット上にあります. 必要に応じて検索しましょう.</li>
 </ul>
 <div class="section" id="id10">
-<h3>例3<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>例3<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>中間ファイルとして <code class="code docutils literal"><span class="pre">tmp</span></code> というファイルが生成されたとします.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ touch tmp
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> touch tmp
 </pre></div>
 </div>
 <ul class="simple">
 <li>コマンド <code class="code docutils literal"><span class="pre">git</span> <span class="pre">status</span></code> でリポジトリの状態を確認します.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ git status
-On branch master
-Untracked files:
-  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git status
+<span class="go">On branch master</span>
+<span class="go">Untracked files:</span>
+<span class="go">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</span>
 
-        tmp
+<span class="go">        tmp</span>
 
-nothing added to commit but untracked files present (use &quot;git add&quot; to track)
+<span class="go">nothing added to commit but untracked files present (use &quot;git add&quot; to track)</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li>中間ファイルは追跡対象としたくないので, <code class="code docutils literal"><span class="pre">.gitignore</span></code> ファイルを作成し, 中間ファイル名を追加します.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ echo tmp &gt; .gitignore
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">echo</span> tmp &gt; .gitignore
 </pre></div>
 </div>
 <ul class="simple">
 <li>リポジトリの状態を確認します.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ git status
-On branch master
-Untracked files:
-  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git status
+<span class="go">On branch master</span>
+<span class="go">Untracked files:</span>
+<span class="go">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</span>
 
-        .gitignore
+<span class="go">        .gitignore</span>
 
-nothing added to commit but untracked files present (use &quot;git add&quot; to track)
+<span class="go">nothing added to commit but untracked files present (use &quot;git add&quot; to track)</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -502,17 +437,17 @@ nothing added to commit but untracked files present (use &quot;git add&quot; to 
 <li><code class="code docutils literal"><span class="pre">.gitignore</span></code> ファイル内ではワイルドカードを使用できます. ネット上の例を参照してください.</li>
 <li><code class="code docutils literal"><span class="pre">.gitignore</span></code> ファイルをコミットします.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ git add .
-$ git commit -m &quot;Add .gitignore.&quot;
-[master 50178a5] Add .gitignore.
- 1 file changed, 1 insertion(+)
- create mode 100644 .gitignore
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git add .
+<span class="gp">$</span> git commit -m <span class="s2">&quot;Add .gitignore.&quot;</span>
+<span class="go">[master 50178a5] Add .gitignore.</span>
+<span class="go"> 1 file changed, 1 insertion(+)</span>
+<span class="go"> create mode 100644 .gitignore</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="id11">
-<h2><a class="toc-backref" href="#id40">ブランチ</a><a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id40">ブランチ</a><a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>ブランチとはリポジトリに含まれる異なるバージョンのスナップショットです.</li>
 <li>ブランチの実体はコミットへのポインタです.</li>
@@ -520,51 +455,51 @@ $ git commit -m &quot;Add .gitignore.&quot;
 <li>リポジトリを切り替えると, ブランチが移動し, ディレクトリの内容はブランチが指すコミットに含まれるものに置き換えられます. もちろん, 元のブランチに戻ればディレクトリの内容もまた元に戻ります. Gitでは, ブランチの切り替えをチェックアウトと呼びます.</li>
 </ul>
 <div class="section" id="id12">
-<h3>例4<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>例4<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>例3まで完了し, 現在のリポジトリの状態が次のようになっているとします.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ cd ~/Download/repo1
-$ git status
-On branch master
-nothing to commit, working directory clean
-$ git lg
-* 3d9f3bb [2016-06-19] (HEAD -&gt; master) Add .gitignore. @username
-* 0ce339c [2016-06-19] Modify a file. @username
-* 10f33be [2016-06-19] First commit. @username
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> ~/Download/repo1
+<span class="gp">$</span> git status
+<span class="go">On branch master</span>
+<span class="go">nothing to commit, working directory clean</span>
+<span class="gp">$</span> git lg
+<span class="go">* 3d9f3bb [2016-06-19] (HEAD -&gt; master) Add .gitignore. @username</span>
+<span class="go">* 0ce339c [2016-06-19] Modify a file. @username</span>
+<span class="go">* 10f33be [2016-06-19] First commit. @username</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li>コマンド <code class="code docutils literal"><span class="pre">git</span> <span class="pre">branch</span></code> を使用してリポジトリが持つブランチを表示します.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ git branch
-* master
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git branch
+<span class="go">* master</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li><code class="code docutils literal"><span class="pre">master</span></code> ブランチしか存在しないことが確認できます.</li>
 <li>次に, <code class="code docutils literal"><span class="pre">develop</span></code> という名前のブランチを新規に作成し, 同時にそのブランチをチェックアウトします. コマンド <code class="code docutils literal"><span class="pre">git</span> <span class="pre">checkout</span></code> を使用します.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ git checkout -b develop
-Switched to a new branch &#39;develop&#39;
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git checkout -b develop
+<span class="go">Switched to a new branch &#39;develop&#39;</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li>もう一度ブランチを確認します.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ git branch
-* develop
-  master
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git branch
+<span class="go">* develop</span>
+<span class="go">  master</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li>新たに <code class="code docutils literal"><span class="pre">develop</span></code> ブランチが作成されています. 先頭の <code class="code docutils literal"><span class="pre">*</span></code> は現在のブランチを表します.</li>
 <li>コミットグラフを確認します.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ git lg
-* 3d9f3bb [2016-06-19] (HEAD -&gt; develop, master) Add .gitignore. @username
-* 0ce339c [2016-06-19] Modify a file. @username
-* 10f33be [2016-06-19] First commit. @username
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git lg
+<span class="go">* 3d9f3bb [2016-06-19] (HEAD -&gt; develop, master) Add .gitignore. @username</span>
+<span class="go">* 0ce339c [2016-06-19] Modify a file. @username</span>
+<span class="go">* 10f33be [2016-06-19] First commit. @username</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -572,21 +507,21 @@ Switched to a new branch &#39;develop&#39;
 <li>この <code class="code docutils literal"><span class="pre">HEAD</span></code> は現在のブランチを表すコミットへのポインタです.</li>
 <li>この状態で適当な修正をリポジトリに加え, コミットします.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ echo string2 &gt;&gt; source.txt
-$ git add .
-$ git commit -m &quot;Modify a file.&quot;
-[develop 88afd83] Modify a file.
- 1 file changed, 1 insertion(+)
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">echo</span> string2 &gt;&gt; source.txt
+<span class="gp">$</span> git add .
+<span class="gp">$</span> git commit -m <span class="s2">&quot;Modify a file.&quot;</span>
+<span class="go">[develop 88afd83] Modify a file.</span>
+<span class="go"> 1 file changed, 1 insertion(+)</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li>コミットグラフを確認します.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ git lg
-* 88afd83 [2016-06-19] (HEAD -&gt; develop) Modify a file. @username
-* 3d9f3bb [2016-06-19] (master) Add .gitignore. @username
-* 0ce339c [2016-06-19] Modify a file. @username
-* 10f33be [2016-06-19] First commit. @username
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git lg
+<span class="go">* 88afd83 [2016-06-19] (HEAD -&gt; develop) Modify a file. @username</span>
+<span class="go">* 3d9f3bb [2016-06-19] (master) Add .gitignore. @username</span>
+<span class="go">* 0ce339c [2016-06-19] Modify a file. @username</span>
+<span class="go">* 10f33be [2016-06-19] First commit. @username</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -594,26 +529,26 @@ $ git commit -m &quot;Modify a file.&quot;
 <li>一方, <code class="code docutils literal"><span class="pre">master</span></code> ブランチが指すコミットは元のままです.</li>
 <li><code class="code docutils literal"><span class="pre">master</span></code> ブランチに移動し, <code class="code docutils literal"><span class="pre">source.txt</span></code> ファイルの中身を確認します.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ git checkout master
-$ cat source.txt
-string
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git checkout master
+<span class="gp">$</span> cat source.txt
+<span class="go">string</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li><code class="code docutils literal"><span class="pre">develop</span></code> ブランチでの修正が反映されていないことが確認できました.</li>
 <li>この例の最後に, <code class="code docutils literal"><span class="pre">master</span></code> ブランチに修正を加えます.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ touch source2.txt
-$ git add .
-$ git commit -m &quot;Add a new file.&quot;
-[master 6462d05] Add a new file.
- 1 file changed, 0 insertions(+), 0 deletions(-)
- create mode 100644 source2.txt
-$ git lg
-* 6462d05 [2016-06-19] (HEAD -&gt; master) Add a new file. @username
-* 3d9f3bb [2016-06-19] Add .gitignore. @username
-* 0ce339c [2016-06-19] Modify a file. @username
-* 10f33be [2016-06-19] First commit. @username
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> touch source2.txt
+<span class="gp">$</span> git add .
+<span class="gp">$</span> git commit -m <span class="s2">&quot;Add a new file.&quot;</span>
+<span class="go">[master 6462d05] Add a new file.</span>
+<span class="go"> 1 file changed, 0 insertions(+), 0 deletions(-)</span>
+<span class="go"> create mode 100644 source2.txt</span>
+<span class="gp">$</span> git lg
+<span class="go">* 6462d05 [2016-06-19] (HEAD -&gt; master) Add a new file. @username</span>
+<span class="go">* 3d9f3bb [2016-06-19] Add .gitignore. @username</span>
+<span class="go">* 0ce339c [2016-06-19] Modify a file. @username</span>
+<span class="go">* 10f33be [2016-06-19] First commit. @username</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -624,64 +559,64 @@ $ git lg
 </div>
 </div>
 <div class="section" id="id13">
-<h2><a class="toc-backref" href="#id41">マージ</a><a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id41">マージ</a><a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>マージはあるブランチの修正を別のブランチに取り込むことです.</li>
 <li>具体的には, 二つのコミットがマージされた新たなコミットが作成されます.</li>
 <li>マージで問題となるのは変更が衝突する場合ですが, まずは衝突がない場合の例を見てみます.</li>
 </ul>
 <div class="section" id="id14">
-<h3>例5<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>例5<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><code class="code docutils literal"><span class="pre">develop</span></code> ブランチの内容を <code class="code docutils literal"><span class="pre">master</span></code> ブランチに取り込みます. そのために, 他のブランチを取り込むブランチ, すなわち <code class="code docutils literal"><span class="pre">master</span></code> ブランチに移動します.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ cd ~/Download/repo1
-$ git checkout master
-Switched to branch &#39;master&#39;
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> ~/Download/repo1
+<span class="gp">$</span> git checkout master
+<span class="go">Switched to branch &#39;master&#39;</span>
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">注釈</p>
+<p class="first admonition-title">Note</p>
 <p class="last"><code class="code docutils literal"><span class="pre">develop</span></code> ブランチに他のブランチの変更を取り込む場合は <code class="code docutils literal"><span class="pre">develop</span></code> ブランチに移動します.</p>
 </div>
 <ul class="simple">
 <li>コマンド <code class="code docutils literal"><span class="pre">git</span> <span class="pre">merge</span></code> を用いて <code class="code docutils literal"><span class="pre">develop</span></code> ブランチとマージします.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ git merge
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git merge
 </pre></div>
 </div>
 <ul class="simple">
 <li>するとコミットメッセージの入力を促されます.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>Merge branch &#39;develop&#39;
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">Merge branch &#39;develop&#39;</span>
 
-# Please enter a commit message to explain why this merge is necessary,
-# especially if it merges an updated upstream into a topic branch.
-#
-# Lines starting with &#39;#&#39; will be ignored, and an empty message aborts
-# the commit.
+<span class="gp">#</span> Please enter a commit message to explain why this merge is necessary,
+<span class="gp">#</span> especially <span class="k">if</span> it merges an updated upstream into a topic branch.
+<span class="gp">#</span>
+<span class="gp">#</span> Lines starting with <span class="s1">&#39;#&#39;</span> will be ignored, and an empty message aborts
+<span class="gp">#</span> the commit.
 </pre></div>
 </div>
 <ul class="simple">
 <li>エディタのコマンドでメッセージをこのまま保存します. 次のようなメッセージが表示され, マージが完了します.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>Merge made by the &#39;recursive&#39; strategy.
- source.txt | 1 +
- 1 file changed, 1 insertion(+)
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">Merge made by the &#39;recursive&#39; strategy.</span>
+<span class="go"> source.txt | 1 +</span>
+<span class="go"> 1 file changed, 1 insertion(+)</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li>コミットグラフを確認します.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ git lg
-*   834468a [2016-06-19] (HEAD -&gt; master) Merge branch &#39;develop&#39; @username
-|\
-| * 88afd83 [2016-06-19] (develop) Modify a file. @username
-* | 6462d05 [2016-06-19] Add a new file. @username
-|/
-* 3d9f3bb [2016-06-19] Add .gitignore. @username
-* 0ce339c [2016-06-19] Modify a file. @username
-* 10f33be [2016-06-19] First commit. @username
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git lg
+<span class="go">*   834468a [2016-06-19] (HEAD -&gt; master) Merge branch &#39;develop&#39; @username</span>
+<span class="go">|\</span>
+<span class="go">| * 88afd83 [2016-06-19] (develop) Modify a file. @username</span>
+<span class="go">* | 6462d05 [2016-06-19] Add a new file. @username</span>
+<span class="go">|/</span>
+<span class="go">* 3d9f3bb [2016-06-19] Add .gitignore. @username</span>
+<span class="go">* 0ce339c [2016-06-19] Modify a file. @username</span>
+<span class="go">* 10f33be [2016-06-19] First commit. @username</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -690,120 +625,120 @@ Switched to branch &#39;master&#39;
 </ul>
 </div>
 <div class="section" id="id15">
-<h3>例6: マージにおける衝突の解消<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>例6: マージにおける衝突の解消<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>ここではマージの際に衝突が起こる場合を見てみます.</li>
 <li><code class="code docutils literal"><span class="pre">master</span></code> ブランチに移動し, 新たに <code class="code docutils literal"><span class="pre">develop2</span></code> ブランチを作成します. そして, <code class="code docutils literal"><span class="pre">source.txt</span></code> に変更を追加します.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ cd ~/Download/repo1
-$ git checkout master
-Already on &#39;master&#39;
-$ git checkout -b develop2
-Switched to a new branch &#39;develop2&#39;
-$ echo string3 &gt;&gt; source.txt
-$ git add .
-$ git commit -m &quot;Add string3.&quot;
-[develop2 88287ed] Add string3.
- 1 file changed, 1 insertion(+)
-$ git lg
-* 88287ed [2016-06-19] (HEAD -&gt; develop2) Add string3. @username
-*   834468a [2016-06-19] (master) Merge branch &#39;develop&#39; @username
-|\
-| * 88afd83 [2016-06-19] (develop) Modify a file. @username
-* | 6462d05 [2016-06-19] Add a new file. @username
-|/
-* 3d9f3bb [2016-06-19] Add .gitignore. @username
-* 0ce339c [2016-06-19] Modify a file. @username
-* 10f33be [2016-06-19] First commit. @username
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> ~/Download/repo1
+<span class="gp">$</span> git checkout master
+<span class="go">Already on &#39;master&#39;</span>
+<span class="gp">$</span> git checkout -b develop2
+<span class="go">Switched to a new branch &#39;develop2&#39;</span>
+<span class="gp">$</span> <span class="nb">echo</span> string3 &gt;&gt; source.txt
+<span class="gp">$</span> git add .
+<span class="gp">$</span> git commit -m <span class="s2">&quot;Add string3.&quot;</span>
+<span class="go">[develop2 88287ed] Add string3.</span>
+<span class="go"> 1 file changed, 1 insertion(+)</span>
+<span class="gp">$</span> git lg
+<span class="go">* 88287ed [2016-06-19] (HEAD -&gt; develop2) Add string3. @username</span>
+<span class="go">*   834468a [2016-06-19] (master) Merge branch &#39;develop&#39; @username</span>
+<span class="go">|\</span>
+<span class="go">| * 88afd83 [2016-06-19] (develop) Modify a file. @username</span>
+<span class="go">* | 6462d05 [2016-06-19] Add a new file. @username</span>
+<span class="go">|/</span>
+<span class="go">* 3d9f3bb [2016-06-19] Add .gitignore. @username</span>
+<span class="go">* 0ce339c [2016-06-19] Modify a file. @username</span>
+<span class="go">* 10f33be [2016-06-19] First commit. @username</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li>次に <code class="code docutils literal"><span class="pre">master</span></code> ブランチに戻り同じファイルに別の変更を追加します.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ git checkout master
-Switched to branch &#39;master&#39;
-$ cat source.txt
-string
-string2
-$ echo string4 &gt;&gt; source.txt
-$ git add .
-$ git commit -m &quot;Add string4.&quot;
-[master 515ba7a] Add string4.
- 1 file changed, 1 insertion(+)
-$ git lg
-* 515ba7a [2016-06-19] (HEAD -&gt; master) Add string4. @username
-*   834468a [2016-06-19] Merge branch &#39;develop&#39; @username
-|\
-| * 88afd83 [2016-06-19] (develop) Modify a file. @username
-* | 6462d05 [2016-06-19] Add a new file. @username
-|/
-* 3d9f3bb [2016-06-19] Add .gitignore. @username
-* 0ce339c [2016-06-19] Modify a file. @username
-* 10f33be [2016-06-19] First commit. @username
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git checkout master
+<span class="go">Switched to branch &#39;master&#39;</span>
+<span class="gp">$</span> cat source.txt
+<span class="go">string</span>
+<span class="go">string2</span>
+<span class="gp">$</span> <span class="nb">echo</span> string4 &gt;&gt; source.txt
+<span class="gp">$</span> git add .
+<span class="gp">$</span> git commit -m <span class="s2">&quot;Add string4.&quot;</span>
+<span class="go">[master 515ba7a] Add string4.</span>
+<span class="go"> 1 file changed, 1 insertion(+)</span>
+<span class="gp">$</span> git lg
+<span class="go">* 515ba7a [2016-06-19] (HEAD -&gt; master) Add string4. @username</span>
+<span class="go">*   834468a [2016-06-19] Merge branch &#39;develop&#39; @username</span>
+<span class="go">|\</span>
+<span class="go">| * 88afd83 [2016-06-19] (develop) Modify a file. @username</span>
+<span class="go">* | 6462d05 [2016-06-19] Add a new file. @username</span>
+<span class="go">|/</span>
+<span class="go">* 3d9f3bb [2016-06-19] Add .gitignore. @username</span>
+<span class="go">* 0ce339c [2016-06-19] Modify a file. @username</span>
+<span class="go">* 10f33be [2016-06-19] First commit. @username</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li>この状態で <code class="code docutils literal"><span class="pre">develop2</span></code> ブランチを <code class="code docutils literal"><span class="pre">master</span></code> ブランチにマージします.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ git merge develop2
-Auto-merging source.txt
-CONFLICT (content): Merge conflict in source.txt
-Automatic merge failed; fix conflicts and then commit the result.
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git merge develop2
+<span class="go">Auto-merging source.txt</span>
+<span class="go">CONFLICT (content): Merge conflict in source.txt</span>
+<span class="go">Automatic merge failed; fix conflicts and then commit the result.</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li>すると, このように衝突を解消してからコミットを行うよう指示されます.</li>
 <li>衝突が起こっている <code class="code docutils literal"><span class="pre">source.txt</span></code> の中身を確認します.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ cat source.txt
-string
-string2
-&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-string4
-=======
-string3
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; develop2
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> cat source.txt
+<span class="go">string</span>
+<span class="go">string2</span>
+<span class="go">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</span>
+<span class="go">string4</span>
+<span class="go">=======</span>
+<span class="go">string3</span>
+<span class="gp">&gt;</span>&gt;&gt;&gt;&gt;&gt;&gt; develop2
 </pre></div>
 </div>
 <ul class="simple">
 <li><code class="code docutils literal"><span class="pre">master</span></code> ブランチと <code class="code docutils literal"><span class="pre">develop2</span></code> ブランチへの変更内容が衝突している様子が分かります. <code class="code docutils literal"><span class="pre">master</span></code> ブランチは現在のブランチなので <code class="code docutils literal"><span class="pre">HEAD</span></code> と示されています.</li>
 <li>今回は二つの変更内容を次のように統合することとします.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ # ファイルを編集します. 編集した結果を確認します.
-$ cat source.txt
-string
-string2
-string34
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="c1"># ファイルを編集します. 編集した結果を確認します.</span>
+<span class="gp">$</span> cat source.txt
+<span class="go">string</span>
+<span class="go">string2</span>
+<span class="go">string34</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li><code class="code docutils literal"><span class="pre">master</span></code> ブランチの状態を確認します.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ git status
-On branch master
-You have unmerged paths.
-  (fix conflicts and run &quot;git commit&quot;)
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git status
+<span class="go">On branch master</span>
+<span class="go">You have unmerged paths.</span>
+<span class="go">  (fix conflicts and run &quot;git commit&quot;)</span>
 
-Unmerged paths:
-  (use &quot;git add &lt;file&gt;...&quot; to mark resolution)
+<span class="go">Unmerged paths:</span>
+<span class="go">  (use &quot;git add &lt;file&gt;...&quot; to mark resolution)</span>
 
-    both modified:   source.txt
+<span class="go">    both modified:   source.txt</span>
 
-no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
+<span class="go">no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li>先ほどの修正内容をコミットします.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ git add .
-$ git commit -m &quot;Fix conflict.&quot;
-[master 5e9b133] Fix conflict.
-$ git lg -3 # 直近の3コミットのみ表示します.
-*   5e9b133 [2016-06-19] (HEAD -&gt; master) Fix conflict. @username
-|\
-| * 88287ed [2016-06-19] (develop2) Add string3. @username
-* | 515ba7a [2016-06-19] Add string4. @username
-|/
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git add .
+<span class="gp">$</span> git commit -m <span class="s2">&quot;Fix conflict.&quot;</span>
+<span class="go">[master 5e9b133] Fix conflict.</span>
+<span class="gp">$</span> git lg -3 <span class="c1"># 直近の3コミットのみ表示します.</span>
+<span class="go">*   5e9b133 [2016-06-19] (HEAD -&gt; master) Fix conflict. @username</span>
+<span class="go">|\</span>
+<span class="go">| * 88287ed [2016-06-19] (develop2) Add string3. @username</span>
+<span class="go">* | 515ba7a [2016-06-19] Add string4. @username</span>
+<span class="go">|/</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -811,7 +746,7 @@ $ git lg -3 # 直近の3コミットのみ表示します.
 </ul>
 </div>
 <div class="section" id="fast-forward">
-<h3>Fast-forwardマージ<a class="headerlink" href="#fast-forward" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>Fast-forwardマージ<a class="headerlink" href="#fast-forward" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>あるブランチAから分岐したブランチBにコミットを追加し, かつブランチAに何もコミットを追加しない場合を考えます.</li>
 <li>このときにブランチAにブランチBをマージするためには, ブランチAにブランチBのコミットを追加すれば十分です.</li>
@@ -820,57 +755,57 @@ $ git lg -3 # 直近の3コミットのみ表示します.
 </ul>
 </div>
 <div class="section" id="id17">
-<h3>例7: Fast-forwardマージ<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>例7: Fast-forwardマージ<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>Fast-forwardマージを試してみます. そのために, <code class="code docutils literal"><span class="pre">master</span></code> ブランチから分岐する <code class="code docutils literal"><span class="pre">develop3</span></code> ブランチを作成し, ファイルに修正を追加します.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ cd ~/Download/repo1
-$ git checkout master
-Already on &#39;master&#39;
-$ git checkout -b develop3
-Switched to a new branch &#39;develop3&#39;
-$ echo string5 &gt;&gt; source.txt
-$ git add .
-$ git commit -m &quot;Add string5.&quot;
-[develop3 b40a52a] Add string5.
- 1 file changed, 1 insertion(+)
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> ~/Download/repo1
+<span class="gp">$</span> git checkout master
+<span class="go">Already on &#39;master&#39;</span>
+<span class="gp">$</span> git checkout -b develop3
+<span class="go">Switched to a new branch &#39;develop3&#39;</span>
+<span class="gp">$</span> <span class="nb">echo</span> string5 &gt;&gt; source.txt
+<span class="gp">$</span> git add .
+<span class="gp">$</span> git commit -m <span class="s2">&quot;Add string5.&quot;</span>
+<span class="go">[develop3 b40a52a] Add string5.</span>
+<span class="go"> 1 file changed, 1 insertion(+)</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li>コミットグラフを確認します.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ git lg -4
-* b40a52a [2016-06-19] (HEAD -&gt; develop3) Add string5. @username
-*   5e9b133 [2016-06-19] (master) Fix conflict. @username
-|\
-| * 88287ed [2016-06-19] (develop2) Add string3. @username
-* | 515ba7a [2016-06-19] Add string4. @username
-|/
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git lg -4
+<span class="go">* b40a52a [2016-06-19] (HEAD -&gt; develop3) Add string5. @username</span>
+<span class="go">*   5e9b133 [2016-06-19] (master) Fix conflict. @username</span>
+<span class="go">|\</span>
+<span class="go">| * 88287ed [2016-06-19] (develop2) Add string3. @username</span>
+<span class="go">* | 515ba7a [2016-06-19] Add string4. @username</span>
+<span class="go">|/</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li>この状態で <code class="code docutils literal"><span class="pre">master</span></code> ブランチに <code class="code docutils literal"><span class="pre">develop3</span></code> ブランチをマージします.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ git checkout master
-Switched to branch &#39;master&#39;
-$ git merge develop3
-Updating 5e9b133..b40a52a
-Fast-forward
- source.txt | 1 +
- 1 file changed, 1 insertion(+)
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git checkout master
+<span class="go">Switched to branch &#39;master&#39;</span>
+<span class="gp">$</span> git merge develop3
+<span class="go">Updating 5e9b133..b40a52a</span>
+<span class="go">Fast-forward</span>
+<span class="go"> source.txt | 1 +</span>
+<span class="go"> 1 file changed, 1 insertion(+)</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li>Fast-forwardマージが適用されたことが分かります.</li>
 <li>コミットグラフを確認します.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ git lg -4
-* b40a52a [2016-06-19] (HEAD -&gt; master, develop3) Add string5. @username
-*   5e9b133 [2016-06-19] Fix conflict. @username
-|\
-| * 88287ed [2016-06-19] (develop2) Add string3. @username
-* | 515ba7a [2016-06-19] Add string4. @username
-|/
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git lg -4
+<span class="go">* b40a52a [2016-06-19] (HEAD -&gt; master, develop3) Add string5. @username</span>
+<span class="go">*   5e9b133 [2016-06-19] Fix conflict. @username</span>
+<span class="go">|\</span>
+<span class="go">| * 88287ed [2016-06-19] (develop2) Add string3. @username</span>
+<span class="go">* | 515ba7a [2016-06-19] Add string4. @username</span>
+<span class="go">|/</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -878,45 +813,45 @@ Fast-forward
 </ul>
 </div>
 <div class="section" id="id18">
-<h3>例8: Fast-forwardマージの明示的な回避<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>例8: Fast-forwardマージの明示的な回避<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>例7のような状況でブランチが分岐したことを履歴に残したい場合があるとします. その場合, <code class="code docutils literal"><span class="pre">git</span> <span class="pre">merge</span></code> のオプション <code class="code docutils literal"><span class="pre">--no-ff</span></code> を指定します.</li>
 <li>先ほどと同様に, <code class="code docutils literal"><span class="pre">master</span></code> ブランチから新たなブランチを分岐し, 何らかの修正を追加します.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ cd ~/Download/repo1
-$ git checkout master
-Already on &#39;master&#39;
-$ git checkout -b develop4
-Switched to a new branch &#39;develop4&#39;
-$ echo string6 &gt;&gt; source.txt
-$ git add .
-$ git commit -m &quot;Add string6.&quot;
-[develop4 0ef764c] Add string6.
- 1 file changed, 1 insertion(+)
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> ~/Download/repo1
+<span class="gp">$</span> git checkout master
+<span class="go">Already on &#39;master&#39;</span>
+<span class="gp">$</span> git checkout -b develop4
+<span class="go">Switched to a new branch &#39;develop4&#39;</span>
+<span class="gp">$</span> <span class="nb">echo</span> string6 &gt;&gt; source.txt
+<span class="gp">$</span> git add .
+<span class="gp">$</span> git commit -m <span class="s2">&quot;Add string6.&quot;</span>
+<span class="go">[develop4 0ef764c] Add string6.</span>
+<span class="go"> 1 file changed, 1 insertion(+)</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li><code class="code docutils literal"><span class="pre">--no-ff</span></code> オプションを指定してマージします.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ git checkout master
-Switched to branch &#39;master&#39;
-$ git merge --no-ff develop4
-Merge made by the &#39;recursive&#39; strategy.
- source.txt | 1 +
- 1 file changed, 1 insertion(+)
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git checkout master
+<span class="go">Switched to branch &#39;master&#39;</span>
+<span class="gp">$</span> git merge --no-ff develop4
+<span class="go">Merge made by the &#39;recursive&#39; strategy.</span>
+<span class="go"> source.txt | 1 +</span>
+<span class="go"> 1 file changed, 1 insertion(+)</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li>コミットグラフを確認します.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ git lg -4
-*   8626200 [2016-06-19] (HEAD -&gt; master) Merge branch &#39;develop4&#39; @username
-|\
-| * 0ef764c [2016-06-19] (develop4) Add string6. @username
-|/
-* b40a52a [2016-06-19] (develop3) Add string5. @username
-*   5e9b133 [2016-06-19] Fix conflict. @username
-|\
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git lg -4
+<span class="go">*   8626200 [2016-06-19] (HEAD -&gt; master) Merge branch &#39;develop4&#39; @username</span>
+<span class="go">|\</span>
+<span class="go">| * 0ef764c [2016-06-19] (develop4) Add string6. @username</span>
+<span class="go">|/</span>
+<span class="go">* b40a52a [2016-06-19] (develop3) Add string5. @username</span>
+<span class="go">*   5e9b133 [2016-06-19] Fix conflict. @username</span>
+<span class="go">|\</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -925,7 +860,7 @@ Merge made by the &#39;recursive&#39; strategy.
 </div>
 </div>
 <div class="section" id="id19">
-<h2><a class="toc-backref" href="#id42">リモートリポジトリ</a><a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id42">リモートリポジトリ</a><a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>リモートリポジトリとは現在のリポジトリ(カレントディレクトリと考えてよいでしょう)と別の場所に存在するリポジトリのことです. それが同一マシン上(の別ディレクトリ)に存在したとしても, リモートリポジトリとして扱われます.</li>
 <li>通常, リモートリポジトリは現在のリポジトリと共通のコミットを持ちます. 典型的には,  リモートリポジトリの内容をコピーして現在のリポジトリを作成し, 独自に修正を適用するような場合です.</li>
@@ -934,7 +869,7 @@ Merge made by the &#39;recursive&#39; strategy.
 <li>リモートリポジトリのブランチを現在のブランチにマージすることで, リモートリポジトリへの変更が現在のリポジトリに取り込まれます.</li>
 </ul>
 <div class="section" id="id20">
-<h3>ベアリポジトリ<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>ベアリポジトリ<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>これまでの例で使用したリポジトリは作業用ファイルとコミットグラフ(<code class="code docutils literal"><span class="pre">.git</span></code> ディレクトリの中身)の情報を持っていました. 例えば, ブランチをチェックアウトすると対応するコミットに含まれる履歴が作業用のファイルに反映されました.</li>
 <li>これに対して, 作業用ファイルを持たず <code class="code docutils literal"><span class="pre">.git</span></code> ディレクトリの中の情報だけから構成されるリポジトリはベアリポジトリと呼ばれます.</li>
@@ -942,37 +877,37 @@ Merge made by the &#39;recursive&#39; strategy.
 </ul>
 </div>
 <div class="section" id="id21">
-<h3>例9: ベアリポジトリの作成と作業履歴の書き込み<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>例9: ベアリポジトリの作成と作業履歴の書き込み<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>ここでは, ベアリポジトリを作成し, そこにこれまでの例での作業履歴を書き込んでみます.</li>
 <li>このベアリポジトリを外部リポジトリと呼ぶことにします. これは, ベアリポジトリをGitサーバのようなものと考えることを意味します.</li>
 <li>まず, 外部リポジトリのディレクトリが <code class="code docutils literal"><span class="pre">~Download/outside</span></code> に存在するとし, そこにベアリポジトリを作成します. コマンド <code class="code docutils literal"><span class="pre">git</span> <span class="pre">init</span></code> にオプション <code class="code docutils literal"><span class="pre">--bare</span></code> を指定して実行します.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ mkdir -p ~/Download/outside/repo
-$ cd ~/Download/outside/repo
-$ git init --bare
-Initialized empty Git repository in /Users/taku-y/Downloads/tmp/outside/repo/
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> mkdir -p ~/Download/outside/repo
+<span class="gp">$</span> <span class="nb">cd</span> ~/Download/outside/repo
+<span class="gp">$</span> git init --bare
+<span class="go">Initialized empty Git repository in /Users/taku-y/Downloads/tmp/outside/repo/</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li>これまでのリポジトリと区別するため, リポジトリのディレクトリ名を <code class="code docutils literal"><span class="pre">repo</span></code> としました.</li>
 <li>では, これまでのリポジトリ上での作業履歴をこのベアリポジトリに追加するため, ディレクトリを移動します.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ cd ~/Download/repo1
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> ~/Download/repo1
 </pre></div>
 </div>
 <ul class="simple">
 <li>現在のリポジトリに対して, このベアリポジトリはリモートリポジトリです.</li>
 <li>まず, このリポジトリに対するリモートリポジトリを確認するため, コマンド <code class="code docutils literal"><span class="pre">git</span> <span class="pre">remote</span></code> を使用します.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ git remote -v
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git remote -v
 </pre></div>
 </div>
 <ul class="simple">
 <li>コマンドを実行しても何も表示されません. リモートリポジトリが登録されていないためです.</li>
 <li>このベアリポジトリをリモートリポジトリとして登録するためにコマンド <code class="code docutils literal"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">add</span></code> を使用します.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ git remote add origin ../outside/repo
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git remote add origin ../outside/repo
 </pre></div>
 </div>
 <ul class="simple">
@@ -980,52 +915,52 @@ Initialized empty Git repository in /Users/taku-y/Downloads/tmp/outside/repo/
 <li>リモートリポジトリの名前を <code class="code docutils literal"><span class="pre">origin</span></code> としました. この名前は現在のリポジトリから見たその外部リポジトリの名前です. 例えば, 別のリポジトリはこのベアリポジトリを <code class="code docutils literal"><span class="pre">repo</span></code> という名前で登録できます.</li>
 <li>ベアリポジトリがリモートリポジトリとして登録されているかどうか確認します.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ git remote -v
-origin  ../outside/repo (fetch)
-origin  ../outside/repo (push)
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git remote -v
+<span class="go">origin  ../outside/repo (fetch)</span>
+<span class="go">origin  ../outside/repo (push)</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li>上記のメッセージで, <code class="code docutils literal"><span class="pre">fetch</span></code> はリモートリポジトリから情報を取得する操作, <code class="code docutils literal"><span class="pre">push</span></code> は現在のリポジトリの修正内容をリモートリポジトリに適用する操作を表します.</li>
 <li>では, リモートリポジトリ(<code class="code docutils literal"><span class="pre">~/Download/outside/repo</span></code>)に現在のリポジトリ(<code class="code docutils literal"><span class="pre">~/Download/repo1</span></code>)の作業履歴を書き込みます. コマンド <code class="code docutils literal"><span class="pre">git</span> <span class="pre">push</span></code> を使用します.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ git push origin master
-Counting objects: 32, done.
-Delta compression using up to 8 threads.
-Compressing objects: 100% (21/21), done.
-Writing objects: 100% (32/32), 2.82 KiB | 0 bytes/s, done.
-Total 32 (delta 5), reused 0 (delta 0)
-To ../outside/repo
- * [new branch]      master -&gt; master
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git push origin master
+<span class="go">Counting objects: 32, done.</span>
+<span class="go">Delta compression using up to 8 threads.</span>
+<span class="go">Compressing objects: 100% (21/21), done.</span>
+<span class="go">Writing objects: 100% (32/32), 2.82 KiB | 0 bytes/s, done.</span>
+<span class="go">Total 32 (delta 5), reused 0 (delta 0)</span>
+<span class="go">To ../outside/repo</span>
+<span class="go"> * [new branch]      master -&gt; master</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li>より詳しく言えば, 1行目のコマンドは <code class="code docutils literal"><span class="pre">origin</span></code> という名前を持つリモートリポジトリに対して現在のリポジトリの <code class="code docutils literal"><span class="pre">master</span></code> ブランチの履歴を送信することを意味します.</li>
 <li>他のブランチの履歴を送信するためには次のようにします.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>git push origin develop4
-Total 0 (delta 0), reused 0 (delta 0)
-To ../outside/repo
- * [new branch]      develop4 -&gt; develop4
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">git push origin develop4</span>
+<span class="go">Total 0 (delta 0), reused 0 (delta 0)</span>
+<span class="go">To ../outside/repo</span>
+<span class="go"> * [new branch]      develop4 -&gt; develop4</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id22">
-<h3>例10: 外部リポジトリとの同期<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>例10: 外部リポジトリとの同期<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>この例では, 例9のベアリポジトリをGitサーバ上の情報とみなし, そのサーバの外からリポジトリに修正を適用することを行います.</li>
 <li>(この例のための仮想的な)別のユーザのためのディレクトリを作成し, 移動します.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ mkdir -p ~/Download/user2
-$ cd ~/Download/user2
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> mkdir -p ~/Download/user2
+<span class="gp">$</span> <span class="nb">cd</span> ~/Download/user2
 </pre></div>
 </div>
 <ul class="simple">
 <li>外部リポジトリ(<code class="code docutils literal"><span class="pre">~/Download/outside/repo</span></code>)の情報を手元にコピーします. Gitではリポジトリをクローンすると言います. コマンド <code class="code docutils literal"><span class="pre">git</span> <span class="pre">clone</span></code> を使用します.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ git clone ~/Download/outside/repo
-Cloning into &#39;repo&#39;...
-done.
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git clone ~/Download/outside/repo
+<span class="go">Cloning into &#39;repo&#39;...</span>
+<span class="go">done.</span>
 </pre></div>
 </div>
 <ul>
@@ -1052,80 +987,80 @@ $ git lg -4
 <li><p class="first">ここで, このリポジトリのリモートリポジトリを確認します.</p>
 </li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ git remote -v
-origin  /Users/taku-y/Downloads/outside/repo (fetch)
-origin  /Users/taku-y/Downloads/outside/repo (push)
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git remote -v
+<span class="go">origin  /Users/taku-y/Downloads/outside/repo (fetch)</span>
+<span class="go">origin  /Users/taku-y/Downloads/outside/repo (push)</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li>このリポジトリではリモートリポジトリを登録していません. しかし, 外部リポジトリをクローンすると, その外部リポジトリが自動的に <code class="code docutils literal"><span class="pre">origin</span></code> という名前でリモートリポジトリとして登録されます.</li>
 <li>では, これまでと同様にファイルに変更を加えてコミットします.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ echo string7 &gt;&gt; source2.txt
-$ git add .
-$ git commit -m &quot;Add string6.&quot;
-[master eb3a4e4] Add string6.
- 1 file changed, 1 insertion(+)
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">echo</span> string7 &gt;&gt; source2.txt
+<span class="gp">$</span> git add .
+<span class="gp">$</span> git commit -m <span class="s2">&quot;Add string6.&quot;</span>
+<span class="go">[master eb3a4e4] Add string6.</span>
+<span class="go"> 1 file changed, 1 insertion(+)</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li>コミットグラフを確認します.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ git lg -4
-* eb3a4e4 [2016-06-19] (HEAD -&gt; master) Add string6. @username
-*   8626200 [2016-06-19] (origin/master, origin/HEAD) Merge branch &#39;develop4&#39; @username
-|\
-| * 0ef764c [2016-06-19] (origin/develop4) Add string6. @username
-|/
-* b40a52a [2016-06-19] (origin/develop3) Add string5. @username
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git lg -4
+<span class="go">* eb3a4e4 [2016-06-19] (HEAD -&gt; master) Add string6. @username</span>
+<span class="go">*   8626200 [2016-06-19] (origin/master, origin/HEAD) Merge branch &#39;develop4&#39; @username</span>
+<span class="go">|\</span>
+<span class="go">| * 0ef764c [2016-06-19] (origin/develop4) Add string6. @username</span>
+<span class="go">|/</span>
+<span class="go">* b40a52a [2016-06-19] (origin/develop3) Add string5. @username</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li>内部リポジトリの <code class="code docutils literal"><span class="pre">master</span></code> ブランチが最新のコミットを指していることが分かります.</li>
 <li><code class="code docutils literal"><span class="pre">origin/master</span></code> は外部リポジトリの <code class="code docutils literal"><span class="pre">master</span></code> ブランチを表します. これは以前と同じです. 内部リポジトリの変更を反映する必要があります. そのために, コマンド <code class="code docutils literal"><span class="pre">git</span> <span class="pre">push</span></code> を使用します.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ echo string7 &gt;&gt; source2.txt
-$ git add .
-$ git commit -m &quot;Add string7.&quot;
-[master fca673d] Add string7.
- 1 file changed, 1 insertion(+)
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">echo</span> string7 &gt;&gt; source2.txt
+<span class="gp">$</span> git add .
+<span class="gp">$</span> git commit -m <span class="s2">&quot;Add string7.&quot;</span>
+<span class="go">[master fca673d] Add string7.</span>
+<span class="go"> 1 file changed, 1 insertion(+)</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li>コミットグラフを確認します.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ git lg -4
-* fca673d [2016-06-19] (HEAD -&gt; master) Add string7. @username
-*   8626200 [2016-06-19] (origin/master, origin/HEAD) Merge branch &#39;develop4&#39; @username
-|\
-| * 0ef764c [2016-06-19] (origin/develop4) Add string6. @username
-|/
-* b40a52a [2016-06-19] Add string5. @username
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git lg -4
+<span class="go">* fca673d [2016-06-19] (HEAD -&gt; master) Add string7. @username</span>
+<span class="go">*   8626200 [2016-06-19] (origin/master, origin/HEAD) Merge branch &#39;develop4&#39; @username</span>
+<span class="go">|\</span>
+<span class="go">| * 0ef764c [2016-06-19] (origin/develop4) Add string6. @username</span>
+<span class="go">|/</span>
+<span class="go">* b40a52a [2016-06-19] Add string5. @username</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li>先ほどの変更が追加されていることが分かります.</li>
 <li>また, 新たに追加されたコミットがリモートリポジトリの <code class="code docutils literal"><span class="pre">master</span></code> ブランチが指すものより新しいことも分かります. このことは <code class="code docutils literal"><span class="pre">git</span> <span class="pre">status</span></code> によって確認することもできます.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ git status
-On branch master
-Your branch is ahead of &#39;origin/master&#39; by 1 commit.
-  (use &quot;git push&quot; to publish your local commits)
-nothing to commit, working directory clean
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git status
+<span class="go">On branch master</span>
+<span class="go">Your branch is ahead of &#39;origin/master&#39; by 1 commit.</span>
+<span class="go">  (use &quot;git push&quot; to publish your local commits)</span>
+<span class="go">nothing to commit, working directory clean</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li>では, 外部リポジトリに修正内容を送信します. 例9と同じくコマンド <code class="code docutils literal"><span class="pre">git</span> <span class="pre">push</span></code> を使用します.</li>
 <li>TODO: プッシュという用語を明示的に説明する.</li>
 </ul>
-<div class="code console highlight-python"><div class="highlight"><pre>$ git push origin master
-Counting objects: 3, done.
-Delta compression using up to 8 threads.
-Compressing objects: 100% (2/2), done.
-Writing objects: 100% (3/3), 264 bytes | 0 bytes/s, done.
-Total 3 (delta 1), reused 0 (delta 0)
-To /Users/taku-y/Downloads/tmp/outside/repo/
-   8626200..fca673d  master -&gt; master
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git push origin master
+<span class="go">Counting objects: 3, done.</span>
+<span class="go">Delta compression using up to 8 threads.</span>
+<span class="go">Compressing objects: 100% (2/2), done.</span>
+<span class="go">Writing objects: 100% (3/3), 264 bytes | 0 bytes/s, done.</span>
+<span class="go">Total 3 (delta 1), reused 0 (delta 0)</span>
+<span class="go">To /Users/taku-y/Downloads/tmp/outside/repo/</span>
+<span class="go">   8626200..fca673d  master -&gt; master</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -1134,45 +1069,43 @@ To /Users/taku-y/Downloads/tmp/outside/repo/
 </div>
 </div>
 <div class="section" id="id29">
-<h2><a class="toc-backref" href="#id43">外部リポジトリとの同期: フェッチとリベース</a><a class="headerlink" href="#id29" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id43">外部リポジトリとの同期: フェッチとリベース</a><a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>ここまでの例では複数人での作業を想定していませんでした. 複数人で作業を行うと, 自分が作業中に別の人によって元の外部リポジトリ(例10の <code class="code docutils literal"><span class="pre">~/Downloads/outside/repo</span></code> に相当)の状態が変わる場合があります. これに対処するためには, 外部リポジトリの最新情報を取得し, 現在の(プッシュ前の)作業履歴の起点を最新情報に合わせて変更する必要があります.</li>
 </ul>
 <div class="section" id="id30">
-<h3>フェッチ<a class="headerlink" href="#id30" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>フェッチ<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="id31">
-<h3>リベース<a class="headerlink" href="#id31" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>リベース<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="id32">
-<h3>例12: フェッチとリベース<a class="headerlink" href="#id32" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>例12: フェッチとリベース<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h3>
 </div>
 </div>
 <div class="section" id="id33">
-<h2><a class="toc-backref" href="#id44">更新履歴</a><a class="headerlink" href="#id33" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id44">更新履歴</a><a class="headerlink" href="#id33" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="id34">
-<h2><a class="toc-backref" href="#id45">免責事項</a><a class="headerlink" href="#id34" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id45">免責事項</a><a class="headerlink" href="#id34" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
 
-          </div>
-        </div>
-      </div>
     </div>
-      <div class="clearer"></div>
-    </div>
+      
   </div>
+</div>
 <footer class="footer">
-  <div class="container-fluid">
-    <div class="text-xs-left col-md-9 copyright">
-        <div>&copy; Copyright 2016, Taku Yoshioka.</div>
-      <div>Generated by <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.5 using <a href="https://github.com/myyasuda/sphinxbootstrap4theme">sphinxbootstrap4theme</a> 0.4.3.</div>
-    </div>
-    <div class="pull-xs-right">
-        <a href="#" class="btn btn-primary btn-sm" role="botton">Back to top</a>
-    </div>
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2016, Taku Yoshioka.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.4.<br/>
+    </p>
   </div>
 </footer>
   </body>
