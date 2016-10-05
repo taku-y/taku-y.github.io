@@ -15,6 +15,8 @@ Contents:
     downloads
     notebook/20160928/lda-advi-ae
 
+    profile
+
 Indices and tables
 ==================
 

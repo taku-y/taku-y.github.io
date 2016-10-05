@@ -19,6 +19,7 @@ Profile.prof
 
 # ---- Sphinx ----
 sphinx/_build/*
+sphinx/_build/html/*
 sphinx/_templates/*
 sphinx/_static/*
 
