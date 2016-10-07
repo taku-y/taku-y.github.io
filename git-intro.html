@@ -1162,20 +1162,21 @@ string8</p>
 </pre></div>
 </div>
 <p>修正後のファイルをコミットします.</p>
-<blockquote>
-<div><p>$ git add source.txt
-$ git status
-On branch master
-Your branch is up-to-date with &#8216;origin/master&#8217;.
-All conflicts fixed but you are still merging.</p>
-<blockquote>
-<div>(use &#8220;git commit&#8221; to conclude merge)</div></blockquote>
-<p>Changes to be committed:</p>
-<blockquote>
-<div>modified:   source.txt</div></blockquote>
-<p>$ git commit -m &#8220;Resolve conflict&#8221;
-[master c0c294f] Resolve conflict</p>
-</div></blockquote>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git add source.txt
+<span class="gp">$</span> git status
+<span class="go">On branch master</span>
+<span class="go">Your branch is up-to-date with &#39;origin/master&#39;.</span>
+<span class="go">All conflicts fixed but you are still merging.</span>
+<span class="go">  (use &quot;git commit&quot; to conclude merge)</span>
+
+<span class="go">Changes to be committed:</span>
+
+<span class="go">    modified:   source.txt</span>
+
+<span class="gp">$</span> git commit -m <span class="s2">&quot;Resolve conflict&quot;</span>
+<span class="go">[master c0c294f] Resolve conflict</span>
+</pre></div>
+</div>
 <p>最後に変更をリモートリポジトリにプッシュします.</p>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git push origin master
 <span class="go">Counting objects: 6, done.</span>

@@ -1078,6 +1078,8 @@ Fast-forwardマージが適用されたことが分かります. コミットグ
 
 修正後のファイルをコミットします. 
 
+.. code:: console
+
     $ git add source.txt
     $ git status
     On branch master
