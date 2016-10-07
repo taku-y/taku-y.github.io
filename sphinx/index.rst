@@ -3,6 +3,9 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+.. meta::
+   :google-site-verification: c1EHoqiRv8L2mY7L9AoLLpsBkk9TK3TCmYOWeQsPo08
+
 Welcome to taku-y.github.io's documentation!
 ============================================
 
