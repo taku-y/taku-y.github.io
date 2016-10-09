@@ -1017,6 +1017,8 @@ Fast-forwardマージが適用されたことが分かります. コミットグ
 
 次に :code:`master` ブランチをリポートリポジトリと同期します. 
 
+.. code:: console
+
     $ git fetch origin
     remote: Counting objects: 4, done.
     remote: Compressing objects: 100% (3/3), done.

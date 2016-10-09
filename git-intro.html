@@ -1105,29 +1105,27 @@
 </pre></div>
 </div>
 <p>次に <code class="code docutils literal"><span class="pre">master</span></code> ブランチをリポートリポジトリと同期します.</p>
-<blockquote>
-<div><p>$ git fetch origin
-remote: Counting objects: 4, done.
-remote: Compressing objects: 100% (3/3), done.
-remote: Total 4 (delta 1), reused 0 (delta 0)
-Unpacking objects: 100% (4/4), done.
-From /Users/taku-y/Downloads/outside/repo</p>
-<blockquote>
-<div>0b6b375..1641c26  master     -&gt; origin/master</div></blockquote>
-<p>$ git merge origin/master
-Updating 0b6b375..1641c26
-Fast-forward</p>
-<blockquote>
-<div>source.txt | 1 +
-1 file changed, 1 insertion(+)</div></blockquote>
-<p>Taku-no-MacBook-Pro:repo taku-y$ cat source.txt
-string
-string2
-string34
-string5
-string6
-string8</p>
-</div></blockquote>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git fetch origin
+<span class="go">remote: Counting objects: 4, done.</span>
+<span class="go">remote: Compressing objects: 100% (3/3), done.</span>
+<span class="go">remote: Total 4 (delta 1), reused 0 (delta 0)</span>
+<span class="go">Unpacking objects: 100% (4/4), done.</span>
+<span class="go">From /Users/taku-y/Downloads/outside/repo</span>
+<span class="go">   0b6b375..1641c26  master     -&gt; origin/master</span>
+<span class="gp">$</span> git merge origin/master
+<span class="go">Updating 0b6b375..1641c26</span>
+<span class="go">Fast-forward</span>
+<span class="go"> source.txt | 1 +</span>
+<span class="go"> 1 file changed, 1 insertion(+)</span>
+<span class="gp">Taku-no-MacBook-Pro:repo taku-y$</span> cat source.txt
+<span class="go">string</span>
+<span class="go">string2</span>
+<span class="go">string34</span>
+<span class="go">string5</span>
+<span class="go">string6</span>
+<span class="go">string8</span>
+</pre></div>
+</div>
 <p>この状態で <code class="code docutils literal"><span class="pre">develop6</span></code> ブランチをマージしようとすると競合が発生します.</p>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git merge develop6
 <span class="go">Auto-merging source.txt</span>
