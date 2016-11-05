@@ -17,6 +17,7 @@ Contents:
     git-intro
     downloads
     notebook/20160928/lda-advi-ae
+    notebook/20161105/convolutional_vae_keras_advi
 
     profile
 
