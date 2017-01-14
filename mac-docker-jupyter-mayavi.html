@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Plot with Mayavi in Jupyter notebook on Docker for Mac &#8212; taku-y.github.io 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="ホームページ作者のプロフィール" href="profile.html" />
+    <link rel="prev" title="Convolutional variational autoencoder with PyMC3 and Keras" href="notebook/20161105/convolutional_vae_keras_advi.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          taku-y.github.io</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="git-intro.html">Git入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="downloads.html">ダウンロードファイル</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebook/20160928/lda-advi-ae.html">Automatic autoencoding variational Bayes for latent dirichlet allocation with PyMC3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebook/20161105/convolutional_vae_keras_advi.html">Convolutional variational autoencoder with PyMC3 and Keras</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Plot with Mayavi in Jupyter notebook on Docker for Mac</a></li>
+<li class="toctree-l1"><a class="reference internal" href="profile.html">ホームページ作者のプロフィール</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Plot with Mayavi in Jupyter notebook on Docker for Mac</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="notebook/20161105/convolutional_vae_keras_advi.html" title="Previous Chapter: Convolutional variational autoencoder with PyMC3 and Keras"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Convolutional...</span>
+    </a>
+  </li>
+  <li>
+    <a href="profile.html" title="Next Chapter: ホームページ作者のプロフィール"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">ホームページ作者のプロフィール &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/mac-docker-jupyter-mayavi.rst.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="plot-with-mayavi-in-jupyter-notebook-on-docker-for-mac">
+<h1>Plot with Mayavi in Jupyter notebook on Docker for Mac<a class="headerlink" href="#plot-with-mayavi-in-jupyter-notebook-on-docker-for-mac" title="Permalink to this headline">¶</a></h1>
+<p>Last update: 14 January, 2017</p>
+<ol class="arabic">
+<li><p class="first">Install <a class="reference external" href="https://docs.docker.com/engine/installation/mac/">Docker for Mac</a></p>
+</li>
+<li><p class="first">Install <a class="reference external" href="https://www.xquartz.org">Xquartz</a></p>
+</li>
+<li><p class="first">Install socat:</p>
+<blockquote>
+<div><div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> brew install socat
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">Build docker image:</p>
+<blockquote>
+<div><div class="highlight-Dockerfile"><div class="highlight"><pre><span></span><span class="k">FROM</span><span class="s"> jupyter/datascience-notebook</span>
+<span class="k">MAINTAINER</span><span class="s"> Taku Yoshioka &lt;taku.yoshioka.4096@gmail.com&gt;</span>
+
+USER root
+
+<span class="k">RUN</span> apt-get update <span class="o">&amp;&amp;</span> <span class="se">\</span>
+    apt-get install -y <span class="se">\</span>
+    libglu1-mesa
+
+<span class="k">RUN</span> apt-get update <span class="o">&amp;&amp;</span> <span class="se">\</span>
+    apt-get install -y <span class="se">\</span>
+    libvtk5-dev
+
+<span class="k">RUN</span> apt-get update <span class="o">&amp;&amp;</span> <span class="se">\</span>
+    apt-get install -y <span class="se">\</span>
+    mayavi2
+
+<span class="k">RUN</span> rm /bin/sh <span class="o">&amp;&amp;</span> ln -s /bin/bash /bin/sh
+
+USER jovyan
+
+<span class="k">ENV</span><span class="s"> LIBGL_ALWAYS_INDIRECT 1</span>
+
+<span class="k">RUN</span> <span class="nb">source</span> activate python2 <span class="o">&amp;&amp;</span> <span class="se">\</span>
+    conda install -y mayavi <span class="o">&amp;&amp;</span> <span class="se">\</span>
+    conda install -y -c conda-forge jupyter_contrib_nbextensions
+<span class="k">RUN</span> <span class="nb">source</span> activate python2 <span class="o">&amp;&amp;</span> <span class="se">\</span>
+    jupyter nbextension install --py mayavi --user
+</pre></div>
+</div>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> build -t jupyter-mayavi .
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">Set indirect GLX flag to be used for Xquartz</p>
+<blockquote>
+<div><div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> defaults write org.macosforge.xquartz.X11 enable_iglx -bool <span class="nb">true</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><a class="reference external" href="http://www.hoffman2.idre.ucla.edu/access/x11_forwarding/">Hoffman2 Cluster User Guide</a></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Run Xquartz</p>
+</li>
+<li><p class="first">Run socat</p>
+<blockquote>
+<div><div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CLIENT:<span class="se">\&quot;</span><span class="nv">$DISPLAY</span><span class="se">\&quot;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">Run docker container</p>
+<blockquote>
+<div><div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nv">ip</span><span class="o">=</span><span class="k">$(</span>ifconfig en0 <span class="p">|</span> grep inet <span class="p">|</span> awk <span class="s1">&#39;$1==&quot;inet&quot; {print $2}&#39;</span><span class="k">)</span>
+<span class="gp">$</span> docker run --rm -p 9000:8888 -e <span class="nv">DISPLAY</span><span class="o">=</span><span class="nv">$ip</span>:0 --name <span class="nb">test</span> jupyter-mayavi
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">Launch a notebook with Python2 kernel</p>
+</li>
+<li><p class="first">Run the following commands in the notebook:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mayavi</span> <span class="kn">import</span> <span class="n">mlab</span>
+<span class="n">mlab</span><span class="o">.</span><span class="n">init_notebook</span><span class="p">()</span>
+<span class="n">mlab</span><span class="o">.</span><span class="n">test_plot3d</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<img alt="_images/20170114.png" src="_images/20170114.png" />
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2016, Taku Yoshioka.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
