@@ -19,6 +19,7 @@ Contents:
     notebook/20160928/lda-advi-ae
     notebook/20161105/convolutional_vae_keras_advi
     mac-docker-jupyter-mayavi
+    notebook/20170919/slam_advi
 
     profile
 
