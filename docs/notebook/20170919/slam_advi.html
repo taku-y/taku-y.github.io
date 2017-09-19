@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Solving SLAM with variational inference &#8212; taku-y.github.io 0.1 documentation</title>
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="ホームページ作者のプロフィール" href="../../profile.html" />
+    <link rel="prev" title="Plot with Mayavi in Jupyter notebook on Docker for Mac" href="../../mac-docker-jupyter-mayavi.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html">
+          taku-y.github.io</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../git-intro.html">Git入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../downloads.html">ダウンロードファイル</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../20160928/lda-advi-ae.html">Automatic autoencoding variational Bayes for latent dirichlet allocation with PyMC3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../20161105/convolutional_vae_keras_advi.html">Convolutional variational autoencoder with PyMC3 and Keras</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../mac-docker-jupyter-mayavi.html">Plot with Mayavi in Jupyter notebook on Docker for Mac</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Solving SLAM with variational inference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#Reference">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../profile.html">ホームページ作者のプロフィール</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Solving SLAM with variational inference</a><ul>
+<li><a class="reference internal" href="#A-SLAM-model">A SLAM model</a></li>
+<li><a class="reference internal" href="#Bayesian-inference-for-SLAM">Bayesian inference for SLAM</a></li>
+<li><a class="reference internal" href="#Contents-of-this-notebook">Contents of this notebook</a></li>
+<li><a class="reference internal" href="#Simulation">Simulation</a><ul>
+<li><a class="reference internal" href="#Environment">Environment</a></li>
+<li><a class="reference internal" href="#Run-simulation">Run simulation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#SLAM-probabilistic-model">SLAM probabilistic model</a><ul>
+<li><a class="reference internal" href="#Motion-model">Motion model</a></li>
+<li><a class="reference internal" href="#Observation-model">Observation model</a></li>
+<li><a class="reference internal" href="#Full-model">Full-model</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#Reference">Reference</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="../../mac-docker-jupyter-mayavi.html" title="Previous Chapter: Plot with Mayavi in Jupyter notebook on Docker for Mac"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Plot with May...</span>
+    </a>
+  </li>
+  <li>
+    <a href="../../profile.html" title="Next Chapter: ホームページ作者のプロフィール"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">ホームページ作者のプロフィール &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../../_sources/notebook/20170919/slam_advi.ipynb.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput div.prompt,
+div.nbinput div.input_area,
+div.nbinput div[class*=highlight],
+div.nbinput div[class*=highlight] pre,
+div.nboutput,
+div.nbinput div.prompt,
+div.nbinput div.output_area,
+div.nboutput div[class*=highlight],
+div.nboutput div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput,
+    div.nboutput {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput div.prompt pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput div.prompt pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput div.prompt,
+div.nboutput div.prompt {
+    min-width: 9ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput div.prompt,
+    div.nboutput div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput div.prompt pre,
+div.nboutput div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput div.input_area,
+div.nboutput div.output_area {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput div.input_area,
+    div.nboutput div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput div.input_area {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+</style>
+<div class="section" id="Solving-SLAM-with-variational-inference">
+<h1>Solving SLAM with variational inference<a class="headerlink" href="#Solving-SLAM-with-variational-inference" title="Permalink to this headline">¶</a></h1>
+<p>19th September 2017, Taku Yoshioka</p>
+<p>I started to working on robotics since this April, while I have made
+some contributions on the development of PyMC3, which is a probabilistic
+programming language. Thus, I think if PyMC3 can be applied to a problem
+of robotics. In this notebook, We will see how probabilistic programming
+can be applied to a problem of robotics, although it’s setting is very
+simple and not intended for real application.</p>
+<p>Although single word “robotics” covers a lot of subfields of robotics
+research, here we will consider SLAM, which is the abbreviation for
+simultaneous localization and mapping. We can cast SLAM problem into
+Bayesian inference. We suppose that a car is moving on a map. The state
+of the car at time <span class="math">\(t\)</span> is represented as a three dimensional
+vector <span class="math">\(\bf{s}_{t}\)</span> of its 2-D location and the angle of its
+direction. Probabilistic models of SLAM problems can be written as
+<span class="math">\(p(\bf{M}, \bf{S}\mid\bf{Z},{\bf U})\)</span>, where
+<span class="math">\({\bf S}={\bf s}_{t=1:T}\)</span>, <span class="math">\({\bf M}\)</span> denotes the map,
+<span class="math">\({\bf Z}\)</span> denotes observations, and
+<span class="math">\({\bf U}={\bf u}_{t=1:T}\)</span> denotes a sequence of control signals
+for the system. This equation means the posterior probability of car
+states and the map given observations.</p>
+<div class="section" id="A-SLAM-model">
+<h2>A SLAM model<a class="headerlink" href="#A-SLAM-model" title="Permalink to this headline">¶</a></h2>
+<p>Specifically, we suppose a set of landmarks, which we considered as the
+map. It mean that <span class="math">\({\bf M}\)</span> is a set of the locations of the
+landmarks: <span class="math">\({\bf m}_{j=1:M}\)</span>, where <span class="math">\(M\)</span> is the number of the
+landmarks. However, the locations of the landmarks in a global
+coordinate are supposed to be unknown. Thus, we need to estimate thier
+locations from observations.</p>
+<p>We also assume that the distance and the relative angle to each landmark
+from the car can be observed (<span class="math">\({\bf Z}\)</span>), although there is a
+range of the measurements of distance and angle. It should be noted that
+the number of observations at each time step can vary.</p>
+<p>We further assume that we know the sequence of control signals
+(<span class="math">\({\bf U}\)</span>). Each signal consists of the velocity and stearing
+angle. The car move toward the current direction and the direction
+changes based on the stearing angle and the current velocity, which is a
+sipmle model of car movement.</p>
+</div>
+<div class="section" id="Bayesian-inference-for-SLAM">
+<h2>Bayesian inference for SLAM<a class="headerlink" href="#Bayesian-inference-for-SLAM" title="Permalink to this headline">¶</a></h2>
+<p>In the following, we will define the probabilistic model as
+<span class="math">\(p({\bf Z},{\bf S},{\bf M}\mid{\bf U})=p({\bf Z}|{\bf S},{\bf M})p({\bf S}|{\bf U})p({\bf M})\)</span>.
+<span class="math">\(p({\bf Z}|{\bf S},{\bf M})\)</span> is referred to as observation model
+or likelihood. <span class="math">\(p({\bf S}|{\bf U})\)</span> is the motion model.
+<span class="math">\(p({\bf M})\)</span> is a prior distribution on the map (set of
+landmarks). Since we know control signals and the car movement model, we
+can estimate car location by accumlation of movements under the movement
+model. This accumlation process is involved to get
+<span class="math">\(p({\bf S}|{\bf U})\)</span>. This term is considered as a prior on
+<span class="math">\({\bf S}\)</span>. The prior distribution is modified based on the
+likelihood and more accurate estimation of <span class="math">\({\bf S}\)</span> and
+<span class="math">\({\bf M}\)</span> are obtained as its posterior.</p>
+<p>Particle filter and extended Kalman filter (EKF) are commonly applied to
+infer
+<span class="math">\(p({\bf s}_{t=T},{\bf M}\mid{\bf s}_{t=1:(T-1)},{\bf Z},{\bf U})\)</span>.
+The former is a nonparametric method, while the later assumes a
+parametric model: Gaussian model with linealization around the current
+state. Inference of the states over time,
+<span class="math">\(p({\bf S},{\bf M}|{\bf Z},{\bf U})\)</span> is referred to as a smoothing
+and is solved by extended Kalman smoother. Kalman filters requires to
+compute variance-covariance matrix of all states and landmark locations,
+thus does not scale the number of states and locations well.</p>
+<p>PyMC3 supports variational inference, which approximates the true
+posterior by a parametric model. In addition, there is no need to write
+the code for doing probabilistic inference. It is sufficient for user to
+define the probabilistic model to be solved. This automated inference
+system is called automatic differentiation variational inference (ADVI).
+The most simple approximation of the true posterior is mean field:
+<span class="math">\(p({\bf S},{\bf M}\mid {\bf Z},{\bf U})\sim \prod_{t=1:T}q({\bf s}_{t})\prod_{j=1:M}q({\bf m}_{j})\)</span>.
+In this notebook, we use a mean-field model. It should be noted that
+PyMC3 also supports correlated posterior based on Stein gradiant
+variational inference or normalizing flows.</p>
+</div>
+<div class="section" id="Contents-of-this-notebook">
+<h2>Contents of this notebook<a class="headerlink" href="#Contents-of-this-notebook" title="Permalink to this headline">¶</a></h2>
+<p>This notebook consists of the three parts: simulation, SLAM model and
+inference. In simulation, artificial data is generated with a car model.
+In SLAM model, we define a Bayesian probabilistic model consisting of
+car motion and observation models with the help of PyMC3 syntax.
+Finally, posterior distribution of unknown random variables
+(<span class="math">\({\bf M}\)</span> and <span class="math">\({\bf S}\)</span>) are inferred automatically by
+using ADVI.</p>
+<ul class="simple">
+<li>Simulation<ul>
+<li>Environment</li>
+<li>Run simulation</li>
+</ul>
+</li>
+<li>SLAM Model<ul>
+<li>Motion model</li>
+<li>Observation model</li>
+<li>Full model</li>
+</ul>
+</li>
+<li>Inference<ul>
+<li>ADVI</li>
+</ul>
+</li>
+</ul>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;/home/jovyan/work/git/github/pymc-devs/pymc3&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pymc3</span> <span class="kn">as</span> <span class="nn">pm</span>
+<span class="kn">from</span> <span class="nn">pymc3</span> <span class="kn">import</span> <span class="n">Normal</span><span class="p">,</span> <span class="n">Model</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">theano.tensor</span> <span class="kn">as</span> <span class="nn">tt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Simulation">
+<h2>Simulation<a class="headerlink" href="#Simulation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="Environment">
+<h3>Environment<a class="headerlink" href="#Environment" title="Permalink to this headline">¶</a></h3>
+<p>Environment consists of a motion model, observation model and its
+parameters. The parameters includes:</p>
+<ul class="simple">
+<li>Landmark locations</li>
+<li>Initial car status</li>
+<li>Sequence of control signals</li>
+<li>Time difference for simulation</li>
+</ul>
+<p>All parameters are stored in a dict.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">n_timepoints</span> <span class="o">=</span> <span class="mi">40</span> <span class="c1"># The number of time steps</span>
+
+<span class="n">env</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># Discritized time</span>
+    <span class="s1">&#39;n_timepoints&#39;</span><span class="p">:</span> <span class="n">n_timepoints</span><span class="p">,</span>
+
+    <span class="c1"># Landmark locations</span>
+    <span class="s1">&#39;landmark_locs&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+        <span class="p">[</span><span class="o">-</span><span class="mf">20.0</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="c1"># x-coord [m]</span>
+        <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">30.0</span><span class="p">]</span>  <span class="c1"># y-coord [m]</span>
+    <span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
+
+    <span class="c1"># The initial state of the car</span>
+    <span class="s1">&#39;car_init&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">0.</span><span class="p">]),</span> <span class="c1"># x, y, angle</span>
+
+    <span class="c1"># Control sequence</span>
+    <span class="s1">&#39;control&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+        <span class="mf">5.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_timepoints</span><span class="p">),</span> <span class="c1"># velocity [m/s]</span>
+        <span class="mf">0.05</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_timepoints</span><span class="p">)</span>  <span class="c1"># stearing angle [rad]</span>
+    <span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
+
+    <span class="c1"># Physical parameters</span>
+    <span class="s1">&#39;dt&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="c1"># time difference [s]</span>
+    <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span> <span class="c1"># length of the car [m]</span>
+
+    <span class="c1"># Sensor parameters</span>
+    <span class="s1">&#39;sensor_min_range&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>  <span class="c1"># 1.0 [m]</span>
+    <span class="s1">&#39;sensor_max_range&#39;</span><span class="p">:</span> <span class="mf">50.0</span><span class="p">,</span> <span class="c1"># 50.0 [m]</span>
+    <span class="s1">&#39;sensor_min_angle&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="c1"># [rad]</span>
+    <span class="s1">&#39;sensor_max_angle&#39;</span><span class="p">:</span> <span class="mf">0.3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="c1"># [rad]</span>
+
+    <span class="c1"># Intrinsic noise in car movement</span>
+    <span class="s1">&#39;noise_move&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]),</span> <span class="c1"># ([m], [m], [rad])</span>
+    <span class="c1">#&#39;noise_move&#39;: np.array([0.4, 0.4, 0.02]), # ([m], [m], [rad])</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>The motion model transforms the current car state to the next one. It
+involves intrinsic noise which perturbates the car movement.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">simulate_movement</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">rng</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="n">dt</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">env</span><span class="p">[</span><span class="s1">&#39;dt&#39;</span><span class="p">],</span> <span class="n">env</span><span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">]</span>
+
+    <span class="n">vdt</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">dt</span>
+    <span class="n">s_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">((</span>
+        <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">vdt</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+        <span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">vdt</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+        <span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">vdt</span> <span class="o">/</span> <span class="n">b</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="p">))</span>
+
+    <span class="c1"># Wrap angle (see https://stackoverflow.com/questions/15927755)</span>
+    <span class="n">s_</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">s_</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">%</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+
+    <span class="k">if</span> <span class="n">rng</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">s_</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">s_</span> <span class="o">+</span> <span class="n">env</span><span class="p">[</span><span class="s1">&#39;noise_move&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">rng</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>The observation model simulates range-bearing measurement, which
+consists the distance and angle to landmarks from the current car
+location. It should be noted that if a landmark is too far or too near
+the car location, it is not able to be observed. These thresholds are
+some variables in <code class="docutils literal"><span class="pre">env</span></code>.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">simulate_observation</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">rng</span><span class="p">):</span>
+    <span class="n">ms</span> <span class="o">=</span> <span class="n">env</span><span class="p">[</span><span class="s1">&#39;landmark_locs&#39;</span><span class="p">]</span>
+    <span class="n">min_range</span> <span class="o">=</span> <span class="n">env</span><span class="p">[</span><span class="s1">&#39;sensor_min_range&#39;</span><span class="p">]</span>
+    <span class="n">max_range</span> <span class="o">=</span> <span class="n">env</span><span class="p">[</span><span class="s1">&#39;sensor_max_range&#39;</span><span class="p">]</span>
+    <span class="n">min_angle</span> <span class="o">=</span> <span class="n">env</span><span class="p">[</span><span class="s1">&#39;sensor_min_angle&#39;</span><span class="p">]</span>
+    <span class="n">max_angle</span> <span class="o">=</span> <span class="n">env</span><span class="p">[</span><span class="s1">&#39;sensor_max_angle&#39;</span><span class="p">]</span>
+
+    <span class="n">ds</span><span class="p">,</span> <span class="n">ps</span><span class="p">,</span> <span class="n">ixs</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ms</span><span class="p">)):</span>
+        <span class="n">dx</span> <span class="o">=</span> <span class="n">ms</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">dy</span> <span class="o">=</span> <span class="n">ms</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">dy</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">angl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">dy</span><span class="p">,</span> <span class="n">dx</span><span class="p">)</span> <span class="o">-</span> <span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+
+        <span class="c1"># Wrap angle (see https://stackoverflow.com/questions/15927755)</span>
+        <span class="n">angl</span> <span class="o">=</span> <span class="p">(</span><span class="n">angl</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">%</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+
+        <span class="n">within_range</span> <span class="o">=</span> <span class="p">(</span><span class="n">min_range</span> <span class="o">&lt;=</span> <span class="n">dist</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">dist</span> <span class="o">&lt;=</span> <span class="n">max_range</span><span class="p">)</span>
+        <span class="n">within_angle</span> <span class="o">=</span> <span class="p">(</span><span class="n">min_angle</span> <span class="o">&lt;=</span> <span class="n">angl</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">angl</span> <span class="o">&lt;=</span> <span class="n">max_angle</span><span class="p">)</span>
+
+        <span class="c1"># Add an observation</span>
+        <span class="k">if</span> <span class="n">within_range</span> <span class="ow">and</span> <span class="n">within_angle</span><span class="p">:</span>
+            <span class="n">noise_d</span> <span class="o">=</span> <span class="mf">0.01</span> <span class="o">*</span> <span class="n">rng</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">noise_p</span> <span class="o">=</span> <span class="mf">0.01</span> <span class="o">*</span> <span class="n">rng</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="c1"># more realistic noise model</span>
+            <span class="c1"># noise_d = dist / 10.0 * rng.randn(1)[0]</span>
+            <span class="c1"># noise_p = 3.0 * np.pi / 180.0 * rng.randn(1)[0]</span>
+
+            <span class="n">d</span> <span class="o">=</span> <span class="n">dist</span> <span class="o">+</span> <span class="n">noise_d</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">angl</span> <span class="o">+</span> <span class="n">noise_p</span>
+
+            <span class="n">ds</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+            <span class="n">ps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+            <span class="n">ixs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+    <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">ds</span><span class="p">,</span> <span class="n">ps</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ixs</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Run-simulation">
+<h3>Run simulation<a class="headerlink" href="#Run-simulation" title="Permalink to this headline">¶</a></h3>
+<p>We are ready to run the simulation by using functions defined above. The
+function below simply applies the motion and observation models
+repeatedly.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">run_simulation</span><span class="p">(</span><span class="n">env</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Simulate car movement and range-bearing measurement under the given environment.</span>
+
+<span class="sd">    Returned dict includes the following items:</span>
+
+<span class="sd">    - ss: Car states. numpy.ndarray, shape=((n_timepoints + 1), 3).</span>
+<span class="sd">    - ns: Series of the number of observed landmarks. numpy.ndarray, shape=(n_timepoints, 3).</span>
+<span class="sd">    - zs: Series of observations. numpy.ndarray, shape=(n_obs_landmarks, 2).</span>
+<span class="sd">    - ixs: Indices of the observed landmarks through the car movement. numpy.ndarray, shape=(n_obs_landmarks, 3).</span>
+
+<span class="sd">    ss includes the initial car state.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">us</span> <span class="o">=</span> <span class="n">env</span><span class="p">[</span><span class="s1">&#39;control&#39;</span><span class="p">]</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">env</span><span class="p">[</span><span class="s1">&#39;dt&#39;</span><span class="p">]</span>
+
+    <span class="n">rs</span> <span class="o">=</span> <span class="p">[</span><span class="n">env</span><span class="p">[</span><span class="s1">&#39;car_init&#39;</span><span class="p">]]</span> <span class="c1"># odometry</span>
+    <span class="n">ss</span> <span class="o">=</span> <span class="p">[</span><span class="n">env</span><span class="p">[</span><span class="s1">&#39;car_init&#39;</span><span class="p">]]</span>
+    <span class="n">ns</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">zs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">ixs</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_timepoints</span><span class="p">):</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">simulate_movement</span><span class="p">(</span><span class="n">ss</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">us</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">env</span><span class="p">,</span> <span class="n">rng</span><span class="p">)</span>
+        <span class="n">zs_</span><span class="p">,</span> <span class="n">ixs_</span> <span class="o">=</span> <span class="n">simulate_observation</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">rng</span><span class="p">)</span>
+        <span class="n">ss</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+
+        <span class="n">r</span> <span class="o">=</span> <span class="n">simulate_movement</span><span class="p">(</span><span class="n">rs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">us</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">env</span><span class="p">)</span>
+        <span class="n">rs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">zs_</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">ns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ixs_</span><span class="p">))</span>
+            <span class="n">zs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">zs_</span><span class="p">)</span>
+            <span class="n">ixs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ixs_</span><span class="p">)</span>
+
+    <span class="n">ss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">ss</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+    <span class="n">rs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">rs</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+    <span class="n">ns</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">ns</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">zs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">zs</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="n">ixs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">ixs</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;ss&#39;</span><span class="p">:</span> <span class="n">ss</span><span class="p">,</span>
+        <span class="s1">&#39;rs&#39;</span><span class="p">:</span> <span class="n">rs</span><span class="p">,</span>
+        <span class="s1">&#39;ns&#39;</span><span class="p">:</span> <span class="n">ns</span><span class="p">,</span>
+        <span class="s1">&#39;zs&#39;</span><span class="p">:</span> <span class="n">zs</span><span class="p">,</span>
+        <span class="s1">&#39;ixs&#39;</span><span class="p">:</span> <span class="n">ixs</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">result</span><span class="p">):</span>
+    <span class="n">n_timepoints</span> <span class="o">=</span> <span class="n">env</span><span class="p">[</span><span class="s1">&#39;n_timepoints&#39;</span><span class="p">]</span>
+
+    <span class="c1"># Landmarks</span>
+    <span class="n">ms</span> <span class="o">=</span> <span class="n">env</span><span class="p">[</span><span class="s1">&#39;landmark_locs&#39;</span><span class="p">]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">ms</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">ms</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">ms</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">ms</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">ms</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">ms</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">ms</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">ms</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">ss</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;ss&#39;</span><span class="p">]</span>
+        <span class="n">rs</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;rs&#39;</span><span class="p">]</span>
+        <span class="n">zs</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;zs&#39;</span><span class="p">]</span>
+        <span class="n">ns</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;ns&#39;</span><span class="p">]</span>
+        <span class="n">ixs_</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">ns</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;int&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_timepoints</span><span class="p">)</span> <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">ns</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+        <span class="n">ixs_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">ixs_</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># Car locations</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">ss</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">ss</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ss</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">ss</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+
+        <span class="c1"># Odometry</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">rs</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">rs</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rs</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">rs</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Range-bearing measurements</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">zs</span><span class="p">)):</span>
+            <span class="n">s0</span> <span class="o">=</span> <span class="n">ss</span><span class="p">[</span><span class="n">ixs_</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mi">0</span><span class="p">]</span>
+            <span class="n">s1</span> <span class="o">=</span> <span class="n">ss</span><span class="p">[</span><span class="n">ixs_</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="n">e0</span> <span class="o">=</span> <span class="n">s0</span> <span class="o">+</span> <span class="n">zs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">zs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">ss</span><span class="p">[</span><span class="n">ixs_</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mi">2</span><span class="p">])</span>
+            <span class="n">e1</span> <span class="o">=</span> <span class="n">s1</span> <span class="o">+</span> <span class="n">zs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">zs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">ss</span><span class="p">[</span><span class="n">ixs_</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mi">2</span><span class="p">])</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">s0</span><span class="p">,</span> <span class="n">e0</span><span class="p">],</span> <span class="p">[</span><span class="n">s1</span><span class="p">,</span> <span class="n">e1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">()</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">,</span> <span class="s1">&#39;datalim&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>The below figure shows the car trajectory (blue circles), observations
+of landmarks (dotted red lines) and the noiseless trajectory (green
+circles). We see that the noiseless trajectory differs with the true
+trajectory. It is expected that the true trajectory is estimated
+accurately by combining the noiseless trajectory and the observations.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">result</span> <span class="o">=</span> <span class="n">run_simulation</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/notebook_20170919_slam_advi_13_0.png" src="../../_images/notebook_20170919_slam_advi_13_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="SLAM-probabilistic-model">
+<h2>SLAM probabilistic model<a class="headerlink" href="#SLAM-probabilistic-model" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="Motion-model">
+<h3>Motion model<a class="headerlink" href="#Motion-model" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">motion_model</span><span class="p">(</span><span class="n">s0</span><span class="p">,</span> <span class="n">us</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Add prior on the car states into the probabilistic model in the context.</span>
+
+<span class="sd">    :param s0: The initial state of the car.</span>
+<span class="sd">    :type s0: numpy.ndarray, shape=(3,)</span>
+<span class="sd">    :param us: Control sequence.</span>
+<span class="sd">    :type us: numpy.ndarray, shape=(n_timepoints, 3)</span>
+<span class="sd">    :return: State variables for the car (random variables).</span>
+<span class="sd">    :rtype: PyMC3 random variable class, shape=(n_timepoints, 3)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">n_timepoints</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">us</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">u</span><span class="p">):</span>
+        <span class="n">vdt</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">dt</span>
+        <span class="k">return</span> <span class="n">tt</span><span class="o">.</span><span class="n">stack</span><span class="p">((</span>
+            <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">vdt</span> <span class="o">*</span> <span class="n">tt</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+            <span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">vdt</span> <span class="o">*</span> <span class="n">tt</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+            <span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">vdt</span> <span class="o">/</span> <span class="n">b</span> <span class="o">*</span> <span class="n">tt</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="p">))</span>
+
+    <span class="n">s_prev</span> <span class="o">=</span> <span class="n">s0</span>
+    <span class="n">ss</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_timepoints</span><span class="p">):</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">Normal</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;s_</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">mu</span><span class="o">=</span><span class="n">f</span><span class="p">(</span><span class="n">s_prev</span><span class="p">,</span> <span class="n">us</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]),</span> <span class="n">sd</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,))</span>
+        <span class="n">ss</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        <span class="n">s_prev</span> <span class="o">=</span> <span class="n">s</span>
+
+    <span class="k">return</span> <span class="n">tt</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">ss</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Observation-model">
+<h3>Observation model<a class="headerlink" href="#Observation-model" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">obs_mean</span><span class="p">(</span><span class="n">ixs</span><span class="p">,</span> <span class="n">ns</span><span class="p">,</span> <span class="n">ss</span><span class="p">,</span> <span class="n">ms</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns the mean of observations.</span>
+
+<span class="sd">    :param ixs: Indices of the observed landmarks through the car movement.</span>
+<span class="sd">    :type ixs: numpy.ndarray, shape=(n_obs_landmarks,)</span>
+<span class="sd">    :param ns: The number of observed landmarks at each time points.</span>
+<span class="sd">    :type ns: numpy.ndarray, shape=(n_timepoints,)</span>
+<span class="sd">    :param ss: State variables for the car (random variables).</span>
+<span class="sd">    :type ss: PyMC3 random variable class, shape=(n_timepoints, 3)</span>
+<span class="sd">    :param ms: State variables for the landmarks (random variables).</span>
+<span class="sd">    :type ms: PyMC3 random variable class, shape=(n_landmarks, 3)</span>
+
+<span class="sd">    ixs and ns must satisfy sum(ns) == len(ixs).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span><span class="p">(</span><span class="n">ns</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">ixs</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">debug</span><span class="p">:</span>
+        <span class="n">mod</span> <span class="o">=</span> <span class="n">np</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">mod</span> <span class="o">=</span> <span class="n">tt</span>
+
+    <span class="n">ixs_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">i</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ns</span><span class="p">)</span> <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">])</span>
+    <span class="n">dxs</span> <span class="o">=</span> <span class="n">ms</span><span class="p">[</span><span class="n">ixs</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">ss</span><span class="p">[</span><span class="n">ixs_</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">dys</span> <span class="o">=</span> <span class="n">ms</span><span class="p">[</span><span class="n">ixs</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">ss</span><span class="p">[</span><span class="n">ixs_</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">ranges_mean</span> <span class="o">=</span> <span class="n">mod</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dxs</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">dys</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">angles_mean</span> <span class="o">=</span> <span class="n">mod</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">dys</span><span class="p">,</span> <span class="n">dxs</span><span class="p">)</span> <span class="o">-</span> <span class="n">ss</span><span class="p">[</span><span class="n">ixs_</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+
+    <span class="c1"># Wrap angle (see https://stackoverflow.com/questions/15927755)</span>
+    <span class="n">angles_mean</span> <span class="o">=</span> <span class="p">(</span><span class="n">angles_mean</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">%</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+
+    <span class="n">zs_mean</span> <span class="o">=</span> <span class="n">mod</span><span class="o">.</span><span class="n">stack</span><span class="p">((</span><span class="n">ranges_mean</span><span class="p">,</span> <span class="n">angles_mean</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
+
+    <span class="k">return</span> <span class="n">zs_mean</span>
+
+<span class="k">def</span> <span class="nf">observation_model</span><span class="p">(</span><span class="n">zs</span><span class="p">,</span> <span class="n">ss</span><span class="p">,</span> <span class="n">ms</span><span class="p">,</span> <span class="n">ixs</span><span class="p">,</span> <span class="n">ns</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Add observation model (likelihood function) into the probabilistic model in the context.</span>
+
+<span class="sd">    :param zs: Range-bearing observations of the landmarks.</span>
+<span class="sd">    :type zs: numpy.ndarray, shape=(n_obs_landmarks,)</span>
+<span class="sd">    :param ss: State variables for the car (random variables).</span>
+<span class="sd">    :type ss: PyMC3 random variable class, shape=(n_timepoints, 3)</span>
+<span class="sd">    :param ms: State variables for the landmarks (random variables).</span>
+<span class="sd">    :type ms: PyMC3 random variable class, shape=(n_landmarks, 3)</span>
+<span class="sd">    :param ixs: Indices of the observed landmarks through the car movement.</span>
+<span class="sd">    :type ixs: numpy.ndarray, shape=(n_obs_landmarks,)</span>
+<span class="sd">    :param ns: The number of observed landmarks at each time points.</span>
+<span class="sd">    :type ns: numpy.ndarray, shape=()</span>
+
+<span class="sd">    ixs and ns must satisfy sum(ns) == len(ixs).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">zs_mean</span> <span class="o">=</span> <span class="n">obs_mean</span><span class="p">(</span><span class="n">ixs</span><span class="p">,</span> <span class="n">ns</span><span class="p">,</span> <span class="n">ss</span><span class="p">,</span> <span class="n">ms</span><span class="p">)</span>
+    <span class="n">Normal</span><span class="p">(</span><span class="s1">&#39;zs&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="n">zs_mean</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="n">zs</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="n">zs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Full-model">
+<h3>Full-model<a class="headerlink" href="#Full-model" title="Permalink to this headline">¶</a></h3>
+<p>We obtain the probabilistic model for this problem by combining the
+motion and observation models.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">slam_model</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">result</span><span class="p">):</span>
+    <span class="c1"># Known variables: initial state, control signals, etc.</span>
+    <span class="n">s0</span> <span class="o">=</span> <span class="n">env</span><span class="p">[</span><span class="s1">&#39;car_init&#39;</span><span class="p">]</span>
+    <span class="n">us</span> <span class="o">=</span> <span class="n">env</span><span class="p">[</span><span class="s1">&#39;control&#39;</span><span class="p">]</span>
+    <span class="n">n_landmarks</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">env</span><span class="p">[</span><span class="s1">&#39;landmark_locs&#39;</span><span class="p">])</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">env</span><span class="p">[</span><span class="s1">&#39;dt&#39;</span><span class="p">]</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">env</span><span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">]</span>
+
+    <span class="c1"># Known variables: observations</span>
+    <span class="n">ns</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;ns&#39;</span><span class="p">]</span>
+    <span class="n">zs</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;zs&#39;</span><span class="p">]</span>
+    <span class="n">ixs</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;ixs&#39;</span><span class="p">]</span>
+
+    <span class="c1"># SLAM model</span>
+    <span class="k">with</span> <span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">model</span><span class="p">:</span>
+        <span class="n">ms</span> <span class="o">=</span> <span class="n">Normal</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;ms&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mf">100.0</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="n">n_landmarks</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span> <span class="c1"># p(m)</span>
+        <span class="n">ss</span> <span class="o">=</span> <span class="n">motion_model</span><span class="p">(</span><span class="n">s0</span><span class="p">,</span> <span class="n">us</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>                               <span class="c1"># p(s|s_0, u)</span>
+        <span class="n">observation_model</span><span class="p">(</span><span class="n">zs</span><span class="p">,</span> <span class="n">ss</span><span class="p">,</span> <span class="n">ms</span><span class="p">,</span> <span class="n">ixs</span><span class="p">,</span> <span class="n">ns</span><span class="p">)</span>                         <span class="c1"># p(z|m, s)</span>
+
+    <span class="k">return</span> <span class="n">model</span>
+</pre></div>
+</div>
+</div>
+<p>The code for probabilistic inference can be implemented with three lines
+of code:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="k">with</span> <span class="n">slam_model</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span> <span class="k">as</span> <span class="n">model</span><span class="p">:</span>
+    <span class="n">inference</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">ADVI</span><span class="p">()</span>
+    <span class="n">approx</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">200000</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">inference</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="stderr output_area docutils container">
+<div class="highlight"><pre>
+Average Loss = 1,879.1: 100%|██████████| 200000/200000 [07:05&lt;00:00, 470.36it/s]
+Finished [100%]: Average Loss = 1,879.2
+</pre></div></div>
+</div>
+<p>Here we see the negation of evidence lower bound (ELBO), which is the
+objective function used in ADVI.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">inference</span><span class="o">.</span><span class="n">hist</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[13]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>[&lt;matplotlib.lines.Line2D at 0x7f1c9b40aa20&gt;]
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/notebook_20170919_slam_advi_24_1.png" src="../../_images/notebook_20170919_slam_advi_24_1.png" />
+</div>
+</div>
+<p>We can see that landmark locations (diamonds) and car locations (red
+circles) are estimated well.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">trace</span> <span class="o">=</span> <span class="n">approx</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">draws</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">ms</span> <span class="o">=</span> <span class="n">trace</span><span class="p">[</span><span class="s1">&#39;ms&#39;</span><span class="p">]</span>
+
+<span class="c1"># Landmarks</span>
+<span class="c1"># Inferred</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">ms</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">ms</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">ms</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">ms</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">ms</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">ms</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">ms</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">ms</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
+
+<span class="c1"># True</span>
+<span class="n">ms</span> <span class="o">=</span> <span class="n">env</span><span class="p">[</span><span class="s1">&#39;landmark_locs&#39;</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">ms</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">ms</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">ms</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">ms</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">ms</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">ms</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">ms</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">ms</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+
+<span class="c1"># Car locations</span>
+<span class="c1"># Inferred</span>
+<span class="n">ss</span> <span class="o">=</span> <span class="p">[</span><span class="n">trace</span><span class="p">[(</span><span class="s1">&#39;s_</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">i</span><span class="p">)]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_timepoints</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
+<span class="n">ss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">ss</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">ss</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">ss</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ss</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">ss</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+
+<span class="c1"># True</span>
+<span class="n">ss</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;ss&#39;</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">ss</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">ss</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ss</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">ss</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+
+<span class="c1"># Noiseless</span>
+<span class="n">rs</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;rs&#39;</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">rs</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">rs</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rs</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">rs</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">()</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">,</span> <span class="s1">&#39;datalim&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/notebook_20170919_slam_advi_26_0.png" src="../../_images/notebook_20170919_slam_advi_26_0.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="Reference">
+<h1>Reference<a class="headerlink" href="#Reference" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>Tim Bailey (2009). Simultaneous Localisation and Mapping:
+Probabilistic Formulation. Presentation slide at SLAM SUMMER SCHOOL
+2009, organized by Australian Centre for Field Robotics
+(<a class="reference external" href="http://www.acfr.usyd.edu.au/education/summerschool.shtml">link</a>).</li>
+<li>Ryuichi Ueda (2017). Explanation of graph-based SLAM (in Japanese,
+<a class="reference external" href="https://github.com/ryuichiueda/commentary_on_graph-based_slam/blob/master/commentary_on_graph-based_slam.pdf">link</a>).</li>
+</ul>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2016, Taku Yoshioka.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
